@@ -1,7 +1,7 @@
-import { Hero } from "@/components/blocks/hero";
-import { Features } from "@/components/blocks/features";
-import { SplitImage } from "@/components/blocks/split-image";
-import { FAQs } from "@/components/blocks/faqs";
+import { Hero } from "./blocks/hero";
+import { Features } from "./blocks/features";
+import { SplitImage } from "./blocks/split-image";
+import { FAQs } from "./blocks/faqs";
 import { PAGE_QUERYResult } from "@/sanity/types";
 
 type PageBuilderProps = {

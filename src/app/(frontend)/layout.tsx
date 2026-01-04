@@ -1,5 +1,5 @@
-import { Header } from "@/features/posts/header";
 import "../globals.css";
+import { Header } from "@/features/layout/Header";
 
 export default function FrontendLayout({
   children,
@@ -7,9 +7,10 @@ export default function FrontendLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="bg-white min-h-screen">
+    <>
+      {/* <Header /> */}
       <Header />
-      {children}
-    </section>
+      <main className="w-screen">{children}</main>
+    </>
   );
 }

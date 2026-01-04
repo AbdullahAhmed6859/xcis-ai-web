@@ -1,11 +1,29 @@
-import Link from "next/link";
+import {
+  HeroSection,
+  TrustedBySection,
+  ServicesSection,
+  CaseStudies,
+  TrainingsSection,
+  TeamSection,
+  AdvantageSection,
+  CustomerReviews,
+  NewsAndInsights,
+  LocationsWeServe,
+} from "@/features/home";
 
 export default async function Page() {
   return (
-    <section className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <h1 className="text-4xl font-bold">Home</h1>
-      <hr />
-      <Link href="/posts">Posts index &rarr;</Link>
-    </section>
+    <>
+      <HeroSection />
+      <TrustedBySection />
+      <ServicesSection />
+      <TrainingsSection />
+      <CaseStudies />
+      <TeamSection />
+      <AdvantageSection />
+      <CustomerReviews />
+      <NewsAndInsights />
+      <LocationsWeServe />
+    </>
   );
 }

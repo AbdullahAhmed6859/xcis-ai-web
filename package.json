@@ -12,6 +12,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@radix-ui/react-slot": "^1.2.4",
     "@sanity/client": "^7.13.2",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
@@ -19,6 +21,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",
     "next-sanity": "^11.6.12",
