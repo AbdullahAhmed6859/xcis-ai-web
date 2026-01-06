@@ -1,6 +1,6 @@
 import {
   HeroSection,
-  TrustedBySection,
+  // TrustedBySection,
   ServicesSection,
   CaseStudies,
   TrainingsSection,
@@ -15,7 +15,7 @@ export default async function Page() {
   return (
     <>
       <HeroSection />
-      <TrustedBySection />
+      {/* <TrustedBySection /> */}
       <ServicesSection />
       <TrainingsSection />
       <CaseStudies />

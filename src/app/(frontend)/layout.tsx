@@ -1,3 +1,4 @@
+import Footer from "@/features/layout/Footer";
 import "../globals.css";
 import { Header } from "@/features/layout/Header";
 
@@ -11,6 +12,7 @@ export default function FrontendLayout({
       {/* <Header /> */}
       <Header />
       <main className="w-screen">{children}</main>
+      <Footer />
     </>
   );
 }

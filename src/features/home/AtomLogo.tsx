@@ -5,7 +5,7 @@ function AtomLogo() {
       data-name="Layer 2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 235.54 258.77"
-      className="w-80"
+      className="w-full aspect-square"
     >
       <g id="Layer_1-2" data-name="Layer 1">
         <g>
