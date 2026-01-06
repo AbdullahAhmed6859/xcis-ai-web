@@ -12,15 +12,13 @@ import Container from "./Container";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
-import { usePathname } from "next/navigation";
 
 export function Header() {
   const isMobile = useIsMobile();
   const { setOpenMobile } = useSidebar();
-  const pathName = usePathname();
 
   return (
-    <header className="h-20 w-screen grid place-items-center sticky top-0 bg-white shadow-md z-50">
+    <header className="h-16 sm:h-20 w-screen grid place-items-center sticky top-0 bg-white shadow-md z-50">
       <Container className="flex justify-between items-center">
         <MainLogo />
         <NavigationMenu viewport={isMobile} className="hidden xl:block">

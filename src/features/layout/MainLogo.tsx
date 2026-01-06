@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function MainLogo() {
   return (
-    <Link href="/" className="inline-block w-40 font-bold text-primary">
+    <Link href="/" className="inline-block w-28 sm:w-40 font-bold text-primary">
       <svg
         id="Layer_2"
         data-name="Layer 2"
