@@ -13,10 +13,8 @@ type NavItemProps = {
 export function NavItem({ label, href }: NavItemProps) {
   return (
     <NavigationMenuItem>
-      <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-        <Link href={href}>
-          <span className="text-dark-blue font-semibold">{label}</span>
-        </Link>
+      <NavigationMenuLink className={navigationMenuTriggerStyle()} href={href}>
+        <span className="text-dark-blue font-semibold">{label}</span>
       </NavigationMenuLink>
     </NavigationMenuItem>
   );
