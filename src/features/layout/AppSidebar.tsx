@@ -13,7 +13,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { NAV_ITEMS } from "./nav-items";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -68,6 +67,7 @@ export function AppSidebar() {
                     asChild
                     isActive={pathName === item.href}
                     className="flex justify-center text-lg text-dark-blue"
+                    onClick={() => setOpenMobile(false)}
                   >
                     <Link href={item.href}>
                       <span>{item.label}</span>

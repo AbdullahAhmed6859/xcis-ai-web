@@ -13,6 +13,45 @@
  */
 
 // Source: schema.json
+export type TrustedCompany = {
+  _id: string;
+  _type: "trustedCompany";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+  };
+  website?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
 export type Redirect = {
   _id: string;
   _type: "redirect";
@@ -78,20 +117,15 @@ export type SplitImage = {
 
 export type Hero = {
   _type: "hero";
-  title?: string;
-  text?: BlockContent;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
+  heading: string;
+  text: string;
+  companies: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "trustedCompany";
+  }>;
 };
 
 export type Features = {
@@ -178,35 +212,7 @@ export type Page = {
   title?: string;
   slug?: Slug;
   content?: PageBuilder;
-  mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
   seo?: Seo;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
 };
 
 export type Slug = {
@@ -221,15 +227,15 @@ export type Post = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
+  title: string;
+  slug: Slug;
   author?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "author";
   };
-  mainImage?: {
+  mainImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -407,15 +413,15 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Redirect | Seo | SiteSettings | SplitImage | Hero | Features | Faqs | Faq | BlockContent | PageBuilder | Page | SanityImageCrop | SanityImageHotspot | Slug | Post | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = TrustedCompany | SanityImageCrop | SanityImageHotspot | Redirect | Seo | SiteSettings | SplitImage | Hero | Features | Faqs | Faq | BlockContent | PageBuilder | Page | Slug | Post | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type POSTS_QUERYResult = Array<{
   _id: string;
-  title: string | null;
-  slug: Slug | null;
+  title: string;
+  slug: Slug;
   body: BlockContent | null;
   mainImage: {
     asset?: {
@@ -429,7 +435,7 @@ export type POSTS_QUERYResult = Array<{
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  } | null;
+  };
   publishedAt: string | null;
   categories: Array<{
     _id: string;
@@ -455,13 +461,13 @@ export type POSTS_QUERYResult = Array<{
 // Variable: POSTS_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
 export type POSTS_SLUGS_QUERYResult = Array<{
-  slug: string | null;
+  slug: string;
 }>;
 // Variable: POST_QUERY
 // Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
 export type POST_QUERYResult = {
   _id: string;
-  title: string | null;
+  title: string;
   body: BlockContent | null;
   mainImage: {
     asset?: {
@@ -475,7 +481,7 @@ export type POST_QUERYResult = {
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  } | null;
+  };
   publishedAt: string | null;
   categories: Array<{
     _id: string;
@@ -500,12 +506,12 @@ export type POST_QUERYResult = {
   relatedPosts: Array<{
     _key: string;
     _id: string;
-    title: string | null;
-    slug: Slug | null;
+    title: string;
+    slug: Slug;
   }> | null;
 } | null;
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  ...,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content[]{    ...,    _type == "faqs" => {      ...,      faqs[]->    }  }}
+// Query: *[_type == "page" && slug.current == $slug][0]{  ...,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content[]{      ...,      companies[]->{        _key,        name,        website,        logo      }    }}
 export type PAGE_QUERYResult = {
   _id: string;
   _type: "page";
@@ -518,15 +524,14 @@ export type PAGE_QUERYResult = {
     _key: string;
     _type: "faqs";
     title?: string;
-    faqs: Array<{
-      _id: string;
-      _type: "faq";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      body?: BlockContent;
-    }> | null;
+    faqs?: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "faq";
+    }>;
+    companies: null;
   } | {
     _key: string;
     _type: "features";
@@ -537,23 +542,30 @@ export type PAGE_QUERYResult = {
       _type: "feature";
       _key: string;
     }>;
+    companies: null;
   } | {
     _key: string;
     _type: "hero";
-    title?: string;
-    text?: BlockContent;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    heading: string;
+    text: string;
+    companies: Array<{
+      _key: null;
+      name: string;
+      website: string | null;
+      logo: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt: string;
+        _type: "image";
       };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
+    }>;
   } | {
     _key: string;
     _type: "splitImage";
@@ -571,19 +583,8 @@ export type PAGE_QUERYResult = {
       crop?: SanityImageCrop;
       _type: "image";
     };
+    companies: null;
   }> | null;
-  mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
   seo: {
     title: string | "";
     description: string | "";
@@ -602,48 +603,191 @@ export type PAGE_QUERYResult = {
     noIndex: boolean | false;
   };
 } | null;
+// Variable: PAGE_SLUGS_QUERY
+// Query: *[_type == "page" && defined(slug.current)]{   "slug": slug.current}
+export type PAGE_SLUGS_QUERYResult = Array<{
+  slug: string | null;
+}>;
 // Variable: HOME_PAGE_QUERY
-// Query: *[_id == "siteSettings"][0]{    homePage->{      ...,      "seo": {        "title": coalesce(seo.title, title, ""),      },      content[]{        ...,        _type == "faqs" => {          ...,          faqs[]->        }      }          }  }
+// Query: *[_id == "siteSettings"][0]{  ...,  homePage->{    "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true    },    content[]{      ...,      companies[]->{        _key,        name,        website,        logo      }    }  }}
 export type HOME_PAGE_QUERYResult = {
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   homePage: null;
 } | {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "faq";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  body?: BlockContent;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content?: PageBuilder;
+  seo?: Seo;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  author?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
+  publishedAt?: string;
+  body?: BlockContent;
+  relatedPosts?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "post";
+  }>;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "redirect";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  source: string;
+  destination: string;
+  permanent: boolean;
+  isEnabled?: boolean;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "sanity.fileAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "sanity.imageAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  metadata?: SanityImageMetadata;
+  source?: SanityAssetSourceData;
+  homePage: null;
+} | {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
   homePage: {
-    _id: string;
-    _type: "page";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    slug?: Slug;
-    content: Array<{
-      _key: string;
-      _type: "faqs";
-      title?: string;
-      faqs: Array<{
-        _id: string;
-        _type: "faq";
-        _createdAt: string;
-        _updatedAt: string;
-        _rev: string;
-        title?: string;
-        body?: BlockContent;
-      }> | null;
-    } | {
-      _key: string;
-      _type: "features";
-      title?: string;
-      features?: Array<{
-        title?: string;
-        text?: string;
-        _type: "feature";
-        _key: string;
-      }>;
-    } | {
-      _key: string;
-      _type: "hero";
-      title?: string;
-      text?: BlockContent;
-      image?: {
+    seo: {
+      title: string | "";
+      description: string | "";
+      image: {
         asset?: {
           _ref: string;
           _type: "reference";
@@ -654,7 +798,55 @@ export type HOME_PAGE_QUERYResult = {
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
-      };
+      } | null;
+      noIndex: boolean | false;
+    };
+    content: Array<{
+      _key: string;
+      _type: "faqs";
+      title?: string;
+      faqs?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "faq";
+      }>;
+      companies: null;
+    } | {
+      _key: string;
+      _type: "features";
+      title?: string;
+      features?: Array<{
+        title?: string;
+        text?: string;
+        _type: "feature";
+        _key: string;
+      }>;
+      companies: null;
+    } | {
+      _key: string;
+      _type: "hero";
+      heading: string;
+      text: string;
+      companies: Array<{
+        _key: null;
+        name: string;
+        website: string | null;
+        logo: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt: string;
+          _type: "image";
+        };
+      }>;
     } | {
       _key: string;
       _type: "splitImage";
@@ -672,23 +864,31 @@ export type HOME_PAGE_QUERYResult = {
         crop?: SanityImageCrop;
         _type: "image";
       };
+      companies: null;
     }> | null;
-    mainImage?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-    seo: {
-      title: string | "";
-    };
   } | null;
+} | {
+  _id: string;
+  _type: "trustedCompany";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+  };
+  website?: string;
+  homePage: null;
 } | null;
 // Variable: REDIRECTS_QUERY
 // Query: *[_type == "redirect" && isEnabled == true] {    source,    destination,    permanent  }
@@ -708,7 +908,7 @@ export type OG_IMAGE_QUERYResult = {
   mainImage: null;
   palette: null;
 } | {
-  title: string | null;
+  title: string;
   mainImage: {
     asset?: {
       _ref: string;
@@ -721,32 +921,35 @@ export type OG_IMAGE_QUERYResult = {
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  } | null;
-  palette: SanityImagePalette | null;
-} | {
-  title: string | null;
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  } | null;
+  };
   palette: SanityImagePalette | null;
 } | null;
 // Variable: SITEMAP_QUERY
 // Query: *[_type in ["page", "post"] && defined(slug.current)] {    "href": select(      _type == "page" => "/" + slug.current,      _type == "post" => "/posts/" + slug.current,      slug.current    ),    _updatedAt} +[*[_id == "siteSettings"][0].homePage->{    "href": "/",     _updatedAt}]
 export type SITEMAP_QUERYResult = Array<{
+  href: string;
+  _updatedAt: string;
+} | {
   href: string | null;
   _updatedAt: string;
 } | null | {
   href: "/";
   _updatedAt: string;
+}>;
+// Variable: TRUSTED_COMPANIES_QUERY
+// Query: *[_type == "trustedCompany"]{  name,  website,  logo{    alt,    asset  }}
+export type TRUSTED_COMPANIES_QUERYResult = Array<{
+  name: string;
+  website: string | null;
+  logo: {
+    alt: string;
+    asset: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    } | null;
+  };
 }>;
 
 // Query TypeMap
@@ -756,10 +959,12 @@ declare module "@sanity/client" {
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": POST_QUERYResult;
-    "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  content[]{\n    ...,\n    _type == \"faqs\" => {\n      ...,\n      faqs[]->\n    }\n  }\n}": PAGE_QUERYResult;
-    "*[_id == \"siteSettings\"][0]{\n    homePage->{\n      ...,\n      \"seo\": {\n        \"title\": coalesce(seo.title, title, \"\"),\n      },\n      content[]{\n        ...,\n        _type == \"faqs\" => {\n          ...,\n          faqs[]->\n        }\n      }      \n    }\n  }": HOME_PAGE_QUERYResult;
+    "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  content[]{\n      ...,\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n}": PAGE_QUERYResult;
+    "*[_type == \"page\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": PAGE_SLUGS_QUERYResult;
+    "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->{\n    \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n    },\n    content[]{\n      ...,\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n  }\n}": HOME_PAGE_QUERYResult;
     "\n  *[_type == \"redirect\" && isEnabled == true] {\n    source,\n    destination,\n    permanent\n  }\n": REDIRECTS_QUERYResult;
     "\n  *[_id == $id][0]{\n    title,\n    mainImage,\n    \"palette\": mainImage.asset->metadata.palette\n  }\n": OG_IMAGE_QUERYResult;
     "\n*[_type in [\"page\", \"post\"] && defined(slug.current)] {\n    \"href\": select(\n      _type == \"page\" => \"/\" + slug.current,\n      _type == \"post\" => \"/posts/\" + slug.current,\n      slug.current\n    ),\n    _updatedAt\n} +\n[*[_id == \"siteSettings\"][0].homePage->{\n    \"href\": \"/\", \n    _updatedAt\n}]\n": SITEMAP_QUERYResult;
+    "\n  *[_type == \"trustedCompany\"]{\n  name,\n  website,\n  logo{\n    alt,\n    asset\n  }\n}": TRUSTED_COMPANIES_QUERYResult;
   }
 }

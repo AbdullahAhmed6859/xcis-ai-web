@@ -1,25 +1,23 @@
 import { Button } from "@/components/ui/button";
-
 import AtomLogo from "./AtomLogo";
 import { Logos3 } from "@/components/Logo3";
 import Container from "../layout/Container";
 import PageSection from "./PageSection";
-// bg-[#09111e]
-function HeroSection() {
+import { ContentType } from "./pageBuilderTypes";
+
+type HeroProps = Extract<ContentType, { _type: "hero" }>;
+
+function HeroSection(props: HeroProps) {
   return (
     <PageSection height="screen">
       <div className="w-full h-4/5 bg-linear-to-b from-[#030303] to-[#0c182b]">
         <Container className="grid place-items-center">
-          <div className="grid md:grid-cols-2 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
+          <div className="w-full grid md:grid-cols-2 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
             <div className=" w-full flex flex-col justify-center h-full">
               <h1 className="text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-[#F9F9F9] mb-6">
-                Where Nuclear Grade Data Meets Production AI
+                {props.heading}
               </h1>
-              <p className="text-lg text-gray-300 mb-8">
-                We help nuclear operators, utilities, and energy leaders
-                modernise data, deploy AI safely, and move from pilots to
-                production.
-              </p>
+              <p className="text-lg text-gray-300 mb-8">{props.text}</p>
 
               <div className="flex gap-4">
                 <Button
@@ -57,7 +55,7 @@ function HeroSection() {
               </h2>
             </div>
 
-            <Logos3 />
+            <Logos3 logos={props.companies} />
             {/* <div className="h-16 w-36 relative flex items-center">
                 <WhiteImage
                   src="/BrucePower.png"

@@ -6,22 +6,26 @@ export const heroType = defineType({
   type: "object",
   fields: [
     defineField({
-      name: "title",
+      name: "heading",
       type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "text",
-      type: "blockContent",
+      type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "image",
-      type: "image",
+      name: "companies",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "trustedCompany" }] }],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,
   preview: {
     select: {
-      title: "title",
+      title: "heading",
       media: "image",
     },
     prepare({ title, media }) {

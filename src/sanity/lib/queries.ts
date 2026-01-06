@@ -62,31 +62,42 @@ export const PAGE_QUERY =
     "noIndex": seo.noIndex == true
   },
   content[]{
-    ...,
-    _type == "faqs" => {
       ...,
-      faqs[]->
+      companies[]->{
+        _key,
+        name,
+        website,
+        logo
+      }
+    }
+}`);
+
+export const PAGE_SLUGS_QUERY =
+  defineQuery(`*[_type == "page" && defined(slug.current)]{ 
+  "slug": slug.current
+}`);
+
+export const HOME_PAGE_QUERY = defineQuery(`
+*[_id == "siteSettings"][0]{
+  ...,
+  homePage->{
+    "seo": {
+    "title": coalesce(seo.title, title, ""),
+    "description": coalesce(seo.description,  ""),
+    "image": seo.image,
+    "noIndex": seo.noIndex == true
+    },
+    content[]{
+      ...,
+      companies[]->{
+        _key,
+        name,
+        website,
+        logo
+      }
     }
   }
 }`);
-
-// ...all other queries
-
-export const HOME_PAGE_QUERY = defineQuery(`*[_id == "siteSettings"][0]{
-    homePage->{
-      ...,
-      "seo": {
-        "title": coalesce(seo.title, title, ""),
-      },
-      content[]{
-        ...,
-        _type == "faqs" => {
-          ...,
-          faqs[]->
-        }
-      }      
-    }
-  }`);
 
 export const REDIRECTS_QUERY = defineQuery(`
   *[_type == "redirect" && isEnabled == true] {
@@ -118,3 +129,13 @@ export const SITEMAP_QUERY = defineQuery(`
     _updatedAt
 }]
 `);
+
+export const TRUSTED_COMPANIES_QUERY = defineQuery(`
+  *[_type == "trustedCompany"]{
+  name,
+  website,
+  logo{
+    alt,
+    asset
+  }
+}`);

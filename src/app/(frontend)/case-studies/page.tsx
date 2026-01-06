@@ -1,12 +1,18 @@
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "XCIS AI | Case Studies",
+  description: "Case Studies",
+};
 
 export default async function Page() {
   const posts = await sanityFetch({
     query: POSTS_QUERY,
-    tags: ["posts"],
-    revalidate: 3600 * 24,
+    // tags: ["posts"],
+    revalidate: 24 * 3600,
   });
 
   return (
@@ -17,7 +23,7 @@ export default async function Page() {
           <li key={post._id}>
             <Link
               className="block p-4 hover:text-blue-500"
-              href={`/posts/${post?.slug?.current}`}
+              href={`/case-studies/${post?.slug?.current}`}
             >
               {post?.title}
             </Link>

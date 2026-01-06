@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // This template requires the Embla Auto Scroll plugin to be installed:
 //
 // npm install embla-carousel-auto-scroll
@@ -11,68 +12,29 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { CompanyLogoType } from "@/features/home/pageBuilderTypes";
+import { urlFor } from "@/sanity/lib/image";
 
 interface Logo {
-  id: string;
   description: string;
   image: string;
   className?: string;
 }
 
-interface Logos3Props {
-  logos?: Logo[];
+interface LogosProps {
+  logos: CompanyLogoType;
 }
 
-const Logos3 = ({
-  logos = [
-    {
-      id: "logo-1",
-      description: "Logo 1",
-      image:
-        "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/astro-wordmark.svg",
-    },
-    {
-      id: "logo-2",
-      description: "Logo 2",
-      image: "/microsoft-logo-new.png",
-    },
-    {
-      id: "logo-3",
-      description: "Logo 3",
-      image:
-        "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/nextjs-wordmark.svg",
-    },
-    {
-      id: "logo-4",
-      description: "Logo 4",
-      image:
-        "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/react-wordmark.svg",
-    },
-    {
-      id: "logo-5",
-      description: "Logo 5",
-      image:
-        "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcn-ui-wordmark.svg",
-    },
-    {
-      id: "logo-6",
-      description: "Logo 6",
-      image:
-        "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/supabase-wordmark.svg",
-    },
-    {
-      id: "logo-7",
-      description: "Logo 7",
-      image: "/BrucePower.png",
-    },
-    {
-      id: "logo-8",
-      description: "Logo 8",
-      image:
-        "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/vercel-wordmark.svg",
-    },
-  ],
-}: Logos3Props) => {
+function ensureSize<T>(logos: Array<T>): T[] {
+  const newLogos = [...logos];
+  while (newLogos.length < 7) {
+    newLogos.push(...logos);
+  }
+  return newLogos;
+}
+
+function Logos3({ logos }: LogosProps) {
+  const logosArr = ensureSize(logos);
   return (
     <div className="relative mx-auto flex items-center justify-center w-full max-w-full sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
       <Carousel
@@ -81,15 +43,15 @@ const Logos3 = ({
         className="w-full"
       >
         <CarouselContent className="ml-0">
-          {logos.map((logo) => (
+          {logosArr.map((logo, i) => (
             <CarouselItem
-              key={logo.id}
+              key={i}
               className="flex basis-1/3 justify-center pl-0 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
             >
               <div className="h-10 w-24 sm:h-12 sm:w-32 relative flex items-center justify-center">
                 <img
-                  src={logo.image}
-                  alt={logo.description}
+                  src={urlFor(logo.logo).url()}
+                  alt={logo.logo.alt}
                   className="brightness-0 invert-100 object-contain h-full w-full"
                 />
               </div>
@@ -101,6 +63,47 @@ const Logos3 = ({
       <div className="absolute inset-y-0 right-0 w-8 sm:w-16 md:w-24 lg:w-40 bg-linear-to-l from-[#0c182b] to-transparent z-10 pointer-events-none"></div>
     </div>
   );
-};
+}
 
 export { Logos3 };
+
+const logos_arr = [
+  {
+    description: "Logo 1",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/astro-wordmark.svg",
+  },
+  {
+    description: "Logo 2",
+    image: "/microsoft-logo-new.png",
+  },
+  {
+    description: "Logo 3",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/nextjs-wordmark.svg",
+  },
+  {
+    description: "Logo 4",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/react-wordmark.svg",
+  },
+  {
+    description: "Logo 5",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcn-ui-wordmark.svg",
+  },
+  {
+    description: "Logo 6",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/supabase-wordmark.svg",
+  },
+  {
+    description: "Logo 7",
+    image: "/BrucePower.png",
+  },
+  {
+    description: "Logo 8",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/vercel-wordmark.svg",
+  },
+];

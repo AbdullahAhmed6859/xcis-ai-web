@@ -10,6 +10,7 @@ export const postType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "slug",
@@ -17,6 +18,7 @@ export const postType = defineType({
       options: {
         source: "title",
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "author",
@@ -29,6 +31,7 @@ export const postType = defineType({
       options: {
         hotspot: true,
       },
+      validation: (rule) => rule.required(),
       fields: [
         defineField({
           name: "alt",

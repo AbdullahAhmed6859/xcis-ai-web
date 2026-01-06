@@ -23,13 +23,6 @@ export const pageType = defineType({
       type: "pageBuilder",
     }),
     defineField({
-      name: "mainImage",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
       name: "seo",
       type: "seo",
     }),
