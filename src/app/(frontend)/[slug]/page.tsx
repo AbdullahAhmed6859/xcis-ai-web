@@ -16,7 +16,7 @@ async function getPage(params: RouteProps["params"]) {
   return sanityFetch({
     query: PAGE_QUERY,
     params: await params,
-    revalidate: 24 * 3600,
+    revalidate: 60 * 30,
     // tags: ["allPages"],
   });
 }

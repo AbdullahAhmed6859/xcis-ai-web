@@ -31,7 +31,7 @@ async function getPost(slug: string) {
   return sanityFetch({
     query: POST_QUERY,
     params: { slug },
-    revalidate: 24 * 3600,
+    revalidate: 60 * 30,
   });
 }
 

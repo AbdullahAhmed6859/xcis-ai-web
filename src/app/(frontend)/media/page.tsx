@@ -12,7 +12,7 @@ export default async function Page() {
   const posts = await sanityFetch({
     query: POSTS_QUERY,
     // tags: ["posts"],
-    revalidate: 24 * 3600,
+    revalidate: 60 * 30,
   });
 
   return (

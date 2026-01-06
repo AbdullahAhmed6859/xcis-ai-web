@@ -19,7 +19,7 @@ async function getPage() {
   return sanityFetch({
     query: HOME_PAGE_QUERY,
     // tags: ["homePage", "trustedCompanies"],
-    revalidate: 24 * 3600,
+    revalidate: 60 * 30,
   });
 }
 
