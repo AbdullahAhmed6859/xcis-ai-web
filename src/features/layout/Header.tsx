@@ -18,7 +18,7 @@ export function Header() {
   const { setOpenMobile } = useSidebar();
 
   return (
-    <header className="h-16 sm:h-20 w-screen grid place-items-center sticky top-0 bg-white shadow-md z-50">
+    <header className="h-16 sm:h-20 w-full grid place-items-center sticky top-0 bg-white shadow-md z-50">
       <Container className="flex justify-between items-center">
         <MainLogo />
         <NavigationMenu viewport={isMobile} className="hidden xl:block">

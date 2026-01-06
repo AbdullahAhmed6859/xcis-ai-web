@@ -56,93 +56,9 @@ function HeroSection(props: HeroProps) {
             </div>
 
             <Logos3 logos={props.companies} />
-            {/* <div className="h-16 w-36 relative flex items-center">
-                <WhiteImage
-                  src="/BrucePower.png"
-                  className="object-contain"
-                  // sizes="128px"
-                  alt=""
-                />
-              </div>
-              <div className="h-14 w-32 relative flex items-center justify-center">
-                <WhiteImage
-                  src="/microsoft-logo.svg"
-                  //     className="object-contain"
-                  sizes="128px"
-                  alt=""
-                />
-              </div> */}
           </div>
         </Container>
       </div>
-
-      {/* <div className="container mx-auto px-6 h-full">
-        <div className="h-full grid grid-rows-4 my-auto">
-          <div className="row-span-3 grid grid-cols-2 gap-x-50">
-            <div className=" w-full flex flex-col justify-center h-full">
-              <h1 className="text-7xl font-semibold text-[#F9F9F9] mb-6">
-                Where Nuclear Grade Data Meets Production AI
-              </h1>
-              <p className="text-lg text-gray-300 mb-8">
-                We help nuclear operators, utilities, and energy leaders
-                modernise data, deploy AI safely, and move from pilots to
-                production.
-              </p>
-
-              <div className="flex gap-4">
-                <Button
-                  size="lg"
-                  className="bg-light-blue text-dark-blue hover:bg-light-blue/90 hover:text-dark-blue/90"
-                >
-                  Book A Strategy Call
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-light-blue bg-transparent hover:bg-light-blue border-light-blue hover-border-light-blue"
-                >
-                  Explore Our Services
-                </Button>
-              </div>
-            </div>
-            <div className="flex flex-col justify-center items-end h-full">
-              <div className="flex flex-col justify-center items-center gap-2">
-                <AtomLogo />
-                <h2 className="text-pearl-white text-lg">
-                  Nuclear, Powered by Data + AI
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div className=" bg-[#09111e] row-span-1 grid place-items-center">
-            <div className=" ">
-              <div className="text-center">
-                <h2 className="text-pearl-white">
-                  XCIS IS TRUSTED BY PARTNERS AND PLATFORMS INCLUDING
-                </h2>
-              </div>
-
-              <Logos3 />
-              <div className="h-16 w-36 relative flex items-center">
-                <WhiteImage
-                  src="/BrucePower.png"
-                  className="object-contain"
-                  // sizes="128px"
-                  alt=""
-                />
-              </div>
-              <div className="h-14 w-32 relative flex items-center justify-center">
-                <WhiteImage
-                  src="/microsoft-logo.svg"
-                  //     className="object-contain"
-                  sizes="128px"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </PageSection>
   );
 }

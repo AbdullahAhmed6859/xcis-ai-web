@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 
-const pageSectionVariants = cva("w-screen", {
+const pageSectionVariants = cva("w-full", {
   variants: {
     type: {
       top: "mb-10",
