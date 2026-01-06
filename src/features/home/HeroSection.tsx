@@ -49,10 +49,10 @@ function HeroSection() {
         </Container>
       </div>
       <div className="w-full h-1/5 bg-[#0c182b]">
-        <div className="container mx-auto px-24 h-full">
-          <div className="w-full h-full flex flex-col justify-center items-center gap-y-6">
-            <div className="text-center">
-              <h2 className="text-pearl-white">
+        <Container>
+          <div className="w-full h-full flex flex-col justify-center items-center gap-y-4 sm:gap-y-6">
+            <div className="text-center px-2">
+              <h2 className="text-pearl-white text-sm sm:text-base">
                 XCIS IS TRUSTED BY PARTNERS AND PLATFORMS INCLUDING
               </h2>
             </div>
@@ -75,7 +75,7 @@ function HeroSection() {
                 />
               </div> */}
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* <div className="container mx-auto px-6 h-full">

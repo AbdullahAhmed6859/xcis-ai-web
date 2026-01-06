@@ -74,32 +74,31 @@ const Logos3 = ({
   ],
 }: Logos3Props) => {
   return (
-    <div className="relative mx-auto flex items-center justify-center lg:max-w-5xl">
+    <div className="relative mx-auto flex items-center justify-center w-full max-w-full sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
       <Carousel
         opts={{ loop: true }}
         plugins={[AutoScroll({ playOnInit: true, speed: 0.8 })]}
+        className="w-full"
       >
         <CarouselContent className="ml-0">
           {logos.map((logo) => (
             <CarouselItem
               key={logo.id}
-              className="flex basis-1/3 justify-center pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
+              className="flex basis-1/3 justify-center pl-0 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
             >
-              {/* <div className="relative flex items-center justify-center"> */}
-              <div className="h-12 w-32 relative flex items-center justify-center">
+              <div className="h-10 w-24 sm:h-12 sm:w-32 relative flex items-center justify-center">
                 <img
                   src={logo.image}
                   alt={logo.description}
-                  className={`brightness-0 invert-100 object-contain h-12 w-32`}
+                  className="brightness-0 invert-100 object-contain h-full w-full"
                 />
               </div>
-              {/* </div> */}
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="absolute inset-y-0 left-0 w-40 bg-linear-to-r from-[#0c182b] to-transparent z-10"></div>
-      <div className="absolute inset-y-0 right-0 w-40 bg-linear-to-l from-[#0c182b] to-transparent"></div>
+      <div className="absolute inset-y-0 left-0 w-8 sm:w-16 md:w-24 lg:w-40 bg-linear-to-r from-[#0c182b] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-8 sm:w-16 md:w-24 lg:w-40 bg-linear-to-l from-[#0c182b] to-transparent z-10 pointer-events-none"></div>
     </div>
   );
 };
