@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const posts = await sanityFetch({
     query: POSTS_QUERY,
-    tags: ["post"],
+    tags: ["media"],
   });
 
   return (
