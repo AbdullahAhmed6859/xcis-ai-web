@@ -9,15 +9,15 @@ type RouteProps = {
 };
 
 export async function generateStaticParams() {
-  return sanityFetch({ query: PAGE_SLUGS_QUERY });
+  return sanityFetch({ query: PAGE_SLUGS_QUERY, revalidate: false });
 }
 
 async function getPage(params: RouteProps["params"]) {
+  const slug = (await params).slug;
   return sanityFetch({
     query: PAGE_QUERY,
-    params: await params,
-    revalidate: 60 * 30,
-    // tags: ["allPages"],
+    params: { slug },
+    tags: [`page:${slug}`],
   });
 }
 

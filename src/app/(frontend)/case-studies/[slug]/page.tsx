@@ -31,12 +31,13 @@ async function getPost(slug: string) {
   return sanityFetch({
     query: POST_QUERY,
     params: { slug },
-    revalidate: 60 * 30,
+
+    tags: [`post:${slug}`, "author", "category"],
   });
 }
 
 export async function generateStaticParams() {
-  return await sanityFetch({ query: POSTS_SLUGS_QUERY });
+  return await sanityFetch({ query: POSTS_SLUGS_QUERY, revalidate: false });
 }
 
 export default async function Page({ params }: { params: Params }) {

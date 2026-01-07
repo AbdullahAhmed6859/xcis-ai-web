@@ -18,8 +18,7 @@ import { Metadata } from "next";
 async function getPage() {
   return sanityFetch({
     query: HOME_PAGE_QUERY,
-    // tags: ["homePage", "trustedCompanies"],
-    revalidate: 60 * 30,
+    tags: ["page:", "trustedCompany"],
   });
 }
 

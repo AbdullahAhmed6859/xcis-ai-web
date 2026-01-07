@@ -31,7 +31,8 @@ async function getPost(slug: string) {
   return sanityFetch({
     query: POST_QUERY,
     params: { slug },
-    revalidate: 60 * 30,
+
+    tags: [`post:${slug}`, "author", "category"],
   });
 }
 
