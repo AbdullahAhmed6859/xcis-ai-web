@@ -19,9 +19,7 @@ export function RelatedCaseStudies({
               key={medium._key}
               className="p-4 bg-blue-50 sm:w-1/3 flex-shrink-0"
             >
-              <Link href={`/mediums/${medium.slug?.current}`}>
-                {medium.title}
-              </Link>
+              <Link href={`/media/${medium.slug.current}`}>{medium.title}</Link>
             </li>
           ))}
         </ul>

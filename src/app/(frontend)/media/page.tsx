@@ -22,9 +22,9 @@ export default async function Page() {
           <li key={post._id}>
             <Link
               className="block p-4 hover:text-blue-500"
-              href={`/media/${post?.slug?.current}`}
+              href={`/media/${post.slug.current}`}
             >
-              {post?.title}
+              {post.title}
             </Link>
           </li>
         ))}

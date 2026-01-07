@@ -22,7 +22,7 @@ export default async function Page() {
           <li key={caseStudy._id}>
             <Link
               className="block p-4 hover:text-blue-500"
-              href={`/case-studies/${caseStudy.slug?.current}`}
+              href={`/case-studies/${caseStudy.slug.current}`}
             >
               {caseStudy.title}
             </Link>
