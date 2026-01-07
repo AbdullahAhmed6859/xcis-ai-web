@@ -9,6 +9,9 @@ export const trustedCompanyType = defineType({
     {
       name: "logo",
       type: "image",
+      options: {
+        hotspot: true,
+      },
       validation: (Rule) => Rule.required(),
       fields: [
         { name: "alt", type: "string", validation: (Rule) => Rule.required() },

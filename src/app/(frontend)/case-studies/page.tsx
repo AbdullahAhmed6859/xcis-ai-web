@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/client";
-import { POSTS_QUERY } from "@/sanity/lib/queries";
+import { CASE_STUDIES_QUERY } from "@/sanity/lib/queries";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,22 +9,22 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const posts = await sanityFetch({
-    query: POSTS_QUERY,
-    tags: ["post"],
+  const caseStudies = await sanityFetch({
+    query: CASE_STUDIES_QUERY,
+    tags: ["caseStudy"],
   });
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <h1 className="text-4xl font-bold">Post index</h1>
+      <h1 className="text-4xl font-bold">Case Studies index</h1>
       <ul className="grid grid-cols-1 divide-y divide-blue-100">
-        {posts.map((post) => (
-          <li key={post._id}>
+        {caseStudies.map((caseStudy) => (
+          <li key={caseStudy._id}>
             <Link
               className="block p-4 hover:text-blue-500"
-              href={`/case-studies/${post?.slug?.current}`}
+              href={`/case-studies/${caseStudy.slug?.current}`}
             >
-              {post?.title}
+              {caseStudy.title}
             </Link>
           </li>
         ))}

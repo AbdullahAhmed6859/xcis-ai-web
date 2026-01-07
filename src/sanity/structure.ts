@@ -25,6 +25,8 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("redirect").title("Redirects"),
       S.divider(),
       S.documentTypeListItem("trustedCompany").title("Trusted Companies"),
+      S.documentTypeListItem("caseStudy").title("Case Studies"),
+      S.documentTypeListItem("media").title("Media"),
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
@@ -37,6 +39,8 @@ export const structure: StructureResolver = (S) =>
             "siteSettings",
             "redirect",
             "trustedCompany",
+            "caseStudy",
+            "media",
           ].includes(item.getId()!)
       ),
     ]);

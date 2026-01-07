@@ -1,56 +1,63 @@
 import { notFound } from "next/navigation";
 
-import { POST_QUERY, POSTS_SLUGS_QUERY } from "@/sanity/lib/queries";
-import { Post } from "@/features/posts/post";
+import {
+  CASE_STUDIES_SLUGS_QUERY,
+  CASE_STUDY_QUERY,
+} from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
+import CaseStudy from "@/features/case-studies/CaseStudy";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({ params }: { params: Params }) {
   const slug = (await params).slug;
-  const post = await getPost(slug);
-  if (!post) {
+  const caseStudy = await getCaseStudy(slug);
+  if (!caseStudy) {
     return {};
   }
 
   const metadata: Metadata = {
-    title: post.title,
-    description: post.title,
+    title: caseStudy.title,
+    description: caseStudy.title,
     openGraph: {
-      title: post.title,
-      // description: post.excerpt,
-      images: post.mainImage ? [{ url: urlFor(post.mainImage).url() }] : [],
+      title: caseStudy.title,
+      // description: caseStudy.excerpt,
+      images: caseStudy.mainImage
+        ? [{ url: urlFor(caseStudy.mainImage).url() }]
+        : [],
     },
   };
   return metadata;
 }
 
-async function getPost(slug: string) {
+async function getCaseStudy(slug: string) {
   return sanityFetch({
-    query: POST_QUERY,
+    query: CASE_STUDY_QUERY,
     params: { slug },
-
-    tags: [`post:${slug}`, "author", "category"],
+    tags: [`caseStudy:${slug}`, "author", "category"],
   });
 }
 
 export async function generateStaticParams() {
-  return await sanityFetch({ query: POSTS_SLUGS_QUERY, revalidate: false });
+  return await sanityFetch({
+    query: CASE_STUDIES_SLUGS_QUERY,
+    revalidate: false,
+  });
 }
 
 export default async function Page({ params }: { params: Params }) {
   const slug = (await params).slug;
-  const post = await getPost(slug);
+  const caseStudy = await getCaseStudy(slug);
 
-  if (!post) {
+  if (!caseStudy) {
     notFound();
   }
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <Post {...post} />
+      <CaseStudy {...caseStudy} />
     </main>
   );
 }

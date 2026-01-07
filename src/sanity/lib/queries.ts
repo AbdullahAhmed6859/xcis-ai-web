@@ -139,3 +139,107 @@ export const TRUSTED_COMPANIES_QUERY = defineQuery(`
     asset
   }
 }`);
+
+export const CASE_STUDIES_QUERY =
+  defineQuery(`*[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc)[0...12]{
+  _id,
+  title,
+  slug,
+  body,
+  mainImage,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  author->{
+    name,
+    image
+  }
+}`);
+
+export const CASE_STUDY_QUERY =
+  defineQuery(`*[_type == "caseStudy" && slug.current == $slug][0]{
+  _id,
+  title,
+  body,
+  mainImage,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  author->{
+    name,
+    image
+  },
+  relatedCaseStudies[]{
+    _key, // required for drag and drop
+    ...@->{_id, title, slug} // get fields from the referenced post
+  }
+}`);
+
+export const CASE_STUDIES_SLUGS_QUERY =
+  defineQuery(`*[_type == "caseStudy" && defined(slug.current)]{ 
+  "slug": slug.current
+}`);
+
+export const MEDIA_QUERY =
+  defineQuery(`*[_type == "media" && defined(slug.current)]|order(publishedAt desc)[0...12]{
+  _id,
+  title,
+  slug,
+  body,
+  mainImage,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  author->{
+    name,
+    image
+  }
+}`);
+
+export const MEDIUM_QUERY =
+  defineQuery(`*[_type == "media" && slug.current == $slug][0]{
+  _id,
+  title,
+  body,
+  mainImage,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  author->{
+    name,
+    image
+  },
+  relatedMedia[]{
+    _key, // required for drag and drop
+    ...@->{_id, title, slug} // get fields from the referenced post
+  }
+}`);
+
+export const MEDIA_SLUGS_QUERY =
+  defineQuery(`*[_type == "media" && defined(slug.current)]{ 
+  "slug": slug.current
+}`);

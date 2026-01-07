@@ -1,56 +1,56 @@
 import { notFound } from "next/navigation";
 
-import { POST_QUERY, POSTS_SLUGS_QUERY } from "@/sanity/lib/queries";
-import { Post } from "@/features/posts/post";
+import { MEDIA_SLUGS_QUERY, MEDIUM_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
+import Media from "@/features/media/Media";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({ params }: { params: Params }) {
   const slug = (await params).slug;
-  const post = await getPost(slug);
-  if (!post) {
+  const media = await getMedia(slug);
+  if (!media) {
     return {};
   }
 
   const metadata: Metadata = {
-    title: post.title,
-    description: post.title,
+    title: media.title,
+    description: media.title,
     openGraph: {
-      title: post.title,
-      // description: post.excerpt,
-      images: post.mainImage ? [{ url: urlFor(post.mainImage).url() }] : [],
+      title: media.title,
+      // description: media.excerpt,
+      images: media.mainImage ? [{ url: urlFor(media.mainImage).url() }] : [],
     },
   };
   return metadata;
 }
 
-async function getPost(slug: string) {
+async function getMedia(slug: string) {
   return sanityFetch({
-    query: POST_QUERY,
+    query: MEDIUM_QUERY,
     params: { slug },
 
-    tags: [`post:${slug}`, "author", "category"],
+    tags: [`media:${slug}`, "author", "category"],
   });
 }
 
 export async function generateStaticParams() {
-  return await sanityFetch({ query: POSTS_SLUGS_QUERY });
+  return await sanityFetch({ query: MEDIA_SLUGS_QUERY });
 }
 
 export default async function Page({ params }: { params: Params }) {
   const slug = (await params).slug;
-  const post = await getPost(slug);
+  const media = await getMedia(slug);
 
-  if (!post) {
+  if (!media) {
     notFound();
   }
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <Post {...post} />
+      <Media {...media} />
     </main>
   );
 }
