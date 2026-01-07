@@ -17,6 +17,7 @@ import { redirectType } from "./redirectType";
 import { trustedCompanyType } from "./trustedCompanyType";
 import { caseStudyType } from "./caseStudyType";
 import { mediaType } from "./mediaType";
+import { serviceType } from "./serviceType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -37,5 +38,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     trustedCompanyType,
     caseStudyType,
     mediaType,
+    serviceType,
   ],
 };

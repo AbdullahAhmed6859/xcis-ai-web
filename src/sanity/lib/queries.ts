@@ -148,8 +148,8 @@ export const CASE_STUDIES_QUERY =
   body,
   mainImage,
   publishedAt,
-  "categories": coalesce(
-    categories[]->{
+  "services": coalesce(
+    services[]->{
       _id,
       slug,
       title
@@ -169,8 +169,8 @@ export const CASE_STUDY_QUERY =
   body,
   mainImage,
   publishedAt,
-  "categories": coalesce(
-    categories[]->{
+  "services": coalesce(
+    services[]->{
       _id,
       slug,
       title

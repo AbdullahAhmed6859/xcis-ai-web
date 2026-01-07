@@ -2,24 +2,22 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 
 import { Author } from "../posts/author";
-import { Categories } from "../posts/categories";
 import { components } from "@/sanity/portableTextComponents";
 import { CASE_STUDY_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "../posts/published-at";
 import { Title } from "../posts/title";
 import { urlFor } from "@/sanity/lib/image";
 import { RelatedCaseStudies } from "./RelatedCaseStudies";
-// import { RelatedPosts } from "../posts/related-posts";
+import { ServiceTags } from "../services/ServiceTags";
 
 function CaseStudy(props: NonNullable<CASE_STUDY_QUERYResult>) {
   const {
-    // _id,
     title,
     author,
     mainImage,
     body,
     publishedAt,
-    categories,
+    services,
     relatedCaseStudies,
   } = props;
 
@@ -27,7 +25,7 @@ function CaseStudy(props: NonNullable<CASE_STUDY_QUERYResult>) {
     <article className="grid lg:grid-cols-12 gap-y-12">
       <header className="lg:col-span-12 flex flex-col gap-4 items-start">
         <div className="flex gap-4 items-center">
-          <Categories categories={categories} />
+          <ServiceTags services={services} />
           <PublishedAt publishedAt={publishedAt} />
         </div>
         <Title>{title}</Title>

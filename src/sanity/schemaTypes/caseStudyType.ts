@@ -3,7 +3,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const caseStudyType = defineType({
   name: "caseStudy",
-  title: "Case Studies",
+  title: "Case Study",
   type: "document",
   icon: DocumentTextIcon,
   fields: [
@@ -49,13 +49,17 @@ export const caseStudyType = defineType({
       ],
     }),
     defineField({
-      name: "categories",
+      name: "services",
       type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
+      of: [defineArrayMember({ type: "reference", to: { type: "service" } })],
     }),
     defineField({
       name: "publishedAt",
       type: "datetime",
+    }),
+    defineField({
+      name: "excerpt",
+      type: "text",
     }),
     defineField({
       name: "body",
