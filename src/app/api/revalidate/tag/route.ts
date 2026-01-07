@@ -3,8 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
 type WebhookPayload = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+  tags: string[];
 };
 
 export async function POST(req: NextRequest) {
@@ -21,8 +20,6 @@ export async function POST(req: NextRequest) {
       process.env.SANITY_REVALIDATE_SECRET,
       true
     );
-
-    console.log(body);
 
     if (!isValidSignature) {
       const message = "Invalid signature";
