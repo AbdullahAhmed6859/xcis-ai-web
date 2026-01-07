@@ -1,4 +1,4 @@
-import { CASE_STUDY_QUERYResult, POST_QUERYResult } from "@/sanity/types";
+import { CASE_STUDY_QUERYResult } from "@/sanity/types";
 
 type CategoriesProps = {
   services: NonNullable<CASE_STUDY_QUERYResult>["services"];

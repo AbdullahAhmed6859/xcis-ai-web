@@ -19,9 +19,9 @@ export type Service = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
+  title: string;
+  slug: Slug;
+  description: string;
 };
 
 export type Slug = {
@@ -974,9 +974,9 @@ export type HOME_PAGE_QUERYResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
+  title: string;
+  slug: Slug;
+  description: string;
   homePage: null;
 } | {
   _id: string;
@@ -1092,16 +1092,20 @@ export type HOME_PAGE_QUERYResult = {
   homePage: null;
 } | null;
 // Variable: REDIRECTS_QUERY
-// Query: *[_type == "redirect" && isEnabled == true] {    source,    destination,    permanent  }
+// Query: *[_type == "redirect" && isEnabled == true] {  source,  destination,  permanent}
 export type REDIRECTS_QUERYResult = Array<{
   source: string;
   destination: string;
   permanent: boolean;
 }>;
 // Variable: OG_IMAGE_QUERY
-// Query: *[_id == $id][0]{    title,    mainImage,    "palette": mainImage.asset->metadata.palette  }
+// Query: *[_id == $id][0]{  title,  mainImage,  "palette": mainImage.asset->metadata.palette}
 export type OG_IMAGE_QUERYResult = {
   title: null;
+  mainImage: null;
+  palette: null;
+} | {
+  title: string;
   mainImage: null;
   palette: null;
 } | {
@@ -1126,7 +1130,7 @@ export type OG_IMAGE_QUERYResult = {
   palette: SanityImagePalette | null;
 } | null;
 // Variable: SITEMAP_QUERY
-// Query: *[_type in ["page", "post"] && defined(slug.current)] {    "href": select(      _type == "page" => "/" + slug.current,      _type == "post" => "/posts/" + slug.current,      slug.current    ),    _updatedAt} +[*[_id == "siteSettings"][0].homePage->{    "href": "/",     _updatedAt}]
+// Query: *[_type in ["page", "post"] && defined(slug.current)] {  "href": select(    _type == "page" => "/" + slug.current,    _type == "post" => "/posts/" + slug.current,    slug.current  ),  _updatedAt} +[*[_id == "siteSettings"][0].homePage->{  "href": "/",   _updatedAt}]
 export type SITEMAP_QUERYResult = Array<{
   href: string;
   _updatedAt: string;
@@ -1175,8 +1179,8 @@ export type CASE_STUDIES_QUERYResult = Array<{
   publishedAt: string | null;
   services: Array<{
     _id: string;
-    slug: Slug | null;
-    title: string | null;
+    slug: Slug;
+    title: string;
   }> | Array<never>;
   author: {
     name: string | null;
@@ -1216,8 +1220,8 @@ export type CASE_STUDY_QUERYResult = {
   publishedAt: string | null;
   services: Array<{
     _id: string;
-    slug: Slug | null;
-    title: string | null;
+    slug: Slug;
+    title: string;
   }> | Array<never>;
   author: {
     name: string | null;
@@ -1340,6 +1344,24 @@ export type MEDIUM_QUERYResult = {
 export type MEDIA_SLUGS_QUERYResult = Array<{
   slug: string;
 }>;
+// Variable: SERVICES_QUERY
+// Query: *[_type == "service"]{  _id,  slug,  title,}
+export type SERVICES_QUERYResult = Array<{
+  _id: string;
+  slug: Slug;
+  title: string;
+}>;
+// Variable: SERVICE_QUERY
+// Query: *[_type == "service" && slug.current == $slug][0]{  title,  description}
+export type SERVICE_QUERYResult = {
+  title: string;
+  description: string;
+} | null;
+// Variable: SERVICES_SLUGS_QUERY
+// Query: *[_type == "service" && defined(slug.current)]{   "slug": slug.current}
+export type SERVICES_SLUGS_QUERYResult = Array<{
+  slug: string;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -1351,15 +1373,18 @@ declare module "@sanity/client" {
     "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  content[]{\n      ...,\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n}": PAGE_QUERYResult;
     "*[_type == \"page\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": PAGE_SLUGS_QUERYResult;
     "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->{\n    \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n    },\n    content[]{\n      ...,\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n  }\n}": HOME_PAGE_QUERYResult;
-    "\n  *[_type == \"redirect\" && isEnabled == true] {\n    source,\n    destination,\n    permanent\n  }\n": REDIRECTS_QUERYResult;
-    "\n  *[_id == $id][0]{\n    title,\n    mainImage,\n    \"palette\": mainImage.asset->metadata.palette\n  }\n": OG_IMAGE_QUERYResult;
-    "\n*[_type in [\"page\", \"post\"] && defined(slug.current)] {\n    \"href\": select(\n      _type == \"page\" => \"/\" + slug.current,\n      _type == \"post\" => \"/posts/\" + slug.current,\n      slug.current\n    ),\n    _updatedAt\n} +\n[*[_id == \"siteSettings\"][0].homePage->{\n    \"href\": \"/\", \n    _updatedAt\n}]\n": SITEMAP_QUERYResult;
-    "\n  *[_type == \"trustedCompany\"]{\n  name,\n  website,\n  logo{\n    alt,\n    asset\n  }\n}": TRUSTED_COMPANIES_QUERYResult;
-    "*[_type == \"caseStudy\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": CASE_STUDIES_QUERYResult;
-    "*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;
+    "\n*[_type == \"redirect\" && isEnabled == true] {\n  source,\n  destination,\n  permanent\n}": REDIRECTS_QUERYResult;
+    "\n*[_id == $id][0]{\n  title,\n  mainImage,\n  \"palette\": mainImage.asset->metadata.palette\n}": OG_IMAGE_QUERYResult;
+    "\n*[_type in [\"page\", \"post\"] && defined(slug.current)] {\n  \"href\": select(\n    _type == \"page\" => \"/\" + slug.current,\n    _type == \"post\" => \"/posts/\" + slug.current,\n    slug.current\n  ),\n  _updatedAt\n} +\n[*[_id == \"siteSettings\"][0].homePage->{\n  \"href\": \"/\", \n  _updatedAt\n}]": SITEMAP_QUERYResult;
+    "\n*[_type == \"trustedCompany\"]{\n  name,\n  website,\n  logo{\n    alt,\n    asset\n  }\n}": TRUSTED_COMPANIES_QUERYResult;
+    "\n*[_type == \"caseStudy\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": CASE_STUDIES_QUERYResult;
+    "\n*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;
     "*[_type == \"caseStudy\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": CASE_STUDIES_SLUGS_QUERYResult;
     "*[_type == \"media\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": MEDIA_QUERYResult;
     "*[_type == \"media\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedMedia[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": MEDIUM_QUERYResult;
     "*[_type == \"media\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": MEDIA_SLUGS_QUERYResult;
+    "\n*[_type == \"service\"]{\n  _id,\n  slug,\n  title,\n}": SERVICES_QUERYResult;
+    "\n*[_type == \"service\" && slug.current == $slug][0]{\n  title,\n  description\n}": SERVICE_QUERYResult;
+    "*[_type == \"service\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": SERVICES_SLUGS_QUERYResult;
   }
 }

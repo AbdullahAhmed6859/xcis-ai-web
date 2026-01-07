@@ -100,38 +100,35 @@ export const HOME_PAGE_QUERY = defineQuery(`
 }`);
 
 export const REDIRECTS_QUERY = defineQuery(`
-  *[_type == "redirect" && isEnabled == true] {
-    source,
-    destination,
-    permanent
-  }
-`);
+*[_type == "redirect" && isEnabled == true] {
+  source,
+  destination,
+  permanent
+}`);
 
 export const OG_IMAGE_QUERY = defineQuery(`
-  *[_id == $id][0]{
-    title,
-    mainImage,
-    "palette": mainImage.asset->metadata.palette
-  }
-`);
+*[_id == $id][0]{
+  title,
+  mainImage,
+  "palette": mainImage.asset->metadata.palette
+}`);
 
 export const SITEMAP_QUERY = defineQuery(`
 *[_type in ["page", "post"] && defined(slug.current)] {
-    "href": select(
-      _type == "page" => "/" + slug.current,
-      _type == "post" => "/posts/" + slug.current,
-      slug.current
-    ),
-    _updatedAt
+  "href": select(
+    _type == "page" => "/" + slug.current,
+    _type == "post" => "/posts/" + slug.current,
+    slug.current
+  ),
+  _updatedAt
 } +
 [*[_id == "siteSettings"][0].homePage->{
-    "href": "/", 
-    _updatedAt
-}]
-`);
+  "href": "/", 
+  _updatedAt
+}]`);
 
 export const TRUSTED_COMPANIES_QUERY = defineQuery(`
-  *[_type == "trustedCompany"]{
+*[_type == "trustedCompany"]{
   name,
   website,
   logo{
@@ -140,8 +137,8 @@ export const TRUSTED_COMPANIES_QUERY = defineQuery(`
   }
 }`);
 
-export const CASE_STUDIES_QUERY =
-  defineQuery(`*[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc)[0...12]{
+export const CASE_STUDIES_QUERY = defineQuery(`
+*[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc)[0...12]{
   _id,
   title,
   slug,
@@ -162,8 +159,8 @@ export const CASE_STUDIES_QUERY =
   }
 }`);
 
-export const CASE_STUDY_QUERY =
-  defineQuery(`*[_type == "caseStudy" && slug.current == $slug][0]{
+export const CASE_STUDY_QUERY = defineQuery(`
+*[_type == "caseStudy" && slug.current == $slug][0]{
   _id,
   title,
   body,
@@ -241,5 +238,23 @@ export const MEDIUM_QUERY =
 
 export const MEDIA_SLUGS_QUERY =
   defineQuery(`*[_type == "media" && defined(slug.current)]{ 
+  "slug": slug.current
+}`);
+
+export const SERVICES_QUERY = defineQuery(`
+*[_type == "service"]{
+  _id,
+  slug,
+  title,
+}`);
+
+export const SERVICE_QUERY = defineQuery(`
+*[_type == "service" && slug.current == $slug][0]{
+  title,
+  description
+}`);
+
+export const SERVICES_SLUGS_QUERY =
+  defineQuery(`*[_type == "service" && defined(slug.current)]{ 
   "slug": slug.current
 }`);

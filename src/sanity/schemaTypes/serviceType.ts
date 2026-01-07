@@ -10,6 +10,7 @@ export const serviceType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "slug",
@@ -17,10 +18,12 @@ export const serviceType = defineType({
       options: {
         source: "title",
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "description",
       type: "text",
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
