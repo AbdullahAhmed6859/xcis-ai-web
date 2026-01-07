@@ -22,6 +22,8 @@ export async function POST(req: NextRequest) {
       true
     );
 
+    console.log(body);
+
     if (!isValidSignature) {
       const message = "Invalid signature";
       return new Response(JSON.stringify({ message, isValidSignature, body }), {
@@ -31,8 +33,6 @@ export async function POST(req: NextRequest) {
       const message = "Bad Request";
       return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
-
-    console.log(body);
 
     body.tags.forEach((tag) => {
       revalidateTag(tag, { expire: 0 });
