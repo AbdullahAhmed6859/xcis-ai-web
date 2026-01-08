@@ -1,20 +1,15 @@
 import Container from "../layout/Container";
+import { CaseStudiesSectionProps } from "./page-builder-types";
 import PageSection from "./page-section";
 
-function CaseStudiesSection() {
+function CaseStudiesSection({ heading, text }: CaseStudiesSectionProps) {
   return (
     <PageSection>
       <Container>
         <div className="flex flex-col gap-4 items-center">
           <div className="flex flex-col gap-2 items-center">
-            <h2 className="text-4xl font-semibold">
-              Proven Results with Nuclear and Energy Leaders
-            </h2>
-            <p className="text-lg text-center max-w-3xl">
-              We have supported nuclear operators, utilities, and critical
-              infrastructure organisations across North America with
-              production-grade AI and data solutions.
-            </p>
+            <h2 className="text-4xl font-semibold">{heading}</h2>
+            <p className="text-lg text-center max-w-3xl">{text}</p>
           </div>
           <div className="text-lg text-center max-w-7xl">
             <div>Case Studies here</div>

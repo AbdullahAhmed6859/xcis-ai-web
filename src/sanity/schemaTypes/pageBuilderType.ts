@@ -4,10 +4,10 @@ export const pageBuilderType = defineType({
   name: "pageBuilder",
   type: "array",
   of: [
-    defineArrayMember({ type: "hero" }),
-    defineArrayMember({ type: "splitImage" }),
-    defineArrayMember({ type: "features" }),
-    defineArrayMember({ type: "faqs" }),
+    defineArrayMember({ type: "heroSection" }),
+    defineArrayMember({ type: "servicesSection" }),
+    defineArrayMember({ type: "caseStudiesSection" }),
+    defineArrayMember({ type: "impactSection" }),
   ],
   options: {
     insertMenu: {

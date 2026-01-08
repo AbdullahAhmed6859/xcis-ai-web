@@ -5,7 +5,7 @@ import { categoryType } from "./categoryType";
 import { authorType } from "./authorType";
 import { faqsType } from "./faqsType";
 import { faqType } from "./faqType";
-import { heroType } from "./heroType";
+import { heroSectionType } from "./heroSectionType";
 import { pageBuilderType } from "./pageBuilderType";
 import { pageType } from "./pageType";
 import { splitImageType } from "./splitImageType";
@@ -17,6 +17,10 @@ import { trustedCompanyType } from "./trustedCompanyType";
 import { caseStudyType } from "./caseStudyType";
 import { mediaType } from "./mediaType";
 import { serviceType } from "./serviceType";
+import { servicesSectionType } from "./servicesSectionType";
+import { caseStudiesSectionType } from "./caseStudiesSection";
+import { impactSectionType } from "./impactSectionType";
+import { impactStatisticType } from "./impactStatisticType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -28,7 +32,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faqType,
     faqsType,
     featuresType,
-    heroType,
     splitImageType,
     siteSettingsType,
     seoType,
@@ -37,5 +40,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     caseStudyType,
     mediaType,
     serviceType,
+    impactStatisticType,
+    heroSectionType,
+    servicesSectionType,
+    caseStudiesSectionType,
+    impactSectionType,
   ],
 };

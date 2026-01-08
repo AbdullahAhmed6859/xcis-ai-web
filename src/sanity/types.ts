@@ -13,6 +13,54 @@
  */
 
 // Source: schema.json
+export type ImpactSection = {
+  _type: "impactSection";
+  heading: string;
+  text: string;
+  statistics: Array<{
+    _key: string;
+  } & ImpactStatistic>;
+  Experience?: ImpactStatistic;
+};
+
+export type CaseStudiesSection = {
+  _type: "caseStudiesSection";
+  heading: string;
+  text: string;
+  caseStudies?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "caseStudy";
+  }>;
+};
+
+export type ServicesSection = {
+  _type: "servicesSection";
+  heading: string;
+  text: string;
+};
+
+export type HeroSection = {
+  _type: "heroSection";
+  heading: string;
+  text: string;
+  companies: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "trustedCompany";
+  }>;
+};
+
+export type ImpactStatistic = {
+  _type: "impactStatistic";
+  quantity: number;
+  text: string;
+};
+
 export type Service = {
   _id: string;
   _type: "service";
@@ -255,19 +303,6 @@ export type SplitImage = {
   };
 };
 
-export type Hero = {
-  _type: "hero";
-  heading: string;
-  text: string;
-  companies: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "trustedCompany";
-  }>;
-};
-
 export type Features = {
   _type: "features";
   title?: string;
@@ -303,13 +338,13 @@ export type Faq = {
 
 export type PageBuilder = Array<{
   _key: string;
-} & Hero | {
+} & HeroSection | {
   _key: string;
-} & SplitImage | {
+} & ServicesSection | {
   _key: string;
-} & Features | {
+} & CaseStudiesSection | {
   _key: string;
-} & Faqs>;
+} & ImpactSection>;
 
 export type Page = {
   _id: string;
@@ -470,7 +505,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Service | Slug | Media | BlockContent | SanityImageCrop | SanityImageHotspot | CaseStudy | TrustedCompany | Redirect | Seo | SiteSettings | SplitImage | Hero | Features | Faqs | Faq | PageBuilder | Page | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Service | Slug | Media | BlockContent | SanityImageCrop | SanityImageHotspot | CaseStudy | TrustedCompany | Redirect | Seo | SiteSettings | SplitImage | Features | Faqs | Faq | PageBuilder | Page | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
@@ -485,30 +520,20 @@ export type PAGE_QUERYResult = {
   slug?: Slug;
   content: Array<{
     _key: string;
-    _type: "faqs";
-    title?: string;
-    faqs?: Array<{
+    _type: "caseStudiesSection";
+    heading: string;
+    text: string;
+    caseStudies?: Array<{
       _ref: string;
       _type: "reference";
       _weak?: boolean;
       _key: string;
-      [internalGroqTypeReferenceTo]?: "faq";
+      [internalGroqTypeReferenceTo]?: "caseStudy";
     }>;
     companies: null;
   } | {
     _key: string;
-    _type: "features";
-    title?: string;
-    features?: Array<{
-      title?: string;
-      text?: string;
-      _type: "feature";
-      _key: string;
-    }>;
-    companies: null;
-  } | {
-    _key: string;
-    _type: "hero";
+    _type: "heroSection";
     heading: string;
     text: string;
     companies: Array<{
@@ -531,21 +556,19 @@ export type PAGE_QUERYResult = {
     }>;
   } | {
     _key: string;
-    _type: "splitImage";
-    orientation?: "imageLeft" | "imageRight";
-    title?: string;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
+    _type: "impactSection";
+    heading: string;
+    text: string;
+    statistics: Array<{
+      _key: string;
+    } & ImpactStatistic>;
+    Experience?: ImpactStatistic;
+    companies: null;
+  } | {
+    _key: string;
+    _type: "servicesSection";
+    heading: string;
+    text: string;
     companies: null;
   }> | null;
   seo: {
@@ -821,30 +844,20 @@ export type HOME_PAGE_QUERYResult = {
     };
     content: Array<{
       _key: string;
-      _type: "faqs";
-      title?: string;
-      faqs?: Array<{
+      _type: "caseStudiesSection";
+      heading: string;
+      text: string;
+      caseStudies?: Array<{
         _ref: string;
         _type: "reference";
         _weak?: boolean;
         _key: string;
-        [internalGroqTypeReferenceTo]?: "faq";
+        [internalGroqTypeReferenceTo]?: "caseStudy";
       }>;
       companies: null;
     } | {
       _key: string;
-      _type: "features";
-      title?: string;
-      features?: Array<{
-        title?: string;
-        text?: string;
-        _type: "feature";
-        _key: string;
-      }>;
-      companies: null;
-    } | {
-      _key: string;
-      _type: "hero";
+      _type: "heroSection";
       heading: string;
       text: string;
       companies: Array<{
@@ -867,21 +880,19 @@ export type HOME_PAGE_QUERYResult = {
       }>;
     } | {
       _key: string;
-      _type: "splitImage";
-      orientation?: "imageLeft" | "imageRight";
-      title?: string;
-      image?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-      };
+      _type: "impactSection";
+      heading: string;
+      text: string;
+      statistics: Array<{
+        _key: string;
+      } & ImpactStatistic>;
+      Experience?: ImpactStatistic;
+      companies: null;
+    } | {
+      _key: string;
+      _type: "servicesSection";
+      heading: string;
+      text: string;
       companies: null;
     }> | null;
   } | null;

@@ -1,8 +1,8 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
-export const heroType = defineType({
-  name: "hero",
+export const caseStudiesSectionType = defineType({
+  name: "caseStudiesSection",
   type: "object",
   fields: [
     defineField({
@@ -16,10 +16,9 @@ export const heroType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "companies",
+      name: "caseStudies",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "trustedCompany" }] }],
-      validation: (rule) => rule.required(),
+      of: [{ type: "reference", to: { type: "caseStudy" } }],
     }),
   ],
   icon: TextIcon,
@@ -31,7 +30,7 @@ export const heroType = defineType({
     prepare({ title, media }) {
       return {
         title,
-        subtitle: "Hero",
+        subtitle: "Case Studies",
         media: media ?? TextIcon,
       };
     },

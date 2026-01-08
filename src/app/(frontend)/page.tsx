@@ -1,14 +1,4 @@
-import {
-  // TrustedBySection,
-  ServicesSection,
-  CaseStudiesSection,
-  TrainingsSection,
-  TeamSection,
-  AdvantageSection,
-  CustomerReviews,
-  NewsAndInsights,
-  LocationsWeServe,
-} from "@/features/home";
+import {} from "@/features/home";
 import { PageBuilder } from "@/features/page-builder/page-builder";
 import { sanityFetch } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -58,14 +48,14 @@ export default async function Page() {
       {data?.homePage?.content ? (
         <PageBuilder content={data?.homePage.content} />
       ) : null}
-      <ServicesSection />
-      <TrainingsSection />
-      <CaseStudiesSection />
-      <TeamSection />
-      <AdvantageSection />
+      {/* <ServicesSection /> */}
+      {/* <TrainingsSection /> */}
+      {/* <CaseStudiesSection /> */}
+      {/* <TeamSection /> */}
+      {/* <AdvantageSection />
       <CustomerReviews />
       <NewsAndInsights />
-      <LocationsWeServe />
+      <LocationsWeServe /> */}
     </>
   );
 }

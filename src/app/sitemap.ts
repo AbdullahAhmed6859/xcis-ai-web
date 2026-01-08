@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const paths = await sanityFetch({
       query: SITEMAP_QUERY,
-      tags: ["post", "service", "caseStudy", "media"],
+      tags: ["page", "service", "caseStudy", "media"],
     });
 
     if (!paths) return [];

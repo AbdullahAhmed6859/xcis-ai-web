@@ -3,9 +3,7 @@ import AtomLogo from "./atom-logo";
 import { LogoSlideshow } from "@/components/logo-slideshow";
 import Container from "../layout/Container";
 import PageSection from "./page-section";
-import { ContentType } from "./page-builder-types";
-
-type HeroProps = Extract<ContentType, { _type: "hero" }>;
+import { HeroProps } from "./page-builder-types";
 
 function HeroSection(props: HeroProps) {
   return (

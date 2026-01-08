@@ -1,5 +1,10 @@
 import { PAGE_QUERYResult } from "@/sanity/types";
-import { HeroSection } from "../home";
+import {
+  CaseStudiesSection,
+  HeroSection,
+  ImpactSection,
+  ServicesSection,
+} from "../home";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -14,10 +19,15 @@ export function PageBuilder({ content }: PageBuilderProps) {
     <main>
       {content.map((block) => {
         switch (block._type) {
-          case "hero":
+          case "heroSection":
             return <HeroSection key={block._key} {...block} />;
+          case "servicesSection":
+            return <ServicesSection key={block._key} {...block} />;
+          case "caseStudiesSection":
+            return <CaseStudiesSection key={block._key} {...block} />;
+          case "impactSection":
+            return <ImpactSection key={block._key} {...block} />;
           default:
-            // This is a fallback for when we don't have a block type
             return null;
         }
       })}
