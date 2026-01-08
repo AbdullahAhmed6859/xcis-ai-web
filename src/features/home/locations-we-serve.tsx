@@ -1,5 +1,5 @@
 import Container from "../layout/Container";
-import PageSection from "./PageSection";
+import PageSection from "./page-section";
 
 function LocationsWeServe() {
   return (

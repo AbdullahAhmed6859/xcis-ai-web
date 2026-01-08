@@ -323,51 +323,6 @@ export type Page = {
   seo?: Seo;
 };
 
-export type Post = {
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  publishedAt?: string;
-  body?: BlockContent;
-  relatedPosts?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "post";
-  }>;
-};
-
 export type Author = {
   _id: string;
   _type: "author";
@@ -515,103 +470,9 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Service | Slug | Media | BlockContent | SanityImageCrop | SanityImageHotspot | CaseStudy | TrustedCompany | Redirect | Seo | SiteSettings | SplitImage | Hero | Features | Faqs | Faq | PageBuilder | Page | Post | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Service | Slug | Media | BlockContent | SanityImageCrop | SanityImageHotspot | CaseStudy | TrustedCompany | Redirect | Seo | SiteSettings | SplitImage | Hero | Features | Faqs | Faq | PageBuilder | Page | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
-// Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
-export type POSTS_QUERYResult = Array<{
-  _id: string;
-  title: string;
-  slug: Slug;
-  body: BlockContent | null;
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  publishedAt: string | null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
-  author: {
-    name: string | null;
-    image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-  } | null;
-}>;
-// Variable: POSTS_SLUGS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
-export type POSTS_SLUGS_QUERYResult = Array<{
-  slug: string;
-}>;
-// Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  },  relatedPosts[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
-export type POST_QUERYResult = {
-  _id: string;
-  title: string;
-  body: BlockContent | null;
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  publishedAt: string | null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
-  author: {
-    name: string | null;
-    image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-  } | null;
-  relatedPosts: Array<{
-    _key: string;
-    _id: string;
-    title: string;
-    slug: Slug;
-  }> | null;
-} | null;
 // Variable: PAGE_QUERY
 // Query: *[_type == "page" && slug.current == $slug][0]{  ...,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content[]{      ...,      companies[]->{        _key,        name,        website,        logo      }    }}
 export type PAGE_QUERYResult = {
@@ -872,50 +733,6 @@ export type HOME_PAGE_QUERYResult = {
   homePage: null;
 } | {
   _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  publishedAt?: string;
-  body?: BlockContent;
-  relatedPosts?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "post";
-  }>;
-  homePage: null;
-} | {
-  _id: string;
   _type: "redirect";
   _createdAt: string;
   _updatedAt: string;
@@ -1130,7 +947,7 @@ export type OG_IMAGE_QUERYResult = {
   palette: SanityImagePalette | null;
 } | null;
 // Variable: SITEMAP_QUERY
-// Query: *[_type in ["page", "post"] && defined(slug.current)] {  "href": select(    _type == "page" => "/" + slug.current,    _type == "post" => "/posts/" + slug.current,    slug.current  ),  _updatedAt} +[*[_id == "siteSettings"][0].homePage->{  "href": "/",   _updatedAt}]
+// Query: [*[_id == "siteSettings"][0].homePage->{  "href": "/",   _updatedAt}] | order(typeOrder asc, _updatedAt desc)+*[_type in ["page", "service", "caseStudy", "media"] && defined(slug.current)] {  "href": select(    _type == "page" => "/" + slug.current,    _type == "service" => "/services/" + slug.current,    _type == "caseStudy" => "/case-studies/" + slug.current,    _type == "media" => "/media/" + slug.current,    slug.current  ),  _updatedAt} | order(typeOrder asc, _updatedAt desc)
 export type SITEMAP_QUERYResult = Array<{
   href: string;
   _updatedAt: string;
@@ -1367,15 +1184,12 @@ export type SERVICES_SLUGS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedPosts[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": POST_QUERYResult;
     "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  content[]{\n      ...,\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n}": PAGE_QUERYResult;
     "*[_type == \"page\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": PAGE_SLUGS_QUERYResult;
     "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->{\n    \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n    },\n    content[]{\n      ...,\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n  }\n}": HOME_PAGE_QUERYResult;
     "\n*[_type == \"redirect\" && isEnabled == true] {\n  source,\n  destination,\n  permanent\n}": REDIRECTS_QUERYResult;
     "\n*[_id == $id][0]{\n  title,\n  mainImage,\n  \"palette\": mainImage.asset->metadata.palette\n}": OG_IMAGE_QUERYResult;
-    "\n*[_type in [\"page\", \"post\"] && defined(slug.current)] {\n  \"href\": select(\n    _type == \"page\" => \"/\" + slug.current,\n    _type == \"post\" => \"/posts/\" + slug.current,\n    slug.current\n  ),\n  _updatedAt\n} +\n[*[_id == \"siteSettings\"][0].homePage->{\n  \"href\": \"/\", \n  _updatedAt\n}]": SITEMAP_QUERYResult;
+    "\n[*[_id == \"siteSettings\"][0].homePage->{\n  \"href\": \"/\", \n  _updatedAt\n}] | order(typeOrder asc, _updatedAt desc)\n+\n*[_type in [\"page\", \"service\", \"caseStudy\", \"media\"] && defined(slug.current)] {\n  \"href\": select(\n    _type == \"page\" => \"/\" + slug.current,\n    _type == \"service\" => \"/services/\" + slug.current,\n    _type == \"caseStudy\" => \"/case-studies/\" + slug.current,\n    _type == \"media\" => \"/media/\" + slug.current,\n    slug.current\n  ),\n  _updatedAt\n} | order(typeOrder asc, _updatedAt desc)\n": SITEMAP_QUERYResult;
     "\n*[_type == \"trustedCompany\"]{\n  name,\n  website,\n  logo{\n    alt,\n    asset\n  }\n}": TRUSTED_COMPANIES_QUERYResult;
     "\n*[_type == \"caseStudy\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": CASE_STUDIES_QUERYResult;
     "\n*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;

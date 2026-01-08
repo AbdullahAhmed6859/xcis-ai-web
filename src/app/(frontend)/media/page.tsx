@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/client";
-import { POSTS_QUERY } from "@/sanity/lib/queries";
+import { MEDIA_QUERY } from "@/sanity/lib/queries";
 import { Metadata } from "next";
+import { MediaCard } from "@/features/media";
 
 export const metadata: Metadata = {
   title: "XCIS AI | Media - News and Announcements",
@@ -9,8 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const posts = await sanityFetch({
-    query: POSTS_QUERY,
+  const media = await sanityFetch({
+    query: MEDIA_QUERY,
     tags: ["media"],
   });
 
@@ -18,14 +19,9 @@ export default async function Page() {
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
       <h1 className="text-4xl font-bold">Media Index</h1>
       <ul className="grid grid-cols-1 divide-y divide-blue-100">
-        {posts.map((post) => (
-          <li key={post._id}>
-            <Link
-              className="block p-4 hover:text-blue-500"
-              href={`/media/${post.slug.current}`}
-            >
-              {post.title}
-            </Link>
+        {media.map((medium) => (
+          <li key={medium._id}>
+            <MediaCard {...medium} />
           </li>
         ))}
       </ul>

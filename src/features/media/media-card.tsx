@@ -3,17 +3,17 @@ import Image from "next/image";
 
 import { Author } from "./author";
 import { Categories } from "./categories";
-import { POSTS_QUERYResult } from "@/sanity/types";
+import { MEDIA_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "./published-at";
 import { urlFor } from "@/sanity/lib/image";
 
-export function PostCard(props: POSTS_QUERYResult[0]) {
+export function MediaCard(props: MEDIA_QUERYResult[0]) {
   const { title, author, mainImage, publishedAt, categories } = props;
 
   return (
-    <Link className="group" href={`/posts/${props.slug!.current}`}>
+    <Link className="group" href={`/media/${props.slug!.current}`}>
       <article className="flex flex-col-reverse gap-4 md:grid md:grid-cols-12 md:gap-0">
-        <div className="md:col-span-2 md:pt-1">
+        <div className="md:flex md:flex-col md:col-span-2 md:pt-1">
           <Categories categories={categories} />
         </div>
         <div className="md:col-span-5 md:w-full">

@@ -1,7 +1,7 @@
 import { SERVICE_QUERYResult } from "@/sanity/types";
-import { Title } from "../posts/title";
+import { Title } from "./title";
 
-function Service(props: NonNullable<SERVICE_QUERYResult>) {
+export function Service(props: NonNullable<SERVICE_QUERYResult>) {
   const { title, description } = props;
 
   return (
@@ -15,5 +15,3 @@ function Service(props: NonNullable<SERVICE_QUERYResult>) {
     </article>
   );
 }
-
-export default Service;

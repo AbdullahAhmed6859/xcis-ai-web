@@ -4,7 +4,7 @@ import { MEDIA_SLUGS_QUERY, MEDIUM_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
-import Media from "@/features/media/Media";
+import { Media } from "@/features/media";
 
 type Params = Promise<{ slug: string }>;
 

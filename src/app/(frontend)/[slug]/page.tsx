@@ -1,4 +1,4 @@
-import { PageBuilder } from "@/features/posts/page-builder";
+import { PageBuilder } from "@/features/page-builder/page-builder";
 import { sanityFetch } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PAGE_QUERY, PAGE_SLUGS_QUERY } from "@/sanity/lib/queries";

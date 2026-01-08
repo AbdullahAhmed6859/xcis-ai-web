@@ -7,7 +7,7 @@ import {
 import { sanityFetch } from "@/sanity/lib/client";
 import { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
-import CaseStudy from "@/features/case-studies/CaseStudy";
+import { CaseStudy } from "@/features/case-studies";
 
 type Params = Promise<{ slug: string }>;
 

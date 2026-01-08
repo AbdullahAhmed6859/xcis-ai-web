@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import AtomLogo from "./AtomLogo";
-import { Logos3 } from "@/components/Logo3";
+import AtomLogo from "./atom-logo";
+import { LogoSlideshow } from "@/components/logo-slideshow";
 import Container from "../layout/Container";
-import PageSection from "./PageSection";
-import { ContentType } from "./pageBuilderTypes";
+import PageSection from "./page-section";
+import { ContentType } from "./page-builder-types";
 
 type HeroProps = Extract<ContentType, { _type: "hero" }>;
 
@@ -55,7 +55,7 @@ function HeroSection(props: HeroProps) {
               </h2>
             </div>
 
-            <Logos3 logos={props.companies} />
+            <LogoSlideshow logos={props.companies} />
           </div>
         </Container>
       </div>

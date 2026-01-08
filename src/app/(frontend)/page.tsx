@@ -1,7 +1,7 @@
 import {
   // TrustedBySection,
   ServicesSection,
-  CaseStudies,
+  CaseStudiesSection,
   TrainingsSection,
   TeamSection,
   AdvantageSection,
@@ -9,7 +9,7 @@ import {
   NewsAndInsights,
   LocationsWeServe,
 } from "@/features/home";
-import { PageBuilder } from "@/features/posts/page-builder";
+import { PageBuilder } from "@/features/page-builder/page-builder";
 import { sanityFetch } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { HOME_PAGE_QUERY } from "@/sanity/lib/queries";
@@ -60,7 +60,7 @@ export default async function Page() {
       ) : null}
       <ServicesSection />
       <TrainingsSection />
-      <CaseStudies />
+      <CaseStudiesSection />
       <TeamSection />
       <AdvantageSection />
       <CustomerReviews />

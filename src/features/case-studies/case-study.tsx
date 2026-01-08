@@ -1,32 +1,30 @@
 import { PortableText } from "next-sanity";
 import Image from "next/image";
-
 import { Author } from "./author";
-import { Categories } from "./categories";
 import { components } from "@/sanity/portableTextComponents";
-import { POST_QUERYResult } from "@/sanity/types";
+import { CASE_STUDY_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "./published-at";
 import { Title } from "./title";
 import { urlFor } from "@/sanity/lib/image";
-import { RelatedPosts } from "./related-posts";
+import { RelatedCaseStudies } from "./related-case-studies";
+import { ServiceTags } from "../services";
 
-export function Post(props: NonNullable<POST_QUERYResult>) {
+export function CaseStudy(props: NonNullable<CASE_STUDY_QUERYResult>) {
   const {
-    _id,
     title,
     author,
     mainImage,
     body,
     publishedAt,
-    categories,
-    relatedPosts,
+    services,
+    relatedCaseStudies,
   } = props;
 
   return (
     <article className="grid lg:grid-cols-12 gap-y-12">
       <header className="lg:col-span-12 flex flex-col gap-4 items-start">
         <div className="flex gap-4 items-center">
-          <Categories categories={categories} />
+          <ServiceTags services={services} />
           <PublishedAt publishedAt={publishedAt} />
         </div>
         <Title>{title}</Title>
@@ -45,11 +43,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
       {body ? (
         <div className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg">
           <PortableText value={body} components={components} />
-          <RelatedPosts
-            relatedPosts={relatedPosts}
-            documentId={_id}
-            documentType="post"
-          />
+          <RelatedCaseStudies relatedCaseStudies={relatedCaseStudies} />
         </div>
       ) : null}
     </article>

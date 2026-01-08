@@ -1,57 +1,5 @@
 import { defineQuery } from "next-sanity";
 
-export const POSTS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{
-  _id,
-  title,
-  slug,
-  body,
-  mainImage,
-  publishedAt,
-  "categories": coalesce(
-    categories[]->{
-      _id,
-      slug,
-      title
-    },
-    []
-  ),
-  author->{
-    name,
-    image
-  }
-}`);
-
-export const POSTS_SLUGS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)]{ 
-  "slug": slug.current
-}`);
-
-export const POST_QUERY =
-  defineQuery(`*[_type == "post" && slug.current == $slug][0]{
-  _id,
-  title,
-  body,
-  mainImage,
-  publishedAt,
-  "categories": coalesce(
-    categories[]->{
-      _id,
-      slug,
-      title
-    },
-    []
-  ),
-  author->{
-    name,
-    image
-  },
-  relatedPosts[]{
-    _key, // required for drag and drop
-    ...@->{_id, title, slug} // get fields from the referenced post
-  }
-}`);
-
 export const PAGE_QUERY =
   defineQuery(`*[_type == "page" && slug.current == $slug][0]{
   ...,
@@ -114,18 +62,22 @@ export const OG_IMAGE_QUERY = defineQuery(`
 }`);
 
 export const SITEMAP_QUERY = defineQuery(`
-*[_type in ["page", "post"] && defined(slug.current)] {
-  "href": select(
-    _type == "page" => "/" + slug.current,
-    _type == "post" => "/posts/" + slug.current,
-    slug.current
-  ),
-  _updatedAt
-} +
 [*[_id == "siteSettings"][0].homePage->{
   "href": "/", 
   _updatedAt
-}]`);
+}] | order(typeOrder asc, _updatedAt desc)
++
+*[_type in ["page", "service", "caseStudy", "media"] && defined(slug.current)] {
+  "href": select(
+    _type == "page" => "/" + slug.current,
+    _type == "service" => "/services/" + slug.current,
+    _type == "caseStudy" => "/case-studies/" + slug.current,
+    _type == "media" => "/media/" + slug.current,
+    slug.current
+  ),
+  _updatedAt
+} | order(typeOrder asc, _updatedAt desc)
+`);
 
 export const TRUSTED_COMPANIES_QUERY = defineQuery(`
 *[_type == "trustedCompany"]{

@@ -12,14 +12,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { CompanyLogoType } from "@/features/home/pageBuilderTypes";
+import { CompanyLogoType } from "@/features/home/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
-
-interface Logo {
-  description: string;
-  image: string;
-  className?: string;
-}
 
 interface LogosProps {
   logos: CompanyLogoType;
@@ -33,7 +27,7 @@ function ensureSize<T>(logos: Array<T>): T[] {
   return newLogos;
 }
 
-function Logos3({ logos }: LogosProps) {
+function LogoSlideshow({ logos }: LogosProps) {
   const logosArr = ensureSize(logos);
   return (
     <div className="relative mx-auto flex items-center justify-center w-full max-w-full sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
@@ -65,45 +59,4 @@ function Logos3({ logos }: LogosProps) {
   );
 }
 
-export { Logos3 };
-
-const logos_arr = [
-  {
-    description: "Logo 1",
-    image:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/astro-wordmark.svg",
-  },
-  {
-    description: "Logo 2",
-    image: "/microsoft-logo-new.png",
-  },
-  {
-    description: "Logo 3",
-    image:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/nextjs-wordmark.svg",
-  },
-  {
-    description: "Logo 4",
-    image:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/react-wordmark.svg",
-  },
-  {
-    description: "Logo 5",
-    image:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcn-ui-wordmark.svg",
-  },
-  {
-    description: "Logo 6",
-    image:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/supabase-wordmark.svg",
-  },
-  {
-    description: "Logo 7",
-    image: "/BrucePower.png",
-  },
-  {
-    description: "Logo 8",
-    image:
-      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/vercel-wordmark.svg",
-  },
-];
+export { LogoSlideshow };

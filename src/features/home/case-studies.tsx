@@ -1,7 +1,7 @@
 import Container from "../layout/Container";
-import PageSection from "./PageSection";
+import PageSection from "./page-section";
 
-function CaseStudies() {
+function CaseStudiesSection() {
   return (
     <PageSection>
       <Container>
@@ -25,4 +25,4 @@ function CaseStudies() {
   );
 }
 
-export default CaseStudies;
+export default CaseStudiesSection;

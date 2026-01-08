@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { SERVICE_QUERY, SERVICES_SLUGS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Metadata } from "next";
-import Service from "@/features/services/Service";
+import { Service } from "@/features/services";
 
 type Params = Promise<{ slug: string }>;
 

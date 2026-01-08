@@ -1,14 +1,15 @@
 import { PortableText } from "next-sanity";
 import Image from "next/image";
-import { Author } from "../posts/author";
-import { Categories } from "../posts/categories";
+import { Author } from "./author";
+import { Categories } from "./categories";
 import { components } from "@/sanity/portableTextComponents";
 import { MEDIUM_QUERYResult } from "@/sanity/types";
-import { PublishedAt } from "../posts/published-at";
-import { Title } from "../posts/title";
+import { PublishedAt } from "./published-at";
+import { Title } from "./title";
 import { urlFor } from "@/sanity/lib/image";
+import { RelatedMedia } from "./related-media";
 
-function Media(props: NonNullable<MEDIUM_QUERYResult>) {
+export function Media(props: NonNullable<MEDIUM_QUERYResult>) {
   const {
     // _id,
     title,
@@ -17,7 +18,7 @@ function Media(props: NonNullable<MEDIUM_QUERYResult>) {
     body,
     publishedAt,
     categories,
-    // relatedPosts,
+    relatedMedia,
   } = props;
 
   return (
@@ -43,15 +44,9 @@ function Media(props: NonNullable<MEDIUM_QUERYResult>) {
       {body ? (
         <div className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg">
           <PortableText value={body} components={components} />
-          {/* <RelatedPosts
-            relatedPosts={relatedPosts}
-            documentId={_id}
-            documentType="post"
-          /> */}
+          <RelatedMedia relatedMedia={relatedMedia} />
         </div>
       ) : null}
     </article>
   );
 }
-
-export default Media;
