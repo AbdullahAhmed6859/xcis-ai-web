@@ -2,20 +2,15 @@ import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
 
-export const impactSectionType = defineType({
-  name: "impactSection",
+export const locationsSectionType = defineType({
+  name: "locationsSection",
   type: "object",
   fields: [
     ...sectionBaseFields,
     defineField({
-      name: "statistics",
+      name: "locations",
       type: "array",
-      of: [{ type: "impactStatistic" }],
-      validation: (rule) => rule.required().length(4),
-    }),
-    defineField({
-      name: "Experience",
-      type: "impactStatistic",
+      of: [{ type: "reference", to: { type: "location" } }],
     }),
   ],
   icon: TextIcon,
@@ -28,7 +23,7 @@ export const impactSectionType = defineType({
     prepare({ title, media, hide }) {
       return {
         title,
-        subtitle: `Impact ${hide ? "(hidden)" : ""}`,
+        subtitle: `Locations ${hide ? "(hidden)" : ""}`,
         media: media ?? TextIcon,
       };
     },

@@ -1,8 +1,8 @@
-import Container from "../layout/Container";
-import { ImpactSectionProps } from "./page-builder-types";
-import PageSection from "./page-section";
+import Container from "@/features/layout/Container";
+import PageSection from "@/features/layout/page-section";
+import { CarouselSectionProps } from "./page-builder-types";
 
-function ImpactSection({ heading, text }: ImpactSectionProps) {
+export function CarouselSection({ heading, text }: CarouselSectionProps) {
   return (
     <PageSection>
       <Container>
@@ -12,12 +12,10 @@ function ImpactSection({ heading, text }: ImpactSectionProps) {
             <p className="text-lg text-center max-w-3xl">{text}</p>
           </div>
           <div className="text-lg text-center max-w-3xl">
-            <div>Team Info and Impact here</div>
+            <div>Advantages here</div>
           </div>
         </div>
       </Container>
     </PageSection>
   );
 }
-
-export default ImpactSection;

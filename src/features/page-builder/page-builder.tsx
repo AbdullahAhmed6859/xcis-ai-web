@@ -4,7 +4,13 @@ import {
   HeroSection,
   ImpactSection,
   ServicesSection,
-} from "../home";
+  StructuredSteps,
+  CustomerReviews,
+  MediaSection,
+  LocationsSection,
+  TrainingsSection,
+  CarouselSection,
+} from "./blocks";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -27,6 +33,19 @@ export function PageBuilder({ content }: PageBuilderProps) {
             return <CaseStudiesSection key={block._key} {...block} />;
           case "impactSection":
             return <ImpactSection key={block._key} {...block} />;
+          case "structuredStepsSection":
+            return <StructuredSteps key={block._key} {...block} />;
+          case "carouselSection":
+            return <CarouselSection key={block._key} {...block} />;
+          case "locationsSection":
+            return <LocationsSection key={block._key} {...block} />;
+          case "reviewsSection":
+            return <CustomerReviews key={block._key} {...block} />;
+          case "trainingsSection":
+            return <TrainingsSection key={block._key} {...block} />;
+          case "mediaSection":
+            return <MediaSection key={block._key} {...block} />;
+
           default:
             return null;
         }

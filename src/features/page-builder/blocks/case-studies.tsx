@@ -1,8 +1,8 @@
-import Container from "../layout/Container";
+import Container from "../../layout/Container";
 import { CaseStudiesSectionProps } from "./page-builder-types";
-import PageSection from "./page-section";
+import PageSection from "../../layout/page-section";
 
-function CaseStudiesSection({ heading, text }: CaseStudiesSectionProps) {
+export function CaseStudiesSection({ heading, text }: CaseStudiesSectionProps) {
   return (
     <PageSection>
       <Container>
@@ -19,5 +19,3 @@ function CaseStudiesSection({ heading, text }: CaseStudiesSectionProps) {
     </PageSection>
   );
 }
-
-export default CaseStudiesSection;

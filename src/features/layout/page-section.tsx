@@ -4,9 +4,10 @@ import { cva, VariantProps } from "class-variance-authority";
 const pageSectionVariants = cva("w-full", {
   variants: {
     type: {
-      top: "mb-10",
-      mid: "mb-10",
-      bottom: "mb-10",
+      top: "",
+      mid: "py-8",
+      bottom: "pb-10",
+      none: "",
     },
     height: {
       full: "h-full",
@@ -22,7 +23,7 @@ const pageSectionVariants = cva("w-full", {
     },
   },
   defaultVariants: {
-    type: "mid",
+    type: "none",
     height: "default",
     colour: "none",
   },

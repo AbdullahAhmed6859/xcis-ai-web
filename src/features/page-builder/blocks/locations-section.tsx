@@ -1,8 +1,8 @@
-import Container from "../layout/Container";
-import { ServicesSectionProps } from "./page-builder-types";
-import PageSection from "./page-section";
+import Container from "../../layout/Container";
+import PageSection from "../../layout/page-section";
+import { LocationsSectionProps } from "./page-builder-types";
 
-function ServicesSection({ heading, text }: ServicesSectionProps) {
+export function LocationsSection({ heading, text }: LocationsSectionProps) {
   return (
     <PageSection>
       <Container>
@@ -12,12 +12,10 @@ function ServicesSection({ heading, text }: ServicesSectionProps) {
             <p className="text-lg text-center max-w-3xl">{text}</p>
           </div>
           <div className="text-lg text-center max-w-3xl">
-            <div>Carousel here</div>
+            <div>Locations and Markets Info here</div>
           </div>
         </div>
       </Container>
     </PageSection>
   );
 }
-
-export default ServicesSection;

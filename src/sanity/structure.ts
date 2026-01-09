@@ -1,16 +1,31 @@
 import type { StructureResolver } from "sanity/structure";
 
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title("Blog")
+    .title("Content")
     .items([
+      // ───────────── Editorial Content ─────────────
+      S.documentTypeListItem("media").title("Media"),
+      S.documentTypeListItem("caseStudy").title("Case Studies"),
+      S.documentTypeListItem("page").title("Pages"),
+
+      S.divider(),
+
+      // ───────────── Taxonomy & People ─────────────
       S.documentTypeListItem("category").title("Categories"),
       S.documentTypeListItem("author").title("Authors"),
+
       S.divider(),
-      S.documentTypeListItem("page").title("Pages"),
-      S.documentTypeListItem("faq").title("FAQs"),
+
+      // ───────────── Business Content ─────────────
+      S.documentTypeListItem("service").title("Services"),
+      S.documentTypeListItem("trustedCompany").title("Trusted Companies"),
+      S.documentTypeListItem("review").title("Reviews"),
+      S.documentTypeListItem("location").title("Locations"),
+
       S.divider(),
+
+      // ───────────── Configuration ─────────────
       S.listItem()
         .id("siteSettings")
         .schemaType("siteSettings")
@@ -21,26 +36,24 @@ export const structure: StructureResolver = (S) =>
             .schemaType("siteSettings")
             .documentId("siteSettings")
         ),
-      S.documentTypeListItem("redirect").title("Redirects"),
+
       S.divider(),
-      S.documentTypeListItem("trustedCompany").title("Trusted Companies"),
-      S.documentTypeListItem("caseStudy").title("Case Studies"),
-      S.documentTypeListItem("media").title("Media"),
-      S.documentTypeListItem("service").title("Services"),
+
+      // ───────────── Everything Else (auto) ─────────────
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
           ![
+            "media",
+            "caseStudy",
+            "page",
             "category",
             "author",
-            "page",
-            "faq",
-            "siteSettings",
-            "redirect",
-            "trustedCompany",
-            "caseStudy",
-            "media",
             "service",
+            "trustedCompany",
+            "review",
+            "location",
+            "siteSettings",
           ].includes(item.getId()!)
       ),
     ]);

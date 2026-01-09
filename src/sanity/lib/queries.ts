@@ -47,12 +47,12 @@ export const HOME_PAGE_QUERY = defineQuery(`
   }
 }`);
 
-export const REDIRECTS_QUERY = defineQuery(`
-*[_type == "redirect" && isEnabled == true] {
-  source,
-  destination,
-  permanent
-}`);
+// export const REDIRECTS_QUERY = defineQuery(`
+// *[_type == "redirect" && isEnabled == true] {
+//   source,
+//   destination,
+//   permanent
+// }`);
 
 export const OG_IMAGE_QUERY = defineQuery(`
 *[_id == $id][0]{

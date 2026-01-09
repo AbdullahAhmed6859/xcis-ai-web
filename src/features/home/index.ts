@@ -1,10 +1,1 @@
-export { default as AdvantageSection } from "./advantage-section";
-export { default as CaseStudiesSection } from "./case-studies";
-export { default as CustomerReviews } from "./customer-reviews";
-export { default as HeroSection } from "./hero-section";
-export { default as LocationsWeServe } from "./locations-we-serve";
-export { default as ServicesSection } from "./services-section";
-export { default as ImpactSection } from "./team-section";
-export { default as TrainingsSection } from "./trainings-section";
-export { default as TrustedBySection } from "./trusted-by-section";
-export { default as NewsAndInsights } from "./news-and-insights";
+

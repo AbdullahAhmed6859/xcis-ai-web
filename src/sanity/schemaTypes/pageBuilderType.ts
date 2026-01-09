@@ -7,16 +7,22 @@ export const pageBuilderType = defineType({
     defineArrayMember({ type: "heroSection" }),
     defineArrayMember({ type: "servicesSection" }),
     defineArrayMember({ type: "caseStudiesSection" }),
+    defineArrayMember({ type: "mediaSection" }),
+    defineArrayMember({ type: "locationsSection" }),
+    defineArrayMember({ type: "reviewsSection" }),
+    defineArrayMember({ type: "carouselSection" }),
     defineArrayMember({ type: "impactSection" }),
+    defineArrayMember({ type: "structuredStepsSection" }),
+    defineArrayMember({ type: "trainingsSection" }),
   ],
-  options: {
-    insertMenu: {
-      views: [
-        {
-          name: "grid",
-          previewImageUrl: (schemaType) => `/block-previews/${schemaType}.png`,
-        },
-      ],
-    },
-  },
+  // options: {
+  //   insertMenu: {
+  //     views: [
+  //       {
+  //         name: "grid",
+  //         previewImageUrl: (schemaType) => `/block-previews/${schemaType}.png`,
+  //       },
+  //     ],
+  //   },
+  // },
 });

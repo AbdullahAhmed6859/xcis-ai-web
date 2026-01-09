@@ -1,0 +1,10 @@
+export { CarouselSection } from "./advantage-section";
+export { CaseStudiesSection } from "./case-studies";
+export { CustomerReviews } from "./customer-reviews";
+export { HeroSection } from "./hero-section";
+export { ImpactSection } from "./impact-section";
+export { LocationsSection } from "./locations-section";
+export { MediaSection } from "./media-section";
+export { ServicesSection } from "./services-section";
+export { StructuredSteps } from "./structured-steps";
+export { TrainingsSection } from "./trainings-section";

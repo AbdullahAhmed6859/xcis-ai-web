@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
-import AtomLogo from "./atom-logo";
+import AtomLogo from "../../home/atom-logo";
 import { LogoSlideshow } from "@/components/logo-slideshow";
-import Container from "../layout/Container";
-import PageSection from "./page-section";
+import Container from "../../layout/Container";
+import PageSection from "../../layout/page-section";
 import { HeroProps } from "./page-builder-types";
 
-function HeroSection(props: HeroProps) {
+export function HeroSection(props: HeroProps) {
   return (
-    <PageSection height="screen">
+    <PageSection height="screen" type="top">
       <div className="w-full h-4/5 bg-linear-to-b from-[#030303] to-[#0c182b]">
         <Container className="grid place-items-center">
           <div className="w-full grid md:grid-cols-2 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
@@ -60,5 +60,3 @@ function HeroSection(props: HeroProps) {
     </PageSection>
   );
 }
-
-export default HeroSection;
