@@ -10,6 +10,8 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import Autoplay from "embla-carousel-autoplay";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface GenericCarouselProps<T> {
   items: T[];
@@ -25,13 +27,19 @@ export function GenericCarousel<T>({
   items,
   renderItem,
   basisMobile = "basis-full",
-  basisMd = "md:basis-1/2",
-  basisLg = "lg:basis-1/3",
+  basisMd = "lg:basis-1/2",
+  basisLg = "2xl:basis-1/3",
   backgroundColor = "white",
 }: GenericCarouselProps<T>) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
+  const isMobile = useIsMobile();
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 
   React.useEffect(() => {
     if (!api) return;
@@ -44,8 +52,12 @@ export function GenericCarousel<T>({
   }, [api]);
 
   return (
-    <div className="mx-auto w-full px-12 md:px-12 xl:px-14">
-      <Carousel setApi={setApi} className="w-full">
+    <div className="mx-auto w-full md:px-12 xl:px-14">
+      <Carousel
+        setApi={setApi}
+        className="w-full"
+        plugins={isMobile ? [plugin.current] : []}
+      >
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem
@@ -56,8 +68,12 @@ export function GenericCarousel<T>({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="text-dark-blue border-dark-blue" />
-        <CarouselNext className="text-dark-blue border-dark-blue" />
+        {!isMobile && (
+          <>
+            <CarouselPrevious className="text-dark-blue border-dark-blue" />
+            <CarouselNext className="text-dark-blue border-dark-blue" />
+          </>
+        )}
       </Carousel>
 
       <div className="mt-8 flex justify-center gap-2">
