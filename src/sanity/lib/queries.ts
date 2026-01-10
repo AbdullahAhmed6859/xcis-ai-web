@@ -1,8 +1,7 @@
 import { defineQuery } from "next-sanity";
 
-export const PAGE_QUERY = defineQuery(`
-*[_type == "page" && slug.current == $slug][0]{
-  ...,
+const pageCommon = `
+{
   "seo": {
     "title": coalesce(seo.title, title, ""),
     "description": coalesce(seo.description,  ""),
@@ -35,7 +34,9 @@ export const PAGE_QUERY = defineQuery(`
         }
       }
     },
-    // Logic for Companies
+    _type == "servicesSection" => {
+        "services": *[_type == "service"]
+    },
     _type == "heroSection" => {
       "companies": companies[defined(@)]->{
         _key,
@@ -44,11 +45,19 @@ export const PAGE_QUERY = defineQuery(`
         logo
       }
     },
-    _type == "servicesSection" => {
-        "services": *[_type == "service"]
+    _type == "reviewsSection" => {
+      reviews[]->{
+        name,
+        image,
+        reviewText,
+        position
       }
+    }
   }
-}`);
+}`;
+
+export const PAGE_QUERY = defineQuery(`
+*[_type == "page" && slug.current == $slug][0]${pageCommon}`);
 
 export const PAGE_SLUGS_QUERY =
   defineQuery(`*[_type == "page" && defined(slug.current)]{ 
@@ -58,53 +67,7 @@ export const PAGE_SLUGS_QUERY =
 export const HOME_PAGE_QUERY = defineQuery(`
 *[_id == "siteSettings"][0]{
   ...,
-  homePage->{
-    "seo": {
-      "title": coalesce(seo.title, title, ""),
-      "description": coalesce(seo.description, ""),
-      "image": seo.image,
-      "noIndex": seo.noIndex == true
-    },
-    "content": content[hide != true]{
-      ...,
-      // Logic for the Impact Section
-      _type == "impactSection" => {
-        "countMembers": count(*[_type == "teamMember"]),
-        "teamMembers": teamMembers[defined(@)]->{
-          name,
-          image
-        },
-        statistics[]{
-          quantity,
-          text
-        }
-      },
-      // Logic for Case Studies
-      _type == "caseStudiesSection" => {
-        "caseStudies": caseStudies[defined(@)]->{
-          title,
-          excerpt,
-          mainImage,
-          slug,
-          services[]->{
-            title
-          }
-        }
-      },
-      // Logic for Companies
-      _type == "heroSection" => {
-        "companies": companies[defined(@)]->{
-          _key,
-          name,
-          website,
-          logo
-        }
-      },
-      _type == "servicesSection" => {
-        "services": *[_type == "service"]
-      }
-    }
-  }
+  homePage->${pageCommon}
 }`);
 
 // export const REDIRECTS_QUERY = defineQuery(`

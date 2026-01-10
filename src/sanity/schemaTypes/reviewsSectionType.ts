@@ -11,6 +11,7 @@ export const reviewsSectionType = defineType({
       name: "reviews",
       type: "array",
       of: [{ type: "reference", to: { type: "review" } }],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,
