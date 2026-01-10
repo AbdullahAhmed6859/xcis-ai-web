@@ -2,20 +2,20 @@ import { Button } from "@/components/ui/button";
 import AtomLogo from "../../home/atom-logo";
 import { LogoSlideshow } from "@/components/logo-slideshow";
 import Container from "../../layout/Container";
-import PageSection from "../../layout/page-section";
 import { HeroProps } from "./page-builder-types";
 
 export function HeroSection(props: HeroProps) {
+  const { heading, text, companies } = props;
   return (
-    <PageSection height="screen" type="top">
+    <>
       <div className="w-full h-4/5 bg-linear-to-b from-[#030303] to-[#0c182b]">
         <Container className="grid place-items-center">
           <div className="w-full grid md:grid-cols-2 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
             <div className=" w-full flex flex-col justify-center h-full">
               <h1 className="text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-[#F9F9F9] mb-6">
-                {props.heading}
+                {heading}
               </h1>
-              <p className="text-lg text-gray-300 mb-8">{props.text}</p>
+              <p className="text-lg text-gray-300 mb-8">{text}</p>
 
               <div className="flex gap-4">
                 <Button
@@ -53,10 +53,10 @@ export function HeroSection(props: HeroProps) {
               </h2>
             </div>
 
-            <LogoSlideshow logos={props.companies} />
+            <LogoSlideshow logos={companies} />
           </div>
         </Container>
       </div>
-    </PageSection>
+    </>
   );
 }

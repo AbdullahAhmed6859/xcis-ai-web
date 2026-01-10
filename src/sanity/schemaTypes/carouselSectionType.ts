@@ -1,11 +1,35 @@
 import { TextIcon } from "@sanity/icons";
-import { defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
 
 export const carouselSectionType = defineType({
   name: "carouselSection",
   type: "object",
-  fields: [...sectionBaseFields],
+  fields: [
+    ...sectionBaseFields,
+    defineField({
+      name: "cards",
+      type: "array",
+      validation: (rule) => rule.required(),
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "heading",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "text",
+              type: "text",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+        },
+      ],
+    }),
+  ],
   icon: TextIcon,
   preview: {
     select: {

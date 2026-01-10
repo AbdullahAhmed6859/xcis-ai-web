@@ -9,6 +9,7 @@
   --color-light-blue: #7ecbfa;
   --color-pale-blue: #4172ae;
   --color-pearl-white: #f9f9f9;
+  --color-white: #f9f9f9;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

@@ -3,43 +3,50 @@ import { cva, VariantProps } from "class-variance-authority";
 
 const pageSectionVariants = cva("w-full", {
   variants: {
-    type: {
-      top: "",
-      mid: "py-8",
-      bottom: "pb-10",
+    paddingTop: {
       none: "",
+      single: "pt-8",
+      double: "pt-16",
+    },
+    paddingBottom: {
+      none: "",
+      single: "pb-8",
+      double: "pb-16",
     },
     height: {
       full: "h-full",
       screen:
         "min-h-[600px] h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] page-section-screen",
-      default: "",
     },
-    colour: {
-      light: "bg-white",
-      dark: "bg-dark-blue text-white",
-      none: "",
+    color: {
+      white: "bg-white",
+      blue: "bg-dark-blue text-white",
       gradient: "bg-linear-to-b from-[#030303] to-[#0c1729] text-white",
     },
   },
   defaultVariants: {
-    type: "none",
-    height: "default",
-    colour: "none",
+    height: "full",
+    color: "white",
+    paddingBottom: "single",
+    paddingTop: "single",
   },
 });
 
 function PageSection({
   children,
   className,
-  type = "mid",
-  height = "default",
-  colour = "none",
+  height = "full",
+  color = "white",
+  paddingTop = "single",
+  paddingBottom = "single",
   ...props
 }: React.ComponentProps<"section"> & VariantProps<typeof pageSectionVariants>) {
   return (
     <section
-      className={cn(className, pageSectionVariants({ type, height, colour }))}
+      className={cn(
+        className,
+        pageSectionVariants({ height, color, paddingTop, paddingBottom })
+      )}
       {...props}
     >
       {children}

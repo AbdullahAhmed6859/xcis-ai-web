@@ -18,6 +18,7 @@ interface GenericCarouselProps<T> {
   basisMobile?: string;
   basisMd?: string;
   basisLg?: string;
+  backgroundColor?: "white" | "blue" | "gradient";
 }
 
 export function GenericCarousel<T>({
@@ -26,6 +27,7 @@ export function GenericCarousel<T>({
   basisMobile = "basis-full",
   basisMd = "md:basis-1/2",
   basisLg = "lg:basis-1/3",
+  backgroundColor = "white",
 }: GenericCarouselProps<T>) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -65,7 +67,9 @@ export function GenericCarousel<T>({
             onClick={() => api?.scrollTo(index)}
             className={cn(
               "h-2 transition-all duration-300 rounded-full bg-slate-300",
-              current === index ? "w-8 bg-[#1B2B44]" : "w-2 hover:bg-slate-400"
+              current === index
+                ? `w-8 ${backgroundColor === "white" ? "bg-dark-blue" : "bg-white"}`
+                : "w-2 hover:bg-slate-400"
             )}
             aria-label={`Go to slide ${index + 1}`}
           />

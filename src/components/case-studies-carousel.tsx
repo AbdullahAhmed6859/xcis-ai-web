@@ -17,7 +17,7 @@ export function CaseStudiesCarousel({ caseStudies }: Props) {
       renderItem={(study, i) => (
         <CaseStudyCardCarousel
           caseStudy={study}
-          colour={i % 2 ? "blue" : "white"}
+          color={i % 2 ? "blue" : "white"}
         />
       )}
     />

@@ -11,6 +11,7 @@ import {
   TrainingsSection,
   CarouselSection,
 } from "./blocks";
+import PageSection from "../layout/page-section";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -24,31 +25,57 @@ export function PageBuilder({ content }: PageBuilderProps) {
   return (
     <main>
       {content.map((block) => {
+        // Render the correct section based on type
+        let SectionComponent = null;
+
         switch (block._type) {
           case "heroSection":
-            return <HeroSection key={block._key} {...block} />;
+            SectionComponent = <HeroSection key={block._key} {...block} />;
+            break;
           case "servicesSection":
-            return <ServicesSection key={block._key} {...block} />;
+            SectionComponent = <ServicesSection key={block._key} {...block} />;
+            break;
           case "caseStudiesSection":
-            return <CaseStudiesSection key={block._key} {...block} />;
+            SectionComponent = (
+              <CaseStudiesSection key={block._key} {...block} />
+            );
+            break;
           case "impactSection":
-            return <ImpactSection key={block._key} {...block} />;
+            SectionComponent = <ImpactSection key={block._key} {...block} />;
+            break;
           case "structuredStepsSection":
-            return <StructuredSteps key={block._key} {...block} />;
+            SectionComponent = <StructuredSteps key={block._key} {...block} />;
+            break;
           case "carouselSection":
-            return <CarouselSection key={block._key} {...block} />;
+            SectionComponent = <CarouselSection key={block._key} {...block} />;
+            break;
           case "locationsSection":
-            return <LocationsSection key={block._key} {...block} />;
+            SectionComponent = <LocationsSection key={block._key} {...block} />;
+            break;
           case "reviewsSection":
-            return <CustomerReviews key={block._key} {...block} />;
+            SectionComponent = <CustomerReviews key={block._key} {...block} />;
+            break;
           case "trainingsSection":
-            return <TrainingsSection key={block._key} {...block} />;
+            SectionComponent = <TrainingsSection key={block._key} {...block} />;
+            break;
           case "mediaSection":
-            return <MediaSection key={block._key} {...block} />;
-
+            SectionComponent = <MediaSection key={block._key} {...block} />;
+            break;
           default:
-            return null;
+            SectionComponent = <></>;
         }
+
+        return (
+          <PageSection
+            key={block._key}
+            height={block.height}
+            paddingTop={block.paddingTop}
+            paddingBottom={block.paddingBottom}
+            color={block.backgroundColor}
+          >
+            {SectionComponent}
+          </PageSection>
+        );
       })}
     </main>
   );

@@ -1,4 +1,4 @@
-export { CarouselSection } from "./advantage-section";
+export { CarouselSection } from "./carousel-section";
 export { CaseStudiesSection } from "./case-studies";
 export { CustomerReviews } from "./customer-reviews";
 export { HeroSection } from "./hero-section";

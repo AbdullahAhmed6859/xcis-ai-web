@@ -1,21 +1,25 @@
+import { SectionDescription } from "@/features/layout/section-description";
+import { SectionHeader } from "@/features/layout/section-header";
+import { SectionHeading } from "@/features/layout/section-heading";
 import Container from "../../layout/Container";
-import PageSection from "../../layout/page-section";
 import { mediaSectionProps } from "./page-builder-types";
 
-export function MediaSection({ heading, text }: mediaSectionProps) {
+export function MediaSection({
+  heading,
+  text,
+  backgroundColor,
+}: mediaSectionProps) {
   return (
-    <PageSection>
-      <Container>
-        <div className="flex flex-col gap-4 items-center">
-          <div className="text-dark-blue flex flex-col gap-2 items-center">
-            <h2 className="text-4xl font-semibold">{heading}</h2>
-            <p className="text-lg text-center max-w-3xl">{text}</p>
-          </div>
-          <div className="text-lg text-center max-w-3xl">
-            <div>News and Insights here</div>
-          </div>
+    <Container>
+      <div className="flex flex-col gap-4 items-center">
+        <SectionHeader backgroundColor={backgroundColor}>
+          <SectionHeading>{heading}</SectionHeading>
+          <SectionDescription>{text}</SectionDescription>
+        </SectionHeader>
+        <div className="text-lg text-center max-w-3xl">
+          <div>News and Insights here</div>
         </div>
-      </Container>
-    </PageSection>
+      </div>
+    </Container>
   );
 }
