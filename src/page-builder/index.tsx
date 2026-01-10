@@ -11,7 +11,7 @@ import {
   TrainingsSection,
   CarouselSection,
 } from "./blocks";
-import PageSection from "../layout/page-section";
+import PageSection from "../features/layout/page-section";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];

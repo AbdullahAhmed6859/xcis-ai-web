@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ImpactSectionProps } from "../page-builder/blocks/page-builder-types";
+import { ImpactSectionProps } from "../../page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
 
 type Props = {
@@ -9,20 +9,18 @@ type Props = {
 function Avatars({ teamMembers }: Props) {
   return (
     <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
-      {teamMembers.reverse().map((member) => (
-        <>
-          <Avatar>
-            <AvatarImage src={urlFor(member.image).url()} alt={member.name} />
-            <AvatarFallback>
-              {member.name
-                .trim()
-                .split(/\s+/)
-                .map((w) => w[0])
-                .join("")
-                .toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
-        </>
+      {teamMembers.reverse().map((member, i) => (
+        <Avatar key={i}>
+          <AvatarImage src={urlFor(member.image).url()} alt={member.name} />
+          <AvatarFallback>
+            {member.name
+              .trim()
+              .split(/\s+/)
+              .map((w) => w[0])
+              .join("")
+              .toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
       ))}
     </div>
   );

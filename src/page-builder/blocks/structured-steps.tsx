@@ -1,14 +1,14 @@
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../layout/Container";
-import { TrainingsSectionProps } from "./page-builder-types";
+import Container from "../../features/layout/Container";
+import { StructuredStepsSectionProps } from "./page-builder-types";
 
-export function TrainingsSection({
+export function StructuredSteps({
   heading,
   text,
   backgroundColor,
-}: TrainingsSectionProps) {
+}: StructuredStepsSectionProps) {
   return (
     <Container>
       <div className="flex flex-col gap-4 items-center">
@@ -17,7 +17,7 @@ export function TrainingsSection({
           <SectionDescription>{text}</SectionDescription>
         </SectionHeader>
         <div className="text-lg text-center max-w-3xl">
-          <div>Trainings here</div>
+          <div>Steps here</div>
         </div>
       </div>
     </Container>

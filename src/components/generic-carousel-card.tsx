@@ -5,11 +5,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CarouselSectionProps } from "@/features/page-builder/blocks/page-builder-types";
+import { CarouselSectionProps } from "@/page-builder/blocks/page-builder-types";
 type CardContent = CarouselSectionProps["cards"][number];
 
 type Props = {
-  cardContent: CardContent;
+  cardContent: Omit<CardContent, "_key"> & { _key?: string };
   color?: "blue" | "white";
 };
 

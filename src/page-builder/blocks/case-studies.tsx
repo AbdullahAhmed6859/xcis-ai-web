@@ -1,14 +1,17 @@
+import Container from "../../features/layout/Container";
+import { CaseStudiesSectionProps } from "./page-builder-types";
+import { CaseStudiesCarousel } from "@/components/case-studies-carousel";
+import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
-import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../layout/Container";
-import { StructuredStepsSectionProps } from "./page-builder-types";
 
-export function StructuredSteps({
+export function CaseStudiesSection({
   heading,
   text,
+  caseStudies,
   backgroundColor,
-}: StructuredStepsSectionProps) {
+}: CaseStudiesSectionProps) {
+  if (!caseStudies) return null;
   return (
     <Container>
       <div className="flex flex-col gap-4 items-center">
@@ -16,9 +19,7 @@ export function StructuredSteps({
           <SectionHeading>{heading}</SectionHeading>
           <SectionDescription>{text}</SectionDescription>
         </SectionHeader>
-        <div className="text-lg text-center max-w-3xl">
-          <div>Steps here</div>
-        </div>
+        <CaseStudiesCarousel caseStudies={caseStudies} />
       </div>
     </Container>
   );

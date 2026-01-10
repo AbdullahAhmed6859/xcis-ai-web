@@ -1,7 +1,7 @@
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../layout/Container";
+import Container from "../../features/layout/Container";
 import { ReviewsSectionProps } from "./page-builder-types";
 
 export function CustomerReviews({

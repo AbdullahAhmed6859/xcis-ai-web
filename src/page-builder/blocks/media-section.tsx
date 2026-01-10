@@ -1,17 +1,14 @@
-import Container from "../../layout/Container";
-import { CaseStudiesSectionProps } from "./page-builder-types";
-import { CaseStudiesCarousel } from "@/components/case-studies-carousel";
-import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
+import { SectionHeading } from "@/features/layout/section-heading";
+import Container from "../../features/layout/Container";
+import { mediaSectionProps } from "./page-builder-types";
 
-export function CaseStudiesSection({
+export function MediaSection({
   heading,
   text,
-  caseStudies,
   backgroundColor,
-}: CaseStudiesSectionProps) {
-  if (!caseStudies) return null;
+}: mediaSectionProps) {
   return (
     <Container>
       <div className="flex flex-col gap-4 items-center">
@@ -19,7 +16,9 @@ export function CaseStudiesSection({
           <SectionHeading>{heading}</SectionHeading>
           <SectionDescription>{text}</SectionDescription>
         </SectionHeader>
-        <CaseStudiesCarousel caseStudies={caseStudies} />
+        <div className="text-lg text-center max-w-3xl">
+          <div>News and Insights here</div>
+        </div>
       </div>
     </Container>
   );

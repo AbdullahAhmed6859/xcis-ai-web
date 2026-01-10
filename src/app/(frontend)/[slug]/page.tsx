@@ -1,4 +1,4 @@
-import { PageBuilder } from "@/features/page-builder/page-builder";
+import { PageBuilder } from "@/page-builder";
 import { sanityFetch } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PAGE_QUERY, PAGE_SLUGS_QUERY } from "@/sanity/lib/queries";
@@ -23,8 +23,10 @@ async function getPage(params: RouteProps["params"]) {
       "service",
       "location",
       "review",
-      "media, caseStudy",
+      "media",
+      "caseStudy",
       "trustedCompany",
+      "teamMember",
     ],
   });
 }

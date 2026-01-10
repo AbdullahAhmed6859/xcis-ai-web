@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CaseStudiesSectionProps } from "../page-builder/blocks/page-builder-types";
+import { CaseStudiesSectionProps } from "../../page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";

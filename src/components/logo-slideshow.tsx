@@ -12,7 +12,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { CompanyLogoType } from "@/features/page-builder/blocks/page-builder-types";
+import { CompanyLogoType } from "@/page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
 
 interface LogosProps {

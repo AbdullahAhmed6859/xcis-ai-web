@@ -1,7 +1,7 @@
 "use client";
 
 import CaseStudyCardCarousel from "@/features/case-studies/case-study-card-carousel";
-import { CaseStudiesSectionProps } from "@/features/page-builder/blocks/page-builder-types";
+import { CaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
 import { GenericCarousel } from "./generic-carousel";
 
 type CaseStudies = CaseStudiesSectionProps["caseStudies"];

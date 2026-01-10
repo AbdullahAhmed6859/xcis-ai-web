@@ -43,7 +43,10 @@ export const PAGE_QUERY = defineQuery(`
         website,
         logo
       }
-    }
+    },
+    _type == "servicesSection" => {
+        "services": *[_type == "service"]
+      }
   }
 }`);
 
@@ -96,6 +99,9 @@ export const HOME_PAGE_QUERY = defineQuery(`
           website,
           logo
         }
+      },
+      _type == "servicesSection" => {
+        "services": *[_type == "service"]
       }
     }
   }

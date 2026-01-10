@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import AtomLogo from "../../home/atom-logo";
+import AtomLogo from "../../features/home/atom-logo";
 import { LogoSlideshow } from "@/components/logo-slideshow";
-import Container from "../../layout/Container";
+import Container from "../../features/layout/Container";
 import { HeroProps } from "./page-builder-types";
 
 export function HeroSection(props: HeroProps) {
