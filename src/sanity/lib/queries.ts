@@ -9,7 +9,7 @@ export const PAGE_QUERY = defineQuery(`
     "image": seo.image,
     "noIndex": seo.noIndex == true
   },
-  content[]{
+  "content": content[hide != true]{
     ...,
     // Logic for the Impact Section
     _type == "impactSection" => {
@@ -62,7 +62,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
       "image": seo.image,
       "noIndex": seo.noIndex == true
     },
-    content[]{
+    "content": content[hide != true]{
       ...,
       // Logic for the Impact Section
       _type == "impactSection" => {
