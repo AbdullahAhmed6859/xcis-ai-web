@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 
-export const PAGE_QUERY =
-  defineQuery(`*[_type == "page" && slug.current == $slug][0]{
+export const PAGE_QUERY = defineQuery(`
+*[_type == "page" && slug.current == $slug][0]{
   ...,
   "seo": {
     "title": coalesce(seo.title, title, ""),
@@ -11,20 +11,38 @@ export const PAGE_QUERY =
   },
   content[]{
     ...,
-    caseStudies[]->{
-      title,
-      excerpt,
-      mainImage,
-      slug,
-      services[]->{
-        title
+    // Logic for the Impact Section
+    _type == "impactSection" => {
+        "countMembers": count(*[_type == "teamMember"]),
+        "teamMembers": teamMembers[defined(@)]->{
+          name,
+          image
+        },
+        statistics[]{
+          quantity,
+          text
+        }
+      },
+    // Logic for Case Studies
+    _type == "caseStudiesSection" => {
+      "caseStudies": caseStudies[defined(@)]->{
+        title,
+        excerpt,
+        mainImage,
+        slug,
+        services[]->{
+          title
+        }
       }
     },
-    companies[]->{
-      _key,
-      name,
-      website,
-      logo
+    // Logic for Companies
+    _type == "heroSection" => {
+      "companies": companies[defined(@)]->{
+        _key,
+        name,
+        website,
+        logo
+      }
     }
   }
 }`);
@@ -39,27 +57,45 @@ export const HOME_PAGE_QUERY = defineQuery(`
   ...,
   homePage->{
     "seo": {
-    "title": coalesce(seo.title, title, ""),
-    "description": coalesce(seo.description,  ""),
-    "image": seo.image,
-    "noIndex": seo.noIndex == true
+      "title": coalesce(seo.title, title, ""),
+      "description": coalesce(seo.description, ""),
+      "image": seo.image,
+      "noIndex": seo.noIndex == true
     },
     content[]{
       ...,
-      caseStudies[]->{
-        title,
-        excerpt,
-        mainImage,
-        slug,
-        services[]->{
-          title
+      // Logic for the Impact Section
+      _type == "impactSection" => {
+        "countMembers": count(*[_type == "teamMember"]),
+        "teamMembers": teamMembers[defined(@)]->{
+          name,
+          image
+        },
+        statistics[]{
+          quantity,
+          text
         }
       },
-      companies[]->{
-        _key,
-        name,
-        website,
-        logo
+      // Logic for Case Studies
+      _type == "caseStudiesSection" => {
+        "caseStudies": caseStudies[defined(@)]->{
+          title,
+          excerpt,
+          mainImage,
+          slug,
+          services[]->{
+            title
+          }
+        }
+      },
+      // Logic for Companies
+      _type == "heroSection" => {
+        "companies": companies[defined(@)]->{
+          _key,
+          name,
+          website,
+          logo
+        }
       }
     }
   }

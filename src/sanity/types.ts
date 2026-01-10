@@ -13,6 +13,61 @@
  */
 
 // Source: schema.json
+export type TeamMember = {
+  _id: string;
+  _type: "teamMember";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
 export type CarouselSection = {
   _type: "carouselSection";
   heading: string;
@@ -123,7 +178,14 @@ export type ImpactSection = {
   statistics: Array<{
     _key: string;
   } & ImpactStatistic>;
-  Experience?: ImpactStatistic;
+  experience: ImpactStatistic;
+  teamMembers: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "teamMember";
+  }>;
 };
 
 export type CaseStudiesSection = {
@@ -199,22 +261,6 @@ export type Location = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
 };
 
 export type Slug = {
@@ -646,11 +692,11 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | SanityImageCrop | SanityImageHotspot | Slug | Service | Media | BlockContent | CaseStudy | Review | TrustedCompany | Seo | SiteSettings | SplitImage | Features | PageBuilder | Page | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = TeamMember | SanityImageCrop | SanityImageHotspot | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Slug | Service | Media | BlockContent | CaseStudy | Review | TrustedCompany | Seo | SiteSettings | SplitImage | Features | PageBuilder | Page | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  ...,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content[]{    ...,    caseStudies[]->{      title,      excerpt,      mainImage,      slug,      services[]->{        title      }    },    companies[]->{      _key,      name,      website,      logo    }  }}
+// Query: *[_type == "page" && slug.current == $slug][0]{  ...,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  content[]{    ...,    // Logic for the Impact Section    _type == "impactSection" => {        "countMembers": count(*[_type == "teamMember"]),        "teamMembers": teamMembers[defined(@)]->{          name,          image        },        statistics[]{          quantity,          text        }      },    // Logic for Case Studies    _type == "caseStudiesSection" => {      "caseStudies": caseStudies[defined(@)]->{        title,        excerpt,        mainImage,        slug,        services[]->{          title        }      }    },    // Logic for Companies    _type == "heroSection" => {      "companies": companies[defined(@)]->{        _key,        name,        website,        logo      }    }  }}
 export type PAGE_QUERYResult = {
   _id: string;
   _type: "page";
@@ -674,8 +720,6 @@ export type PAGE_QUERYResult = {
       text: string;
       _key: string;
     }>;
-    caseStudies: null;
-    companies: null;
   } | {
     _key: string;
     _type: "caseStudiesSection";
@@ -707,7 +751,6 @@ export type PAGE_QUERYResult = {
         title: string;
       }> | null;
     }>;
-    companies: null;
   } | {
     _key: string;
     _type: "heroSection";
@@ -736,7 +779,6 @@ export type PAGE_QUERYResult = {
         _type: "image";
       };
     }>;
-    caseStudies: null;
   } | {
     _key: string;
     _type: "impactSection";
@@ -748,11 +790,26 @@ export type PAGE_QUERYResult = {
     paddingBottom: "double" | "none" | "single";
     hide?: boolean;
     statistics: Array<{
-      _key: string;
-    } & ImpactStatistic>;
-    Experience?: ImpactStatistic;
-    caseStudies: null;
-    companies: null;
+      quantity: number;
+      text: string;
+    }>;
+    experience: ImpactStatistic;
+    teamMembers: Array<{
+      name: string;
+      image: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+    }>;
+    countMembers: number;
   } | {
     _key: string;
     _type: "locationsSection";
@@ -770,8 +827,6 @@ export type PAGE_QUERYResult = {
       _key: string;
       [internalGroqTypeReferenceTo]?: "location";
     }>;
-    caseStudies: null;
-    companies: null;
   } | {
     _key: string;
     _type: "mediaSection";
@@ -789,8 +844,6 @@ export type PAGE_QUERYResult = {
       _key: string;
       [internalGroqTypeReferenceTo]?: "media";
     }>;
-    caseStudies: null;
-    companies: null;
   } | {
     _key: string;
     _type: "reviewsSection";
@@ -808,8 +861,6 @@ export type PAGE_QUERYResult = {
       _key: string;
       [internalGroqTypeReferenceTo]?: "review";
     }>;
-    caseStudies: null;
-    companies: null;
   } | {
     _key: string;
     _type: "servicesSection";
@@ -820,8 +871,6 @@ export type PAGE_QUERYResult = {
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
     hide?: boolean;
-    caseStudies: null;
-    companies: null;
   } | {
     _key: string;
     _type: "structuredStepsSection";
@@ -838,8 +887,6 @@ export type PAGE_QUERYResult = {
       _type: "step";
       _key: string;
     }>;
-    caseStudies: null;
-    companies: null;
   } | {
     _key: string;
     _type: "trainingsSection";
@@ -850,8 +897,6 @@ export type PAGE_QUERYResult = {
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
     hide?: boolean;
-    caseStudies: null;
-    companies: null;
   }> | null;
   seo: {
     title: string | "";
@@ -877,7 +922,7 @@ export type PAGE_SLUGS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: HOME_PAGE_QUERY
-// Query: *[_id == "siteSettings"][0]{  ...,  homePage->{    "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true    },    content[]{      ...,      caseStudies[]->{        title,        excerpt,        mainImage,        slug,        services[]->{          title        }      },      companies[]->{        _key,        name,        website,        logo      }    }  }}
+// Query: *[_id == "siteSettings"][0]{  ...,  homePage->{    "seo": {      "title": coalesce(seo.title, title, ""),      "description": coalesce(seo.description, ""),      "image": seo.image,      "noIndex": seo.noIndex == true    },    content[]{      ...,      // Logic for the Impact Section      _type == "impactSection" => {        "countMembers": count(*[_type == "teamMember"]),        "teamMembers": teamMembers[defined(@)]->{          name,          image        },        statistics[]{          quantity,          text        }      },      // Logic for Case Studies      _type == "caseStudiesSection" => {        "caseStudies": caseStudies[defined(@)]->{          title,          excerpt,          mainImage,          slug,          services[]->{            title          }        }      },      // Logic for Companies      _type == "heroSection" => {        "companies": companies[defined(@)]->{          _key,          name,          website,          logo        }      }    }  }}
 export type HOME_PAGE_QUERYResult = {
   _id: string;
   _type: "author";
@@ -1162,8 +1207,6 @@ export type HOME_PAGE_QUERYResult = {
         text: string;
         _key: string;
       }>;
-      caseStudies: null;
-      companies: null;
     } | {
       _key: string;
       _type: "caseStudiesSection";
@@ -1195,7 +1238,6 @@ export type HOME_PAGE_QUERYResult = {
           title: string;
         }> | null;
       }>;
-      companies: null;
     } | {
       _key: string;
       _type: "heroSection";
@@ -1224,7 +1266,6 @@ export type HOME_PAGE_QUERYResult = {
           _type: "image";
         };
       }>;
-      caseStudies: null;
     } | {
       _key: string;
       _type: "impactSection";
@@ -1236,11 +1277,26 @@ export type HOME_PAGE_QUERYResult = {
       paddingBottom: "double" | "none" | "single";
       hide?: boolean;
       statistics: Array<{
-        _key: string;
-      } & ImpactStatistic>;
-      Experience?: ImpactStatistic;
-      caseStudies: null;
-      companies: null;
+        quantity: number;
+        text: string;
+      }>;
+      experience: ImpactStatistic;
+      teamMembers: Array<{
+        name: string;
+        image: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+      }>;
+      countMembers: number;
     } | {
       _key: string;
       _type: "locationsSection";
@@ -1258,8 +1314,6 @@ export type HOME_PAGE_QUERYResult = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "location";
       }>;
-      caseStudies: null;
-      companies: null;
     } | {
       _key: string;
       _type: "mediaSection";
@@ -1277,8 +1331,6 @@ export type HOME_PAGE_QUERYResult = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "media";
       }>;
-      caseStudies: null;
-      companies: null;
     } | {
       _key: string;
       _type: "reviewsSection";
@@ -1296,8 +1348,6 @@ export type HOME_PAGE_QUERYResult = {
         _key: string;
         [internalGroqTypeReferenceTo]?: "review";
       }>;
-      caseStudies: null;
-      companies: null;
     } | {
       _key: string;
       _type: "servicesSection";
@@ -1308,8 +1358,6 @@ export type HOME_PAGE_QUERYResult = {
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
       hide?: boolean;
-      caseStudies: null;
-      companies: null;
     } | {
       _key: string;
       _type: "structuredStepsSection";
@@ -1326,8 +1374,6 @@ export type HOME_PAGE_QUERYResult = {
         _type: "step";
         _key: string;
       }>;
-      caseStudies: null;
-      companies: null;
     } | {
       _key: string;
       _type: "trainingsSection";
@@ -1338,10 +1384,46 @@ export type HOME_PAGE_QUERYResult = {
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
       hide?: boolean;
-      caseStudies: null;
-      companies: null;
     }> | null;
   } | null;
+} | {
+  _id: string;
+  _type: "teamMember";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  homePage: null;
 } | {
   _id: string;
   _type: "trustedCompany";
@@ -1650,9 +1732,9 @@ export type SERVICES_SLUGS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  content[]{\n    ...,\n    caseStudies[]->{\n      title,\n      excerpt,\n      mainImage,\n      slug,\n      services[]->{\n        title\n      }\n    },\n    companies[]->{\n      _key,\n      name,\n      website,\n      logo\n    }\n  }\n}": PAGE_QUERYResult;
+    "\n*[_type == \"page\" && slug.current == $slug][0]{\n  ...,\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  content[]{\n    ...,\n    // Logic for the Impact Section\n    _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          quantity,\n          text\n        }\n      },\n    // Logic for Case Studies\n    _type == \"caseStudiesSection\" => {\n      \"caseStudies\": caseStudies[defined(@)]->{\n        title,\n        excerpt,\n        mainImage,\n        slug,\n        services[]->{\n          title\n        }\n      }\n    },\n    // Logic for Companies\n    _type == \"heroSection\" => {\n      \"companies\": companies[defined(@)]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n  }\n}": PAGE_QUERYResult;
     "*[_type == \"page\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": PAGE_SLUGS_QUERYResult;
-    "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->{\n    \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n    },\n    content[]{\n      ...,\n      caseStudies[]->{\n        title,\n        excerpt,\n        mainImage,\n        slug,\n        services[]->{\n          title\n        }\n      },\n      companies[]->{\n        _key,\n        name,\n        website,\n        logo\n      }\n    }\n  }\n}": HOME_PAGE_QUERYResult;
+    "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->{\n    \"seo\": {\n      \"title\": coalesce(seo.title, title, \"\"),\n      \"description\": coalesce(seo.description, \"\"),\n      \"image\": seo.image,\n      \"noIndex\": seo.noIndex == true\n    },\n    content[]{\n      ...,\n      // Logic for the Impact Section\n      _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          quantity,\n          text\n        }\n      },\n      // Logic for Case Studies\n      _type == \"caseStudiesSection\" => {\n        \"caseStudies\": caseStudies[defined(@)]->{\n          title,\n          excerpt,\n          mainImage,\n          slug,\n          services[]->{\n            title\n          }\n        }\n      },\n      // Logic for Companies\n      _type == \"heroSection\" => {\n        \"companies\": companies[defined(@)]->{\n          _key,\n          name,\n          website,\n          logo\n        }\n      }\n    }\n  }\n}": HOME_PAGE_QUERYResult;
     "\n*[_id == $id][0]{\n  title,\n  mainImage,\n  \"palette\": mainImage.asset->metadata.palette\n}": OG_IMAGE_QUERYResult;
     "\n[*[_id == \"siteSettings\"][0].homePage->{\n  \"href\": \"/\", \n  _updatedAt\n}] | order(typeOrder asc, _updatedAt desc)\n+\n*[_type in [\"page\", \"service\", \"caseStudy\", \"media\"] && defined(slug.current)] {\n  \"href\": select(\n    _type == \"page\" => \"/\" + slug.current,\n    _type == \"service\" => \"/services/\" + slug.current,\n    _type == \"caseStudy\" => \"/case-studies/\" + slug.current,\n    _type == \"media\" => \"/media/\" + slug.current,\n    slug.current\n  ),\n  _updatedAt\n} | order(typeOrder asc, _updatedAt desc)\n": SITEMAP_QUERYResult;
     "\n*[_type == \"trustedCompany\"]{\n  name,\n  website,\n  logo{\n    alt,\n    asset\n  }\n}": TRUSTED_COMPANIES_QUERYResult;

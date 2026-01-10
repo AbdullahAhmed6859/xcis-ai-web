@@ -29,6 +29,7 @@ function ensureSize<T>(logos: Array<T>): T[] {
 
 function LogoSlideshow({ logos }: LogosProps) {
   const logosArr = ensureSize(logos);
+  console.log(logosArr[0].logo);
   return (
     <div className="relative mx-auto flex items-center justify-center w-full max-w-full sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
       <Carousel

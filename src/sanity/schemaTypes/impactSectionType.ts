@@ -14,8 +14,15 @@ export const impactSectionType = defineType({
       validation: (rule) => rule.required().length(4),
     }),
     defineField({
-      name: "Experience",
+      name: "experience",
       type: "impactStatistic",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "teamMembers",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "teamMember" }] }],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,

@@ -1,15 +1,38 @@
+import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
 
-type Props = React.PropsWithChildren & {
-  backgroundColor: "blue" | "white" | "gradient";
-};
+export const textColourVariants = cva("", {
+  variants: {
+    textAlign: {
+      left: "text-left",
+      center: "text-center",
+    },
+    backgroundColor: {
+      blue: "text-white",
+      white: "text-dark-blue",
+      gradient: "text-dark-blue",
+    },
+    defaultVariants: {
+      textAlign: "center",
+      backgroundColor: "white",
+    },
+  },
+});
 
-export function SectionHeader({ children, backgroundColor }: Props) {
+export function SectionHeader({
+  textAlign = "center",
+  backgroundColor = "white",
+  className,
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof textColourVariants>) {
   return (
     <div
-      className={`text-center ${backgroundColor === "white" ? "text-dark-blue" : "text-white"}`}
-    >
-      {children}
-    </div>
+      className={cn(
+        className,
+        textColourVariants({ textAlign, backgroundColor })
+      )}
+      {...props}
+    />
   );
 }

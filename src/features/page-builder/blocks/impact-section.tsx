@@ -1,23 +1,70 @@
 import { SectionDescription } from "@/features/layout/section-description";
-import { SectionHeader } from "@/features/layout/section-header";
+import {
+  SectionHeader,
+  textColourVariants,
+} from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
 import Container from "../../layout/Container";
 import { ImpactSectionProps } from "./page-builder-types";
+import Avatars from "@/features/team/avatars";
+import { cn } from "@/lib/utils";
+import { ImpactCard } from "@/components/impact-card";
 
 export function ImpactSection({
   heading,
   text,
   backgroundColor,
+  countMembers,
+  teamMembers,
+  statistics,
+  experience,
 }: ImpactSectionProps) {
   return (
     <Container>
-      <div className="flex flex-col gap-4 items-center">
-        <SectionHeader backgroundColor={backgroundColor}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
-        </SectionHeader>
-        <div className="text-lg text-center max-w-3xl">
-          <div>Team Info and Impact here</div>
+      <div className="flex flex-col justify-center gap-y-4 md:justify-normal md:grid md:grid-cols-5 md:gap-x-32">
+        <div className="col-span-3 flex flex-col gap-y-2 md:justify-between">
+          <SectionHeader
+            backgroundColor={backgroundColor}
+            textAlign="left"
+            className="flex flex-col gap-y-2 md:text-left md:gap-y-4"
+          >
+            <SectionHeading>{heading}</SectionHeading>
+            <SectionDescription className="leading-7">
+              {text}
+            </SectionDescription>
+          </SectionHeader>
+
+          <div className="flex justify-center md:justify-normal">
+            <div
+              className={cn(
+                "flex items-center gap-2",
+                textColourVariants({ backgroundColor })
+              )}
+            >
+              <Avatars teamMembers={teamMembers} />{" "}
+              <span className="text-sm md:text-base">
+                {countMembers}+ Team Members
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="w-full col-span-2 grid grid-cols-2 gap-3">
+          {statistics.map((stat, i) => (
+            <ImpactCard
+              key={i}
+              cardContent={{ heading: stat.quantity, text: stat.text }}
+              color={i === 1 || i === 2 ? "blue" : "white"}
+            />
+          ))}
+          <ImpactCard
+            className="col-span-2"
+            color="blue"
+            cardContent={{
+              heading: experience.quantity,
+              text: experience.text,
+              extraHeadingText: "Years",
+            }}
+          />
         </div>
       </div>
     </Container>
