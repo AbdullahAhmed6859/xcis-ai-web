@@ -21,20 +21,20 @@ export function ImpactSection({
 }: ImpactSectionProps) {
   return (
     <Container>
-      <div className="flex flex-col justify-center gap-y-4 md:justify-normal md:grid md:grid-cols-5 md:gap-x-32">
-        <div className="col-span-3 flex flex-col gap-y-2 md:justify-between">
+      <div className="flex flex-col justify-center gap-y-4 lg:justify-normal lg:grid lg:grid-cols-5 xl:gap-x-32">
+        <div className="col-span-3 flex flex-col gap-y-2 lg:justify-between">
           <SectionHeader
             backgroundColor={backgroundColor}
-            textAlign="left"
-            className="flex flex-col gap-y-2 md:text-left md:gap-y-4"
+            textAlign="center"
+            className="flex flex-col gap-y-2 lg:text-left lg:gap-y-4"
           >
             <SectionHeading>{heading}</SectionHeading>
-            <SectionDescription className="leading-7">
+            <SectionDescription className="lg:leading-8">
               {text}
             </SectionDescription>
           </SectionHeader>
 
-          <div className="flex justify-center md:justify-normal">
+          <div className="flex justify-center lg:justify-normal">
             <div
               className={cn(
                 "flex items-center gap-2",
@@ -42,7 +42,7 @@ export function ImpactSection({
               )}
             >
               <Avatars teamMembers={teamMembers} />{" "}
-              <span className="text-sm md:text-base">
+              <span className="text-sm lg:text-base">
                 {countMembers}+ Team Members
               </span>
             </div>

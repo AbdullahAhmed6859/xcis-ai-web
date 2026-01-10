@@ -1,14 +1,10 @@
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ImpactSectionProps } from "@/features/page-builder/blocks/page-builder-types";
 import { cn } from "@/lib/utils";
-
-type CardContent = ImpactSectionProps["statistics"][number];
 
 type Props = {
   cardContent: {
