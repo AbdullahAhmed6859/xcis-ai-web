@@ -18,7 +18,14 @@ async function getPage(params: RouteProps["params"]) {
   return sanityFetch({
     query: PAGE_QUERY,
     params: { slug },
-    tags: [`page:${slug}`],
+    tags: [
+      `page:${slug}`,
+      "service",
+      "location",
+      "review",
+      "media, caseStudy",
+      "trustedCompany",
+    ],
   });
 }
 

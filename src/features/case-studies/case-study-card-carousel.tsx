@@ -46,7 +46,7 @@ function CaseStudyCardCarousel({
         </CardTitle>
         <CardDescription>
           <p
-            className={`text-xs line-clamp-3 ${color === "white" ? "text-muted-foreground" : "text-white"}`}
+            className={`lg:text-sm text-xs line-clamp-3 ${color === "white" ? "text-muted-foreground" : "text-white"}`}
           >
             {excerpt}
           </p>

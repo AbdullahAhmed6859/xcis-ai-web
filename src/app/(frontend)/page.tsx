@@ -7,7 +7,14 @@ import { Metadata } from "next";
 async function getPage() {
   return sanityFetch({
     query: HOME_PAGE_QUERY,
-    tags: ["page:", "trustedCompany"],
+    tags: [
+      `page:`,
+      "service",
+      "location",
+      "review",
+      "media, caseStudy",
+      "trustedCompany",
+    ],
   });
 }
 
