@@ -18,6 +18,7 @@ export function CaseStudiesCarousel({ caseStudies }: Props) {
         <CaseStudyCardCarousel
           caseStudy={study}
           color={i % 2 ? "blue" : "white"}
+          key={i}
         />
       )}
     />
