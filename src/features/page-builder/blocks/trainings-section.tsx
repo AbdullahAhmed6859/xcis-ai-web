@@ -1,4 +1,3 @@
-import { text } from "stream/consumers";
 import Container from "../../layout/Container";
 import PageSection from "../../layout/page-section";
 import { TrainingsSectionProps } from "./page-builder-types";
