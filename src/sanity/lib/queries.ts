@@ -10,14 +10,23 @@ export const PAGE_QUERY =
     "noIndex": seo.noIndex == true
   },
   content[]{
-      ...,
-      companies[]->{
-        _key,
-        name,
-        website,
-        logo
+    ...,
+    caseStudies[]->{
+      title,
+      excerpt,
+      mainImage,
+      slug,
+      services[]->{
+        title
       }
+    },
+    companies[]->{
+      _key,
+      name,
+      website,
+      logo
     }
+  }
 }`);
 
 export const PAGE_SLUGS_QUERY =
@@ -37,6 +46,15 @@ export const HOME_PAGE_QUERY = defineQuery(`
     },
     content[]{
       ...,
+      caseStudies[]->{
+        title,
+        excerpt,
+        mainImage,
+        slug,
+        services[]->{
+          title
+        }
+      },
       companies[]->{
         _key,
         name,

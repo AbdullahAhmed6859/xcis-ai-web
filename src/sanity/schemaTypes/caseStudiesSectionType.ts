@@ -10,7 +10,34 @@ export const caseStudiesSectionType = defineType({
     defineField({
       name: "caseStudies",
       type: "array",
-      of: [{ type: "reference", to: { type: "caseStudy" } }],
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "caseStudy" }],
+          options: {
+            filter: ({ parent }) => {
+              // Cast parent as an array of objects with a _ref property
+              const existingItems = parent as
+                | Array<{ _ref?: string }>
+                | undefined;
+
+              // Safely extract the IDs
+              const selectedIds =
+                existingItems
+                  ?.map((item) => item._ref)
+                  .filter((id): id is string => !!id) || [];
+
+              return {
+                filter: "!(_id in $selectedIds)",
+                params: {
+                  selectedIds,
+                },
+              };
+            },
+          },
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,
