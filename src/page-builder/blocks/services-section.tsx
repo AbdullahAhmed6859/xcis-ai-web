@@ -28,6 +28,9 @@ export function ServicesSection({
           if (cycleIndex === 1 || cycleIndex === 2) {
             colSpan = "lg:col-span-3";
           }
+          if (i === services.length - 1 && i % 2 === 0) {
+            colSpan = "lg:col-span-5";
+          }
           return (
             <ServiceCard
               className={colSpan}
