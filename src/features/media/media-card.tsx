@@ -11,7 +11,7 @@ export function MediaCard(props: MEDIA_QUERYResult[0]) {
   const { title, author, mainImage, publishedAt, categories } = props;
 
   return (
-    <Link className="group" href={`/media/${props.slug!.current}`}>
+    <Link className="group" href={`/media/${props.slug}`}>
       <article className="flex flex-col-reverse gap-4 md:grid md:grid-cols-12 md:gap-0">
         <div className="md:flex md:flex-col md:col-span-2 md:pt-1">
           <Categories categories={categories} />

@@ -22,7 +22,7 @@ export default async function Page() {
           <li key={service._id}>
             <Link
               className="block p-4 hover:text-blue-500"
-              href={`/services/${service.slug.current}`}
+              href={`/services/${service.slug}`}
             >
               {service.title}
             </Link>

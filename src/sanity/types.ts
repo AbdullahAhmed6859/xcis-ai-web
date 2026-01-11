@@ -129,7 +129,7 @@ export type MediaSection = {
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
   hide?: boolean;
-  media?: Array<{
+  media: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -856,7 +856,7 @@ export type PAGE_QUERYResult = {
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
     hide?: boolean;
-    media?: Array<{
+    media: Array<{
       _ref: string;
       _type: "reference";
       _weak?: boolean;
@@ -1361,7 +1361,7 @@ export type HOME_PAGE_QUERYResult = {
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
       hide?: boolean;
-      media?: Array<{
+      media: Array<{
         _ref: string;
         _type: "reference";
         _weak?: boolean;

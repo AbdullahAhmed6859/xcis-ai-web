@@ -974,7 +974,7 @@
               }
             }
           },
-          "optional": true
+          "optional": false
         }
       }
     }

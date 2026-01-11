@@ -11,6 +11,7 @@ export const mediaSectionType = defineType({
       name: "media",
       type: "array",
       of: [{ type: "reference", to: { type: "media" } }],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,

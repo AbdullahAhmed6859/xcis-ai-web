@@ -8,18 +8,15 @@ export function MediaSection({
   heading,
   text,
   backgroundColor,
+  media,
 }: mediaSectionProps) {
   return (
     <Container>
-      <div className="flex flex-col gap-4 items-center">
-        <SectionHeader backgroundColor={backgroundColor}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
-        </SectionHeader>
-        <div className="text-lg text-center max-w-3xl">
-          <div>News and Insights here</div>
-        </div>
-      </div>
+      <SectionHeader backgroundColor={backgroundColor} textAlign={"left"}>
+        <SectionHeading>{heading}</SectionHeading>
+        <SectionDescription>{text}</SectionDescription>
+      </SectionHeader>
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3"></div>
     </Container>
   );
 }
