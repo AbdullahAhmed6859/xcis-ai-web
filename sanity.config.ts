@@ -19,11 +19,6 @@ export default defineConfig({
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
-  typegen: {
-    path: "./src/**/*.{ts,tsx,js,jsx}",
-    schema: "./src/sanity/extract.json",
-    targetPath: "./src/sanity/types.ts",
-  },
   plugins: [
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio
