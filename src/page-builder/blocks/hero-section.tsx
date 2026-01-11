@@ -10,14 +10,14 @@ export function HeroSection(props: HeroProps) {
     <>
       <div className="w-full h-5/6 md:h-4/5 bg-linear-to-b from-[#030303] to-[#0c182b]">
         <Container className="grid place-items-center">
-          <div className="w-full h-full py-12 gap-12 flex flex-col justify-around md:justify-normal md:grid md:grid-cols-2 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
-            <div className=" w-full flex flex-col justify-center h-full">
-              <h1 className="text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-[#F9F9F9] mb-6">
+          <div className="w-full h-full grid grid-rows-3 sm:grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
+            <div className="row-span-2 sm:row-span-1 w-full flex flex-col justify-center h-full">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-white mb-6">
                 {heading}
               </h1>
-              <p className="text-lg text-gray-300 mb-8">{text}</p>
+              <p className="text-base md:text-lg text-gray-300 mb-8">{text}</p>
 
-              <div className="flex gap-4 flex-col md:flex-row">
+              <div className="flex gap-4 flex-col sm:flex-row">
                 <Button
                   size="lg"
                   className="bg-light-blue text-dark-blue hover:bg-light-blue/90 hover:text-dark-blue/90"
@@ -33,12 +33,12 @@ export function HeroSection(props: HeroProps) {
                 </Button>
               </div>
             </div>
-            <div className="flex flex-col justify-center items-center md:items-end h-full">
-              <div className="flex flex-col justify-center items-center gap-2">
-                <div className="w-40 md:w-64 lg:w-full">
+            <div className="row-span-1 flex flex-col justify-center items-center md:items-end h-full">
+              <div className="flex flex-col justify-center items-center md:gap-2">
+                <div className="max-w-36 md:max-w-72 lg:max-w-72 2xl:max-w-full p-4">
                   <AtomLogo />
                 </div>
-                <h2 className="text-pearl-white text-lg">
+                <h2 className="text-pearl-white text-base md:text-lg">
                   Nuclear, Powered by Data + AI
                 </h2>
               </div>
