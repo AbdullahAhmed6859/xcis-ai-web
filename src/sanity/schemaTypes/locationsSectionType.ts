@@ -11,6 +11,7 @@ export const locationsSectionType = defineType({
       name: "locations",
       type: "array",
       of: [{ type: "reference", to: { type: "location" } }],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,

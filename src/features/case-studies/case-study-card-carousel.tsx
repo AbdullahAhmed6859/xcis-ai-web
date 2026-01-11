@@ -10,6 +10,8 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { textColourVariants } from "../layout/section-header";
 
 type CaseStudy = CaseStudiesSectionProps["caseStudies"][number];
 
@@ -41,7 +43,12 @@ function CaseStudyCardCarousel({
             {services?.map((s) => s.title).join(" . ")}
           </p>
           <CardTitle>
-            <h3 className={color === "white" ? "text-dark-blue" : "text-white"}>
+            <h3
+              className={cn(
+                "text-lg md:text-xl",
+                textColourVariants({ backgroundColor: color })
+              )}
+            >
               {title}
             </h3>
           </CardTitle>
@@ -53,7 +60,10 @@ function CaseStudyCardCarousel({
             </p>
           </CardDescription>
           <p
-            className={`flex gap-x-2 items-center text-xs transition-colors duration-300 ${color === "white" ? "text-dark-blue" : "text-light-blue"}`}
+            className={cn(
+              `flex gap-x-2 items-center text-xs transition-colors duration-300`,
+              textColourVariants({ backgroundColor: color })
+            )}
           >
             VIEW CASE STUDY <MoveRight />
           </p>

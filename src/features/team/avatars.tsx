@@ -8,9 +8,9 @@ type Props = {
 
 function Avatars({ teamMembers }: Props) {
   return (
-    <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
+    <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
       {teamMembers.reverse().map((member, i) => (
-        <Avatar key={i}>
+        <Avatar key={i} className="lg:w-12 lg:h-12">
           <AvatarImage src={urlFor(member.image).url()} alt={member.name} />
           <AvatarFallback>
             {member.name

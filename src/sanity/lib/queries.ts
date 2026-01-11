@@ -53,6 +53,13 @@ const pageCommon = `
         reviewText,
         position
       }
+    },
+    _type == "locationsSection" => {
+      locations[]->{
+        image,
+        name,
+        slug
+      }
     }
   }
 }`;
