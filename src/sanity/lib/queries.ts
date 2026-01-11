@@ -85,12 +85,12 @@ export const HOME_PAGE_QUERY = defineQuery(`
 //   permanent
 // }`);
 
-export const OG_IMAGE_QUERY = defineQuery(`
-*[_id == $id][0]{
-  title,
-  mainImage,
-  "palette": mainImage.asset->metadata.palette
-}`);
+// export const OG_IMAGE_QUERY = defineQuery(`
+// *[_id == $id][0]{
+//   title,
+//   mainImage,
+//   "palette": mainImage.asset->metadata.palette
+// }`);
 
 export const SITEMAP_QUERY = defineQuery(`
 [*[_id == "siteSettings"][0].homePage->{
