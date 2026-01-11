@@ -62,7 +62,6 @@ export function PageBuilder({ content }: PageBuilderProps) {
             SectionComponent = <MediaSection key={block._key} {...block} />;
             break;
           default:
-            console.log("review section here");
             SectionComponent = <></>;
         }
 
