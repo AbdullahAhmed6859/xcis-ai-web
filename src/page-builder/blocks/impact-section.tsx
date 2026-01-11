@@ -17,7 +17,6 @@ export function ImpactSection({
   countMembers,
   teamMembers,
   statistics,
-  experience,
 }: ImpactSectionProps) {
   return (
     <Container>
@@ -52,19 +51,10 @@ export function ImpactSection({
           {statistics.map((stat, i) => (
             <ImpactCard
               key={i}
-              cardContent={{ heading: stat.quantity, text: stat.text }}
+              cardContent={stat}
               color={i === 1 || i === 2 ? "blue" : "white"}
             />
           ))}
-          <ImpactCard
-            className="col-span-2"
-            color="blue"
-            cardContent={{
-              heading: experience.quantity,
-              text: experience.text,
-              extraHeadingText: "Years",
-            }}
-          />
         </div>
       </div>
     </Container>

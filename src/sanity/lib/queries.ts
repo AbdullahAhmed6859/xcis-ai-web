@@ -18,7 +18,8 @@ const pageCommon = `
           image
         },
         statistics[]{
-          quantity,
+          heading,
+          highlightedHeading,
           text
         }
       },
@@ -59,8 +60,8 @@ const pageCommon = `
 export const PAGE_QUERY = defineQuery(`
 *[_type == "page" && slug.current == $slug][0]${pageCommon}`);
 
-export const PAGE_SLUGS_QUERY =
-  defineQuery(`*[_type == "page" && defined(slug.current)]{ 
+export const PAGE_SLUGS_QUERY = defineQuery(`
+  *[_type == "page" && defined(slug.current)]{ 
   "slug": slug.current
 }`);
 

@@ -5,8 +5,13 @@ export const impactStatisticType = defineType({
   type: "object",
   fields: [
     defineField({
-      name: "quantity",
-      type: "number",
+      name: "heading",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "highlightedHeading",
+      type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -15,4 +20,17 @@ export const impactStatisticType = defineType({
       validation: (rule) => rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      text: "text",
+      heading: "heading",
+      highlightedHeading: "highlightedHeading",
+    },
+    prepare({ text, heading, highlightedHeading }) {
+      return {
+        title: `${heading} ${highlightedHeading}`,
+        subtitle: text,
+      };
+    },
+  },
 });

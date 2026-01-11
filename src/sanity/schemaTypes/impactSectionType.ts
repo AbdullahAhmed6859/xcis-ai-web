@@ -11,12 +11,7 @@ export const impactSectionType = defineType({
       name: "statistics",
       type: "array",
       of: [{ type: "impactStatistic" }],
-      validation: (rule) => rule.required().length(4),
-    }),
-    defineField({
-      name: "experience",
-      type: "impactStatistic",
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.required().max(6),
     }),
     defineField({
       name: "teamMembers",

@@ -5,19 +5,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { ImpactSectionProps } from "@/page-builder/blocks/page-builder-types";
 
 type Props = {
-  cardContent: {
-    heading: string | number;
-    text: string;
-    extraHeadingText?: string;
-  };
+  cardContent: ImpactSectionProps["statistics"][number];
   color?: "blue" | "white";
   className?: string;
 };
 
 export function ImpactCard({
-  cardContent: { heading, text, extraHeadingText },
+  cardContent: { text, heading, highlightedHeading },
   className,
   color = "white",
 }: Props) {
@@ -32,8 +29,7 @@ export function ImpactCard({
         <CardTitle className="text-2xl lg:text-4xl">
           <h3 className={color === "white" ? "text-dark-blue" : "text-white"}>
             {heading}
-            <span className="text-light-blue">+ </span>
-            <span className="text-light-blue">{extraHeadingText}</span>
+            <span className="text-light-blue">{highlightedHeading}</span>
           </h3>
         </CardTitle>
         <CardDescription className="px-0">

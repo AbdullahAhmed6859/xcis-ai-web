@@ -1393,14 +1393,6 @@
           },
           "optional": false
         },
-        "experience": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "impactStatistic"
-          },
-          "optional": false
-        },
         "teamMembers": {
           "type": "objectAttribute",
           "value": {
@@ -1900,10 +1892,17 @@
             "value": "impactStatistic"
           }
         },
-        "quantity": {
+        "heading": {
           "type": "objectAttribute",
           "value": {
-            "type": "number"
+            "type": "string"
+          },
+          "optional": false
+        },
+        "highlightedHeading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": false
         },
