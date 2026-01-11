@@ -45,7 +45,7 @@ function CaseStudyCardCarousel({
           <CardTitle>
             <h3
               className={cn(
-                "text-lg md:text-xl",
+                "text-lg md:text-xl line-clamp-2",
                 textColourVariants({ backgroundColor: color })
               )}
             >

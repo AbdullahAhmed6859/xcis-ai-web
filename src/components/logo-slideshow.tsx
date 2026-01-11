@@ -39,7 +39,7 @@ function LogoSlideshow({ logos }: LogosProps) {
             {logosArr.map((logo, i) => (
               <CarouselItem
                 key={i}
-                className="flex basis-1/3 justify-center pl-0 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
+                className="flex basis-1/3 justify-center pl-0 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 2xl:basis-1/7"
               >
                 <div className="h-10 w-24 sm:h-12 sm:w-32 relative flex items-center justify-center">
                   <img
@@ -54,8 +54,8 @@ function LogoSlideshow({ logos }: LogosProps) {
         </Carousel>
 
         {/* 2. Gradients are now relative to this inner wrapper, not the viewport edges */}
-        <div className="absolute inset-y-0 left-0 w-12 sm:w-24 lg:w-32 bg-linear-to-r from-[#0c182b] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-12 sm:w-24 lg:w-32 bg-linear-to-l from-[#0c182b] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-12 sm:w-24 lg:w-48 bg-linear-to-r from-[#0c182b] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 sm:w-24 lg:w-48 bg-linear-to-l from-[#0c182b] to-transparent z-10 pointer-events-none" />
       </div>
     </Container>
   );
