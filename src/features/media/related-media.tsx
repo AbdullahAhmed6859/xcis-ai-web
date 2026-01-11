@@ -16,7 +16,7 @@ export function RelatedMedia({
         <ul className="flex flex-col sm:flex-row gap-0.5">
           {relatedMedia.map((medium) => (
             <li key={medium._key} className="p-4 bg-blue-50 sm:w-1/3 shrink-0">
-              <Link href={`/media/${medium.slug.current}`}>{medium.title}</Link>
+              <Link href={`/media/${medium.slug}`}>{medium.title}</Link>
             </li>
           ))}
         </ul>

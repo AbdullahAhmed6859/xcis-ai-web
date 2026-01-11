@@ -29,14 +29,17 @@ const pageCommon = `
         title,
         excerpt,
         mainImage,
-        slug,
+        "slug": slug.current,
         services[]->{
           title
         }
       }
     },
     _type == "servicesSection" => {
-        "services": *[_type == "service"]
+        "services": *[_type == "service"]{
+          ...,
+          "slug": slug.current
+        }
     },
     _type == "heroSection" => {
       "companies": companies[defined(@)]->{
@@ -68,8 +71,14 @@ export const PAGE_QUERY = defineQuery(`
 *[_type == "page" && slug.current == $slug][0]${pageCommon}`);
 
 export const PAGE_SLUGS_QUERY = defineQuery(`
-  *[_type == "page" && defined(slug.current)]{ 
+*[_type == "page" && defined(slug.current)]{
   "slug": slug.current
+}`);
+
+export const PAGE_LINKS_QUERY = defineQuery(`
+*[_type == "page" && defined(slug.current)]{
+  "slug": slug.current,
+  title
 }`);
 
 export const HOME_PAGE_QUERY = defineQuery(`
@@ -124,14 +133,14 @@ export const CASE_STUDIES_QUERY = defineQuery(`
 *[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc)[0...12]{
   _id,
   title,
-  slug,
+  "slug": slug.current,
   body,
   mainImage,
   publishedAt,
   "services": coalesce(
     services[]->{
       _id,
-      slug,
+      "slug": slug.current,
       title
     },
     []
@@ -152,7 +161,7 @@ export const CASE_STUDY_QUERY = defineQuery(`
   "services": coalesce(
     services[]->{
       _id,
-      slug,
+      "slug": slug.current,
       title
     },
     []
@@ -176,14 +185,14 @@ export const MEDIA_QUERY =
   defineQuery(`*[_type == "media" && defined(slug.current)]|order(publishedAt desc)[0...12]{
   _id,
   title,
-  slug,
+  "slug": slug.current,
   body,
   mainImage,
   publishedAt,
   "categories": coalesce(
     categories[]->{
       _id,
-      slug,
+      "slug": slug.current,
       title
     },
     []
@@ -204,7 +213,7 @@ export const MEDIUM_QUERY =
   "categories": coalesce(
     categories[]->{
       _id,
-      slug,
+      "slug": slug.current,
       title
     },
     []
@@ -227,7 +236,7 @@ export const MEDIA_SLUGS_QUERY =
 export const SERVICES_QUERY = defineQuery(`
 *[_type == "service"]{
   _id,
-  slug,
+  "slug": slug.current,
   title,
 }`);
 

@@ -10,6 +10,7 @@ import { textColourVariants } from "@/features/layout/section-header";
 import { cn } from "@/lib/utils";
 import { ServicesSectionProps } from "@/page-builder/blocks/page-builder-types";
 import Link from "next/link";
+
 type CardContent = ServicesSectionProps["services"][number];
 
 type Props = {
@@ -55,7 +56,7 @@ export function ServiceCard({
           </p>
           <br />
           <Link
-            href={`services/${slug.current}`}
+            href={`services/${slug}`}
             className={cn(
               buttonVariants({ size: "sm" }),
               "bg-light-blue text-dark-blue"

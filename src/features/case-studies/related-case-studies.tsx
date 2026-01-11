@@ -19,7 +19,7 @@ export function RelatedCaseStudies({
               key={caseStudy._key}
               className="p-4 bg-blue-50 sm:w-1/3 shrink-0"
             >
-              <Link href={`/case-studies/${caseStudy.slug.current}`}>
+              <Link href={`/case-studies/${caseStudy.slug}`}>
                 {caseStudy.title}
               </Link>
             </li>

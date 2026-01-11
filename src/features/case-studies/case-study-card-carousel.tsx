@@ -25,7 +25,7 @@ function CaseStudyCardCarousel({
   color = "white",
 }: Props) {
   return (
-    <Link href={`case-studies/${slug.current}`}>
+    <Link href={`case-studies/${slug}`}>
       <Card className={color === "white" ? "bg-white" : "bg-dark-blue"}>
         <CardContent className="space-y-6">
           <Image
