@@ -35,6 +35,17 @@ const pageCommon = `
         }
       }
     },
+    _type == "allCaseStudiesSection" => {
+      "caseStudies": *[_type == "caseStudy"]{
+        title,
+        excerpt,
+        mainImage,
+        "slug": slug.current,
+        services[]->{
+          title
+        }
+      }
+    },
     _type == "servicesSection" => {
       "services": *[_type == "service"]{
         title,

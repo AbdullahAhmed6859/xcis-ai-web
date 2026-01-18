@@ -14,6 +14,9 @@ export function CaseStudiesCarousel({ caseStudies }: Props) {
   return (
     <GenericCarousel
       items={caseStudies}
+      basisMobile="basis-full"
+      basisMd="lg:basis-1/2"
+      basisLg="2xl:basis-1/2"
       renderItem={(study, i) => (
         <CaseStudyCardCarousel caseStudy={study} color="blue" key={i} />
       )}

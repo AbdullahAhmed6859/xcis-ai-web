@@ -12,6 +12,7 @@ import {
   CarouselSection,
 } from "./blocks";
 import PageSection from "../features/layout/page-section";
+import AllCaseStudies from "./blocks/all-case-studies";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -60,6 +61,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "mediaSection":
             SectionComponent = <MediaSection key={block._key} {...block} />;
+            break;
+          case "allCaseStudiesSection":
+            SectionComponent = <AllCaseStudies key={block._key} {...block} />;
             break;
           default:
             SectionComponent = <></>;

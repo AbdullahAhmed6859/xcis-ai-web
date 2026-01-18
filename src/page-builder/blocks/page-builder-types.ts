@@ -49,3 +49,8 @@ export type ReviewsSectionProps = Extract<
 export type mediaSectionProps = Extract<ContentType, { _type: "mediaSection" }>;
 
 export type CompanyLogoType = HeroProps["companies"];
+
+export type AllCaseStudiesSectionProps = Extract<
+  ContentType,
+  { _type: "allCaseStudiesSection" }
+>;

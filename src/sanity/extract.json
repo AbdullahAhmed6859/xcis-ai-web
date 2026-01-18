@@ -1,5 +1,122 @@
 [
   {
+    "name": "allCaseStudiesSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "allCaseStudiesSection"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "text": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "full"
+              },
+              {
+                "type": "string",
+                "value": "screen"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "backgroundColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "white"
+              },
+              {
+                "type": "string",
+                "value": "blue"
+              },
+              {
+                "type": "string",
+                "value": "gradient"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "paddingTop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "single"
+              },
+              {
+                "type": "string",
+                "value": "double"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "paddingBottom": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "single"
+              },
+              {
+                "type": "string",
+                "value": "double"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "hide": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
     "name": "carouselSection",
     "type": "type",
     "value": {
@@ -3777,6 +3894,21 @@
             "rest": {
               "type": "inline",
               "name": "trainingsSection"
+            }
+          },
+          {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "allCaseStudiesSection"
             }
           }
         ]

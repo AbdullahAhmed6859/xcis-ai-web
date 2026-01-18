@@ -1,17 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { CaseStudiesSectionProps } from "../../page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { textColourVariants } from "../layout/section-header";
 
 type CaseStudy = CaseStudiesSectionProps["caseStudies"][number];
 
@@ -22,52 +15,49 @@ type Props = {
 
 function CaseStudyCardCarousel({
   caseStudy: { mainImage, title, excerpt, slug, services },
-  color = "white",
 }: Props) {
   return (
-    <Link href={`case-studies/${slug}`}>
-      <Card className={color === "white" ? "bg-white" : "bg-dark-blue"}>
-        <CardContent className="space-y-6">
+    <Link href={`case-studies/${slug}`} className="block h-full">
+      <Card className="group relative w-full aspect-3/2 overflow-hidden border-0 rounded-xl p-0">
+        {/* Background Image */}
+        <div className="absolute inset-0 h-full w-full">
           <Image
-            src={urlFor(mainImage).width(640).height(360).url()}
+            src={urlFor(mainImage).width(624).height(416).url()}
             alt={mainImage.alt}
-            className="aspect-video w-full rounded-md object-cover"
-            width={640}
-            height={360}
+            className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+            width={624}
+            height={416}
           />
-        </CardContent>
-        <CardHeader>
-          <p
-            className={`text-xs ${color === "white" ? "text-muted-foreground" : "text-light-blue"}`}
-          >
+        </div>
+
+        <div className="absolute inset-0 bg-linear-to-t from-dark-blue via-dark-blue/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+
+        {/* Text Content */}
+        <div className="absolute bottom-0 left-0 flex flex-col justify-end p-6 md:p-8 w-full z-20">
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-light-blue">
             {services?.map((s) => s.title).join(" . ")}
           </p>
-          <CardTitle>
-            <h3
-              className={cn(
-                "text-lg md:text-xl line-clamp-2",
-                textColourVariants({ backgroundColor: color })
-              )}
-            >
-              {title}
-            </h3>
-          </CardTitle>
-          <CardDescription>
-            <p
-              className={`lg:text-sm text-xs line-clamp-3 ${color === "white" ? "text-muted-foreground" : "text-white"}`}
-            >
-              {excerpt}
-            </p>
-          </CardDescription>
-          <p
+
+          <h3 className="mb-2 text-2xl font-bold text-white md:text-3xl line-clamp-2">
+            {title}
+          </h3>
+
+          <p className="mb-6 text-sm text-pearl-white/80 line-clamp-2 md:text-base">
+            {excerpt}
+          </p>
+
+          <div
             className={cn(
-              `flex items-center gap-x-2 text-xs transition-colors duration-300 text-light-blue hover:underline`
-              // textColourVariants({ backgroundColor: color })
+              "flex w-fit items-center gap-x-2 rounded-full",
+              "bg-light-blue px-5 py-2.5",
+              "text-xs font-bold text-dark-blue",
+              "transition-all duration-300 group-hover:bg-white",
             )}
           >
-            VIEW CASE STUDY <MoveRight />
-          </p>
-        </CardHeader>
+            VIEW CASE STUDY
+            <MoveRight className="h-4 w-4" />
+          </div>
+        </div>
       </Card>
     </Link>
   );

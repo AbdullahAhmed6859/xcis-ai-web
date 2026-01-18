@@ -15,7 +15,6 @@ export function MediaSection({
   backgroundColor,
   media,
 }: mediaSectionProps) {
-  console.log(media);
   return (
     <Container>
       <div className="flex flex-col gap-6">
