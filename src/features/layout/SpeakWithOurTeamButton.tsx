@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { DialogHeader } from "@/components/ui/dialog";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { InlineWidget } from "react-calendly";
 
 function SpeakWithOurTeamButton() {

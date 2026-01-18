@@ -1,10 +1,7 @@
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
-  CardDescription,
-  CardTitle,
   CardFooter,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -100,7 +97,8 @@ const formatDate = (dateString: string) => {
       year: "numeric",
     };
     return new Date(dateString).toLocaleDateString("en-US", options);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    return dateString; // Return original string if parsing fails
+    return null; // Return original string if parsing fails
   }
 };
