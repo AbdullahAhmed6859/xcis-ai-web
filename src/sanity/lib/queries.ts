@@ -44,7 +44,8 @@ const pageCommon = `
       }
     },
     _type == "heroSection" => {
-      "companies": companies[defined(@)]->{
+      "companies": *[_type == "trustedCompany"]{
+        mainImage,
         name,
         website,
         logo

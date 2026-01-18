@@ -1,17 +1,20 @@
 import { Button } from "@/components/ui/button";
-import AtomLogo from "../../features/home/atom-logo";
 import { LogoSlideshow } from "@/components/logo-slideshow";
 import Container from "../../features/layout/Container";
 import { HeroProps } from "./page-builder-types";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 
 export function HeroSection(props: HeroProps) {
-  const { heading, text, companies } = props;
+  const { heading, text, companies, showCompanies, mainImage } = props;
   return (
-    <>
-      <div className="w-full h-5/6 md:h-4/5 bg-linear-to-b from-[#030303] to-[#0c182b]">
+    <div
+      className={`w-full grid-cols-1 grid h-full ${showCompanies ? "grid-rows-6 md:grid-rows-5" : "grid-rows-5 md:grid-rows-4"}`}
+    >
+      <div className="w-full row-span-5 md:row-span-4 bg-linear-to-b from-[#030303] to-[#0c182b]">
         <Container className="grid place-items-center">
           <div className="w-full h-full grid grid-rows-5 sm:grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
-            <div className="row-span-3 sm:row-span-1 w-full flex flex-col justify-center h-full">
+            <div className={`row-span-3 sm:row-span-1 w-full flex flex-col justify-center h-full`}>
               <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-white mb-6">
                 {heading}
               </h1>
@@ -34,29 +37,35 @@ export function HeroSection(props: HeroProps) {
               </div>
             </div>
             <div className="row-span-2 flex flex-col justify-center items-center md:items-end h-full">
-              <div className="flex flex-col justify-center items-center md:gap-2">
-                <div className="max-w-36 md:max-w-72 lg:max-w-72 2xl:max-w-full">
-                  <AtomLogo />
+              <div className="flex flex-col justify-center items-center w-full">
+                <div className="relative w-full max-w-48 md:max-w-72 lg:max-w-72 2xl:max-w-96 aspect-square">
+                  {mainImage && (
+                    <Image
+                      src={urlFor(mainImage).url()}
+                      fill
+                      alt="mainImage"
+                      className="object-contain"
+                    />
+                  )}
                 </div>
-                <h2 className="text-pearl-white text-base md:text-lg">
-                  Nuclear, Powered by Data + AI
-                </h2>
               </div>
             </div>
           </div>
         </Container>
       </div>
-      <div className="w-full h-1/6 md:h-1/5 bg-[#0c182b] py-12">
-        <div className="w-full h-full flex flex-col justify-end items-center gap-y-4 sm:gap-y-8">
-          <div className="text-center">
-            <h2 className="text-pearl-white text-xs sm:text-sm font-semibold">
-              XCIS IS TRUSTED BY PARTNERS AND PLATFORMS INCLUDING
-            </h2>
-          </div>
+      {showCompanies && (
+        <div className="w-full row-span-1 bg-[#0c182b] py-12">
+          <div className="w-full h-full flex flex-col justify-end items-center gap-y-4 sm:gap-y-8">
+            <div className="text-center">
+              <h2 className="text-pearl-white text-xs sm:text-sm font-semibold">
+                XCIS IS TRUSTED BY PARTNERS AND PLATFORMS INCLUDING
+              </h2>
+            </div>
 
-          <LogoSlideshow logos={companies} />
+            <LogoSlideshow logos={companies} />
+          </div>
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 }

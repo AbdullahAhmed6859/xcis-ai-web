@@ -8,10 +8,19 @@ export const heroSectionType = defineType({
   fields: [
     ...sectionBaseFields,
     defineField({
-      name: "companies",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "trustedCompany" }] }],
+      name: "showCompanies",
+      title: "Show Trusted Companies",
+      type: "boolean",
+      initialValue: false,
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "mainImage",
+      title: "Main Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     }),
   ],
   icon: TextIcon,
