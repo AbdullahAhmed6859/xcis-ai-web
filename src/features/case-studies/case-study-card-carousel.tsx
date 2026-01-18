@@ -61,8 +61,8 @@ function CaseStudyCardCarousel({
           </CardDescription>
           <p
             className={cn(
-              `flex gap-x-2 items-center text-xs transition-colors duration-300`,
-              textColourVariants({ backgroundColor: color })
+              `flex items-center gap-x-2 text-xs transition-colors duration-300 text-light-blue hover:underline`
+              // textColourVariants({ backgroundColor: color })
             )}
           >
             VIEW CASE STUDY <MoveRight />

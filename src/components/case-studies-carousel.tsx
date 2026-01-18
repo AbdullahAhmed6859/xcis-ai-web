@@ -15,11 +15,7 @@ export function CaseStudiesCarousel({ caseStudies }: Props) {
     <GenericCarousel
       items={caseStudies}
       renderItem={(study, i) => (
-        <CaseStudyCardCarousel
-          caseStudy={study}
-          color={i % 2 ? "blue" : "white"}
-          key={i}
-        />
+        <CaseStudyCardCarousel caseStudy={study} color="blue" key={i} />
       )}
     />
   );

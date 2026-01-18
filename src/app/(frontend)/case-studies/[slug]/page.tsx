@@ -36,7 +36,7 @@ async function getCaseStudy(slug: string) {
   return sanityFetch({
     query: CASE_STUDY_QUERY,
     params: { slug },
-    tags: [`caseStudy:${slug}`, "author", "category"],
+    tags: [`caseStudy:${slug}`, "teamMember", "category"],
   });
 }
 

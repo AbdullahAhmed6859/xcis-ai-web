@@ -32,7 +32,7 @@ async function getMedia(slug: string) {
     query: MEDIUM_QUERY,
     params: { slug },
 
-    tags: [`media:${slug}`, "author", "category"],
+    tags: [`media:${slug}`, "teamMember", "category"],
   });
 }
 

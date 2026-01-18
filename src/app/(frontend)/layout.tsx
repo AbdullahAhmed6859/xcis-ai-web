@@ -15,7 +15,9 @@ export default function FrontendLayout({
       <div className="w-full h-full">
         {/* <Header /> */}
         <Header />
-        <main className="w-full">{children}</main>
+        <main className="w-full" id="root">
+          {children}
+        </main>
         <Footer />
       </div>
     </SidebarProvider>

@@ -63,10 +63,26 @@ const pageCommon = `
         name,
         slug
       }
+    },
+    _type == "mediaSection" => {
+      media[]->{
+        _key,
+        title,
+        mainImage,
+        "slug": slug.current,
+        readTime,
+        publishedAt,
+        author->{
+          name,
+          image
+        },
+        categories[]->{
+          title
+        }
+      }
     }
   }
 }`;
-
 export const PAGE_QUERY = defineQuery(`
 *[_type == "page" && slug.current == $slug][0]${pageCommon}`);
 
