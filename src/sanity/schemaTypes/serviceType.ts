@@ -25,6 +25,14 @@ export const serviceType = defineType({
       type: "text",
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: "icon",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {

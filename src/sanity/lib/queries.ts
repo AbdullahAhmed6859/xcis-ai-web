@@ -36,14 +36,15 @@ const pageCommon = `
       }
     },
     _type == "servicesSection" => {
-        "services": *[_type == "service"]{
-          ...,
-          "slug": slug.current
-        }
+      "services": *[_type == "service"]{
+        title,
+        description,
+        "slug": slug.current,
+        icon
+      }
     },
     _type == "heroSection" => {
       "companies": companies[defined(@)]->{
-        _key,
         name,
         website,
         logo
