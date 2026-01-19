@@ -18,7 +18,7 @@ function CaseStudyCardCarousel({
 }: Props) {
   return (
     <Link href={`case-studies/${slug}`} className="block h-full">
-      <Card className="group relative w-full aspect-3/2 overflow-hidden border-0 rounded-xl p-0">
+      <Card className="group relative w-full aspect-4/5 sm:aspect-3/2 overflow-hidden border-0 rounded-xl p-0">
         {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">
           <Image
@@ -38,11 +38,11 @@ function CaseStudyCardCarousel({
             {services?.map((s) => s.title).join(" . ")}
           </p>
 
-          <h3 className="mb-2 text-2xl font-bold text-white md:text-3xl line-clamp-2">
+          <h3 className="mb-2 text-2xl font-bold text-white md:text-3xl line-clamp-3">
             {title}
           </h3>
 
-          <p className="mb-6 text-sm text-pearl-white/80 line-clamp-2 md:text-base">
+          <p className="mb-6 text-sm text-pearl-white/80 line-clamp-3 md:text-base">
             {excerpt}
           </p>
 

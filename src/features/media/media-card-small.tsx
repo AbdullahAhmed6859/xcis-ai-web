@@ -28,13 +28,11 @@ export function MediaCardSmall({ media }: Props) {
     <Card className="pl-0 py-0 flex flex-col sm:flex-row gap-0">
       <CardContent className="p-0 w-full sm:w-2/5 shrink-0">
         <Image
-          src={urlFor(mainImage).width(400).height(225).url()}
+          src={urlFor(mainImage).width(624).height(416).url()}
           alt={title}
-          // 2. CHANGE: specific rounded corners for stack vs side-by-side
-          // rounded-t-xl (mobile top) vs rounded-l-xl (desktop left)
-          className="aspect-video h-full w-full rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none object-cover"
-          width={400}
-          height={225}
+          className="aspect-3/2 h-full w-full rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none object-cover"
+          width={624}
+          height={416}
         />
       </CardContent>
 
@@ -51,7 +49,7 @@ export function MediaCardSmall({ media }: Props) {
           <h3
             className={cn(
               textColourVariants({ backgroundColor: "white" }),
-              "text-lg md:text-xl font-semibold line-clamp-2"
+              "text-lg md:text-xl font-bold line-clamp-2",
             )}
           >
             {title}

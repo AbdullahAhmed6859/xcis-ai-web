@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
 
-export const textColourVariants = cva("", {
+export const textColourVariants = cva(" flex flex-col gap-y-2", {
   variants: {
     textAlign: {
       left: "text-left",
@@ -30,7 +30,7 @@ export function SectionHeader({
     <div
       className={cn(
         className,
-        textColourVariants({ textAlign, backgroundColor })
+        textColourVariants({ textAlign, backgroundColor }),
       )}
       {...props}
     />

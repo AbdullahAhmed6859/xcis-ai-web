@@ -27,16 +27,10 @@ export function ServiceCard({
       className={cn(
         "h-full overflow-hidden",
         isWhite ? "bg-white" : "bg-dark-blue",
-        className
+        className,
       )}
     >
-      {/* Standard Flex Layout:
-        - flex-col-reverse on mobile (Image on top) or flex-col (Text on top)? 
-          Standard is usually Text on top or Side-by-side if space permits.
-        - sm:flex-row: Side-by-side on larger screens.
-        - justify-between: Pushes text left, image right.
-      */}
-      <div className="p-6 flex flex-col-reverse sm:flex-row justify-between gap-6 h-full">
+      <div className="px-6 py-2 flex flex-col sm:flex-row justify-between gap-6 h-full">
         {/* Left Column: Text & Button */}
         <div className="flex-1 flex flex-col justify-between">
           <div>
@@ -44,7 +38,7 @@ export function ServiceCard({
               <h3
                 className={cn(
                   "text-xl font-bold leading-tight",
-                  textColourVariants({ backgroundColor: color })
+                  textColourVariants({ backgroundColor: color }),
                 )}
               >
                 {title}
@@ -54,7 +48,7 @@ export function ServiceCard({
               <p
                 className={cn(
                   "text-sm leading-relaxed mb-6 line-clamp-4",
-                  isWhite ? "text-muted-foreground" : "text-gray-200"
+                  isWhite ? "text-muted-foreground" : "text-gray-200",
                 )}
               >
                 {description}
@@ -67,7 +61,7 @@ export function ServiceCard({
               href={`services/${slug}`}
               className={cn(
                 buttonVariants({ size: "default" }),
-                "bg-light-blue text-dark-blue font-semibold hover:bg-light-blue/90"
+                "bg-light-blue text-dark-blue font-semibold hover:bg-light-blue/90",
               )}
             >
               Learn more
@@ -81,7 +75,7 @@ export function ServiceCard({
             alt={title}
             width={100}
             height={100}
-            className="object-contain w-20 h-20 sm:w-28 sm:h-28"
+            className="object-contain w-24 h-24 sm:w-32 sm:h-32"
           />
         </div>
       </div>

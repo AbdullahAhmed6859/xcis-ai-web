@@ -5,13 +5,13 @@ const pageSectionVariants = cva("w-full", {
   variants: {
     paddingTop: {
       none: "",
-      single: "pt-8",
-      double: "pt-16",
+      single: "pt-6 sm:pt-8",
+      double: "pt-12 sm:pt-16",
     },
     paddingBottom: {
       none: "",
-      single: "pb-8",
-      double: "pb-16",
+      single: "pb-6 sm:pb-8",
+      double: "pb-12 sm:pb-16",
     },
     height: {
       full: "h-full",
@@ -45,7 +45,7 @@ function PageSection({
     <section
       className={cn(
         className,
-        pageSectionVariants({ height, color, paddingTop, paddingBottom })
+        pageSectionVariants({ height, color, paddingTop, paddingBottom }),
       )}
       {...props}
     >
