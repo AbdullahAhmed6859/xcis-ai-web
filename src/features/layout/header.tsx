@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   NavigationMenu,
@@ -15,10 +15,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link"; // Import Link for mobile menu
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleLinkClick = () => {
     setIsOpen(false);
@@ -66,8 +68,8 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={handleLinkClick}
-              // Apply text-dark-blue directly to the Link/Anchor tag
-              className="text-lg font-semibold text-dark-blue hover:text-dark-blue/80 transition-colors"
+              // make the current page link light blue
+              className={`font-bold ${pathname === item.href ? "text-light-blue" : "text-dark-blue"} hover:text-dark-blue/80 transition-colors`}
             >
               {item.label}
             </Link>
