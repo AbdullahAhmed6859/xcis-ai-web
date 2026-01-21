@@ -12,15 +12,14 @@ import { NAV_ITEMS } from "./nav-items";
 import { NavItem } from "./NavItem";
 import Container from "./Container";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react"; // Import X for the close icon
-import { cn } from "@/lib/utils"; // Ensure you have this utility
-import Link from "next/link"; // Assuming NavItem uses Link, need it for mobile items
+import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Link from "next/link"; // Import Link for mobile menu
 
 export function Header() {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Helper to close menu when a link is clicked
   const handleLinkClick = () => {
     setIsOpen(false);
   };
@@ -30,7 +29,7 @@ export function Header() {
       <Container className="flex justify-between items-center relative">
         <MainLogo />
 
-        {/* Desktop Menu */}
+        {/* Desktop Menu - Keeps using NavigationMenu for hover effects */}
         <NavigationMenu viewport={isMobile} className="hidden xl:block">
           <NavigationMenuList className="flex-wrap">
             {NAV_ITEMS.map((item) => (
@@ -42,7 +41,6 @@ export function Header() {
         <div className="flex items-center gap-4">
           <SpeakWithOurTeamButton />
 
-          {/* Mobile Toggle Button */}
           <Button
             className="xl:hidden bg-dark-blue hover:bg-dark-blue/90"
             size="icon"
@@ -54,30 +52,27 @@ export function Header() {
         </div>
       </Container>
 
-      {/* Mobile Navigation Dropdown (Slides from top) */}
+      {/* Mobile Navigation Dropdown */}
       <div
         className={cn(
-          "absolute top-full left-0 w-full bg-white shadow-lg border-t z-40 overflow-hidden transition-all duration-300 ease-in-out",
-          // When open: visible and expanded. When closed: height 0 and invisible.
+          "absolute xl:hidden top-full left-0 w-full bg-white shadow-lg border-t z-40 overflow-hidden transition-all duration-300 ease-in-out",
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <NavigationMenu
-          viewport={isMobile}
-          className="mx-auto"
-          data-orientation="vertical"
-        >
-          <NavigationMenuList className="flex-wrap flex-col">
-            {NAV_ITEMS.map((item) => (
-              <NavItem
-                key={item.href}
-                label={item.label}
-                href={item.href}
-                onClick={handleLinkClick}
-              />
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        {/* CHANGED: Switched from NavigationMenu to a simple <nav> with Links */}
+        <nav className="flex flex-col items-center space-y-4 py-4">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={handleLinkClick}
+              // Apply text-dark-blue directly to the Link/Anchor tag
+              className="text-lg font-semibold text-dark-blue hover:text-dark-blue/80 transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );
