@@ -12,6 +12,7 @@ import { textColourVariants } from "../layout/section-header";
 import { Avatar } from "@/components/ui/avatar";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 type Props = {
   media: mediaSectionProps["media"][0];
@@ -58,13 +59,15 @@ export function MediaCardSmall({ media }: Props) {
         <CardFooter className="flex-col items-baseline gap-y-4">
           <div className="flex">
             <Avatar className="w-10 h-10">
-              <Image
-                src={urlFor(author.image).width(40).height(40).url()}
-                alt={author.name}
-                className="rounded-full"
-                width={40}
-                height={40}
-              />
+              <AvatarImage src={urlFor(author.image).url()} alt={author.name} />
+              <AvatarFallback>
+                {author.name
+                  .trim()
+                  .split(/\s+/)
+                  .map((w) => w[0])
+                  .join("")
+                  .toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <div className="ml-4 flex flex-col justify-center">
               <p className="text-sm font-medium">{author.name}</p>

@@ -11,9 +11,9 @@ export function Author({ author }: AuthorProps) {
     <div className="flex items-center gap-2">
       {author?.image ? (
         <Image
-          src={urlFor(author.image).width(80).height(80).url()}
-          width={80}
-          height={80}
+          src={urlFor(author.image).width(100).height(100).url()}
+          width={100}
+          height={100}
           alt={author.name || ""}
           className="bg-pink-50 size-10 shadow-inner rounded-full"
         />
