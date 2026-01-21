@@ -11,17 +11,17 @@ type CaseStudy = CaseStudiesSectionProps["caseStudies"][number];
 type Props = {
   caseStudy: CaseStudy;
   color?: "blue" | "white";
-  grid?: boolean;
+  carousel?: boolean;
 };
 
 export function CaseStudyCard({
   caseStudy: { mainImage, title, excerpt, slug, services },
-  grid = false,
+  carousel = false,
 }: Props) {
   return (
     <Link href={`case-studies/${slug}`} className="block h-full">
       <Card
-        className={`group relative w-full ${grid ? "aspect-4/5 sm:aspect-3/2" : "aspect-5/4 sm:aspect-5/3 lg:aspect-5/4 xl:aspect-7/8 2xl:aspect-6/5"} overflow-hidden border-0 rounded-xl p-0`}
+        className={`group relative w-full ${carousel ? "aspect-4/5 sm:aspect-3/2" : "aspect-5/4 sm:aspect-5/3 lg:aspect-5/4 xl:aspect-7/8 2xl:aspect-6/5"} overflow-hidden border-0 rounded-xl p-0`}
       >
         {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">

@@ -19,7 +19,7 @@ export function CaseStudiesCarousel({ caseStudies }: Props) {
       basisMd="lg:basis-1/2"
       basisLg="2xl:basis-1/2"
       renderItem={(study, i) => (
-        <CaseStudyCard caseStudy={study} color="blue" key={i} />
+        <CaseStudyCard caseStudy={study} color="blue" key={i} carousel={true} />
       )}
     />
   );
