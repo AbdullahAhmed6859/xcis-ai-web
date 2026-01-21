@@ -30,9 +30,7 @@ const pageCommon = `
         excerpt,
         mainImage,
         "slug": slug.current,
-        services[]->{
-          title
-        }
+        "services": services[]->title
       }
     },
     _type == "allCaseStudiesSection" => {
@@ -41,9 +39,7 @@ const pageCommon = `
         excerpt,
         mainImage,
         "slug": slug.current,
-        services[]->{
-          title
-        }
+        "services": services[]->title
       }
     },
     _type == "servicesSection" => {

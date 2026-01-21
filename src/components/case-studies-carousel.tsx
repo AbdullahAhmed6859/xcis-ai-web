@@ -1,8 +1,9 @@
 "use client";
 
-import CaseStudyCardCarousel from "@/features/case-studies/case-study-card-carousel";
+import CaseStudyCard from "@/features/case-studies/case-study-card-carousel";
 import { CaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
 import { GenericCarousel } from "./generic-carousel";
+// import { CaseStudyCard } from "@/features/case-studies";
 
 type CaseStudies = CaseStudiesSectionProps["caseStudies"];
 
@@ -18,7 +19,7 @@ export function CaseStudiesCarousel({ caseStudies }: Props) {
       basisMd="lg:basis-1/2"
       basisLg="2xl:basis-1/2"
       renderItem={(study, i) => (
-        <CaseStudyCardCarousel caseStudy={study} color="blue" key={i} />
+        <CaseStudyCard caseStudy={study} color="blue" key={i} />
       )}
     />
   );

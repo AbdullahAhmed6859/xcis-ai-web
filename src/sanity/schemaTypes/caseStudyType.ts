@@ -45,6 +45,7 @@ export const caseStudyType = defineType({
       name: "services",
       type: "array",
       of: [defineArrayMember({ type: "reference", to: { type: "service" } })],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "publishedAt",

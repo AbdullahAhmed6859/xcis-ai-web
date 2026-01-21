@@ -11,14 +11,18 @@ type CaseStudy = CaseStudiesSectionProps["caseStudies"][number];
 type Props = {
   caseStudy: CaseStudy;
   color?: "blue" | "white";
+  grid?: boolean;
 };
 
-function CaseStudyCardCarousel({
+function CaseStudyCard({
   caseStudy: { mainImage, title, excerpt, slug, services },
+  grid = false,
 }: Props) {
   return (
     <Link href={`case-studies/${slug}`} className="block h-full">
-      <Card className="group relative w-full aspect-4/5 sm:aspect-3/2 overflow-hidden border-0 rounded-xl p-0">
+      <Card
+        className={`group relative w-full ${grid ? "aspect-4/5 sm:aspect-3/2" : "aspect-5/4 sm:aspect-5/3 lg:aspect-5/4 xl:aspect-7/8 2xl:aspect-6/5"} overflow-hidden border-0 rounded-xl p-0`}
+      >
         {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">
           <Image
@@ -35,10 +39,10 @@ function CaseStudyCardCarousel({
         {/* Text Content */}
         <div className="absolute bottom-0 left-0 flex flex-col justify-end p-6 md:p-8 w-full z-20">
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-light-blue">
-            {services?.map((s) => s.title).join(" . ")}
+            {services.join(" . ")}
           </p>
 
-          <h3 className="mb-2 text-2xl font-bold text-white md:text-3xl line-clamp-3">
+          <h3 className="mb-2 text-2xl font-bold text-white md:text-3xl line-clamp-3 lg:line-clamp-2">
             {title}
           </h3>
 
@@ -63,4 +67,4 @@ function CaseStudyCardCarousel({
   );
 }
 
-export default CaseStudyCardCarousel;
+export default CaseStudyCard;
