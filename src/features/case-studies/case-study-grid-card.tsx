@@ -16,7 +16,7 @@ export function CaseStudyGridCard({ caseStudy, className }: NewsCardProps) {
   const { title, mainImage, slug, services } = caseStudy;
 
   // Default tag text if no service is provided, matches your screenshot's "PRESS RELEASE"
-  const label = services?.[0]?.title || "Press Release";
+  const label = services[0];
 
   return (
     <Link

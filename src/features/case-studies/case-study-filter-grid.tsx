@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CaseStudyCardCarousel from "@/features/case-studies/case-study-card-carousel";
+import { CaseStudyCard } from "@/features/case-studies";
 import { cn } from "@/lib/utils"; // Assuming you have a cn utility, otherwise use template literals
 import { AllCaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
 
@@ -41,7 +41,7 @@ export function CaseStudyFilterGrid({ studies, uniqueServices }: Props) {
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredStudies.map((study, i) => (
           <div key={i}>
-            <CaseStudyCardCarousel caseStudy={study} />
+            <CaseStudyCard caseStudy={study} />
           </div>
         ))}
       </div>

@@ -14,7 +14,7 @@ type Props = {
   grid?: boolean;
 };
 
-function CaseStudyCard({
+export function CaseStudyCard({
   caseStudy: { mainImage, title, excerpt, slug, services },
   grid = false,
 }: Props) {
@@ -66,5 +66,3 @@ function CaseStudyCard({
     </Link>
   );
 }
-
-export default CaseStudyCard;

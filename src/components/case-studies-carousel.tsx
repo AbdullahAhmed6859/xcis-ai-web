@@ -1,6 +1,6 @@
 "use client";
 
-import CaseStudyCard from "@/features/case-studies/case-study-card-carousel";
+import { CaseStudyCard } from "@/features/case-studies";
 import { CaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
 import { GenericCarousel } from "./generic-carousel";
 // import { CaseStudyCard } from "@/features/case-studies";
