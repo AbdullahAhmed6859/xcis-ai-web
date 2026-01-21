@@ -34,7 +34,7 @@ export function HeroSection(props: HeroProps) {
             </div>
             <div className="md:flex md:flex-col md:justify-center md:items-end">
               <div className="flex flex-col justify-center items-center w-full">
-                <div className="relative w-full max-w-48 sm:max-w-60 md:max-w-72 lg:max-w-72 2xl:max-w-96 aspect-square">
+                <div className="relative w-full max-w-40 sm:max-w-60 md:max-w-72 lg:max-w-72 2xl:max-w-96 aspect-square">
                   {mainImage && (
                     <Image
                       src={urlFor(mainImage).url()}
