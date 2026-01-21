@@ -13,11 +13,9 @@ export function HeroSection(props: HeroProps) {
       className={`w-full grid-cols-1 grid h-full ${showCompanies ? "grid-rows-6 md:grid-rows-5" : "grid-rows-5 md:grid-rows-4"}`}
     >
       <div className="w-full row-span-5 md:row-span-4 bg-linear-to-b from-[#030303] to-[#0c182b]">
-        <Container className="grid place-items-center">
-          <div className="w-full h-full grid grid-rows-5 sm:grid-rows-2 md:grid-cols-2 md:grid-rows-1 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
-            <div
-              className={`row-span-3 sm:row-span-1 w-full flex flex-col justify-center h-full`}
-            >
+        <Container className="mx-auto w-full">
+          <div className="w-full h-full flex flex-col justify-evenly md:grid md:grid-cols-2 md:grid-rows-1 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
+            <div className="sm:row-span-1 w-full md:flex md:flex-col md:justify-center">
               <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-white mb-6">
                 {heading}
               </h1>
@@ -34,9 +32,9 @@ export function HeroSection(props: HeroProps) {
                 </Button>
               </div>
             </div>
-            <div className="row-span-2 flex flex-col justify-center items-center md:items-end h-full">
+            <div className="md:flex md:flex-col md:justify-center md:items-end">
               <div className="flex flex-col justify-center items-center w-full">
-                <div className="relative w-full max-w-48 md:max-w-72 lg:max-w-72 2xl:max-w-96 aspect-square">
+                <div className="relative w-full max-w-48 sm:max-w-60 md:max-w-72 lg:max-w-72 2xl:max-w-96 aspect-square">
                   {mainImage && (
                     <Image
                       src={urlFor(mainImage).url()}
@@ -52,7 +50,7 @@ export function HeroSection(props: HeroProps) {
         </Container>
       </div>
       {showCompanies && (
-        <div className="w-full row-span-1 bg-[#0c182b] py-12">
+        <div className="w-full row-span-1 bg-[#0c182b] py-6 md:py-8 lg:py-12">
           <div className="w-full h-full flex flex-col justify-end items-center gap-y-4 sm:gap-y-8">
             <div className="text-center">
               <h2 className="text-pearl-white text-xs sm:text-sm font-semibold">
