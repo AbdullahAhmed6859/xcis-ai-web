@@ -7,7 +7,8 @@ import { urlFor } from "@/sanity/lib/image";
 import StrategyCallButton from "@/features/layout/StrategyCallButton";
 
 export function HeroSection(props: HeroProps) {
-  const { heading, text, companies, showCompanies, mainImage } = props;
+  const { heading, text, companies, mainImage, showCompanies } = props;
+
   return (
     <div
       className={`w-full grid-cols-1 grid h-full ${showCompanies ? "grid-rows-6 md:grid-rows-5" : "grid-rows-5 md:grid-rows-4"}`}
@@ -32,18 +33,18 @@ export function HeroSection(props: HeroProps) {
                 </Button>
               </div>
             </div>
-            <div className="md:flex md:flex-col md:justify-center md:items-end">
-              <div className="flex flex-col justify-center items-center w-full">
-                <div className="relative w-full max-w-40 sm:max-w-60 md:max-w-72 lg:max-w-72 2xl:max-w-96 aspect-square">
-                  {mainImage && (
-                    <Image
-                      src={urlFor(mainImage).url()}
-                      fill
-                      alt="mainImage"
-                      className="object-contain"
-                    />
-                  )}
-                </div>
+            <div className="flex flex-col items-center md:justify-center md:items-end">
+              <div
+                className={`relative w-full aspect-square ${showCompanies ? "max-w-40 sm:max-w-60 md:max-w-72 lg:max-w-72 2xl:max-w-96" : "max-w-60 sm:max-w-72 md:max-w-72 lg:max-w-72 2xl:max-w-96"}`}
+              >
+                {mainImage && (
+                  <Image
+                    src={urlFor(mainImage).url()}
+                    fill
+                    alt="mainImage"
+                    className="object-contain"
+                  />
+                )}
               </div>
             </div>
           </div>

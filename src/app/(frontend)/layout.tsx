@@ -1,6 +1,6 @@
 import Footer from "@/features/layout/Footer";
 import "../globals.css";
-import { Header } from "@/features/layout/Header";
+import { Header } from "@/features/layout/header";
 
 export default function FrontendLayout({
   children,

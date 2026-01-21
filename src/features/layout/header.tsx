@@ -62,19 +62,22 @@ export function Header() {
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <nav className="flex flex-col items-center gap-6 py-8">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={handleLinkClick}
-              className="text-lg font-medium text-gray-800 hover:text-dark-blue transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-          {/* Optional: Add a mobile-specific CTA inside the menu if you want */}
-        </nav>
+        <NavigationMenu
+          viewport={isMobile}
+          className="mx-auto"
+          data-orientation="vertical"
+        >
+          <NavigationMenuList className="flex-wrap flex-col">
+            {NAV_ITEMS.map((item) => (
+              <NavItem
+                key={item.href}
+                label={item.label}
+                href={item.href}
+                onClick={handleLinkClick}
+              />
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
     </header>
   );
