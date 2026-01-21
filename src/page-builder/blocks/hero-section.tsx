@@ -15,8 +15,8 @@ export function HeroSection(props: HeroProps) {
       <div className="w-full row-span-5 md:row-span-4 bg-linear-to-b from-[#030303] to-[#0c182b]">
         <Container className="mx-auto w-full">
           <div className="w-full h-full flex flex-col justify-evenly md:grid md:grid-cols-2 md:grid-rows-1 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
-            <div className="sm:row-span-1 w-full md:flex md:flex-col md:justify-center">
-              <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-semibold text-white mb-6">
+            <div className="sm:row-span-1 w-full md:flex md:flex-col md:justify-center text-center sm:text-left">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-bold lg:font-semibold text-white mb-6">
                 {heading}
               </h1>
               <p className="text-base md:text-lg text-gray-300 mb-8">{text}</p>
@@ -52,12 +52,12 @@ export function HeroSection(props: HeroProps) {
       {showCompanies && (
         <div className="w-full row-span-1 bg-[#0c182b] py-6 md:py-8 lg:py-12">
           <div className="w-full h-full flex flex-col justify-end items-center gap-y-4 sm:gap-y-8">
-            <div className="text-center">
+            <Container className="text-center">
               <h2 className="text-pearl-white text-xs sm:text-sm font-semibold">
                 TRUSTED BY LEADING OPERATORS. ALIGNED WITH LEADING PLATFORMS AND
                 NUCLEAR INDUSTRY PARTNERS
               </h2>
-            </div>
+            </Container>
 
             <LogoSlideshow logos={companies} />
           </div>
