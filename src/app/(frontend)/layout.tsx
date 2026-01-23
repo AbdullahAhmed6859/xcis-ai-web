@@ -1,4 +1,4 @@
-import Footer from "@/features/layout/Footer";
+import { Footer } from "@/features/layout/footer";
 import "../globals.css";
 import { Header } from "@/features/layout/header";
 

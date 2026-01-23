@@ -29,7 +29,7 @@ export function Header() {
   return (
     <header className="h-16 sm:h-20 w-full grid place-items-center sticky top-0 bg-white shadow-md z-50">
       <Container className="flex justify-between items-center relative">
-        <MainLogo />
+        <MainLogo className="w-36 sm:w-40 2xl:w-48" />
 
         {/* Desktop Menu - Keeps using NavigationMenu for hover effects */}
         <NavigationMenu viewport={isMobile} className="hidden xl:block">
