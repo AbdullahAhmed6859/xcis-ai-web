@@ -7,9 +7,9 @@ import { CurrentYear } from "./current-year";
 
 export function Footer() {
   return (
-    <footer className="bg-dark-blue rounded-t-xl">
+    <footer className="bg-dark-blue">
       <Container className="py-6 flex flex-col">
-        <div className="flex justify-evenly">
+        <div className="flex justify-between px-10">
           <div className="flex flex-col gap-y-2">
             <h2 className="text-white text-xl font-bold">Company</h2>
             {FOOTER_COMPANY_ITEMS.map(({ href, label }) => (
@@ -32,13 +32,13 @@ export function Footer() {
           </div>
         </div>
         <Separator className="my-6" />
-        <div className="flex flex-col gap-y-1">
-          <div className="mx-auto w-full max-w-58">
-            <FooterLogo className="w-full max-w-58" />
+        <div className="px-10">
+          <div className="mr-auto w-1/2 py-1">
+            <FooterLogo className="w-full" />
           </div>
-          <div className="text-center text-white max-w-58 mx-auto">
+          <p className="text-white">
             AI & data consulting for nuclear, energy & critical infrastructure.
-          </div>
+          </p>
         </div>
         <Separator className="my-6" />
         <div className="text-white text-center">
@@ -50,3 +50,5 @@ export function Footer() {
     </footer>
   );
 }
+
+// https://www.linkedin.com/company/xcis-ai
