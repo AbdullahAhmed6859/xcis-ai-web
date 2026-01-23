@@ -12,10 +12,11 @@ import { NAV_ITEMS } from "./nav-items";
 import { NavItem } from "./NavItem";
 import Container from "./Container";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react"; // Imported ChevronRight
 import { cn } from "@/lib/utils";
-import Link from "next/link"; // Import Link for mobile menu
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 
 export function Header() {
   const isMobile = useIsMobile();
@@ -31,7 +32,7 @@ export function Header() {
       <Container className="flex justify-between items-center relative">
         <MainLogo className="w-36 sm:w-40 2xl:w-48" />
 
-        {/* Desktop Menu - Keeps using NavigationMenu for hover effects */}
+        {/* Desktop Menu */}
         <NavigationMenu viewport={isMobile} className="hidden xl:block">
           <NavigationMenuList className="flex-wrap">
             {NAV_ITEMS.map((item) => (
@@ -41,7 +42,9 @@ export function Header() {
         </NavigationMenu>
 
         <div className="flex items-center gap-4">
-          <SpeakWithOurTeamButton />
+          <div className="hidden md:block">
+            <SpeakWithOurTeamButton />
+          </div>
 
           <Button
             className="xl:hidden bg-dark-blue hover:bg-dark-blue/90"
@@ -58,22 +61,39 @@ export function Header() {
       <div
         className={cn(
           "absolute xl:hidden top-full left-0 w-full bg-white shadow-lg border-t z-40 overflow-hidden transition-all duration-300 ease-in-out",
-          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
+          isOpen ? "max-h-[calc(100vh-5rem)] opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        {/* CHANGED: Switched from NavigationMenu to a simple <nav> with Links */}
-        <nav className="flex flex-col items-center space-y-4 py-4">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={handleLinkClick}
-              // make the current page link light blue
-              className={`font-bold ${pathname === item.href ? "text-light-blue" : "text-dark-blue"} hover:text-dark-blue/80 transition-colors`}
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* CHANGED: Layout to match the reference image */}
+        <nav className="flex flex-col px-6 py-4">
+          {/* Menu Items with Lines and Arrows */}
+          <div className="flex flex-col">
+            {NAV_ITEMS.map((item, i) => (
+              <>
+                <Link
+                  key={i}
+                  href={item.href}
+                  onClick={handleLinkClick}
+                  className={cn(
+                    "flex items-center justify-between w-full py-2 border-b border-gray-100 group transition-colors",
+                    pathname === item.href
+                      ? "text-light-blue"
+                      : "text-dark-blue",
+                  )}
+                >
+                  <span className="font-bold text-lg">{item.label}</span>
+                  {/* Arrow Icon */}
+                  <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-dark-blue transition-colors" />
+                </Link>
+                <Separator />
+              </>
+            ))}
+          </div>
+
+          {/* Log in Button */}
+          <div className="mt-4 mb-2" onClick={handleLinkClick}>
+            <SpeakWithOurTeamButton className="w-full" />
+          </div>
         </nav>
       </div>
     </header>

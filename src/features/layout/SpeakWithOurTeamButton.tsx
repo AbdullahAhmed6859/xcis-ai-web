@@ -1,19 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import { InlineWidget } from "react-calendly";
 
-function SpeakWithOurTeamButton() {
+function SpeakWithOurTeamButton({ className }: { className?: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-dark-blue hidden md:block">
+        <Button className={cn("bg-dark-blue", className)}>
           Speak WIth Our Team
         </Button>
       </DialogTrigger>
-      <DialogContent className="flex h-[calc(100vh-5rem)] min-w-[calc(100vw-5rem)] flex-col justify-between gap-0 p-0">
+      <DialogContent className="flex h-[calc(100vh-5rem)] min-w-[calc(100vw-5rem)] flex-col justify-between gap-0 bg-[#ffff]">
         <InlineWidget
           url="https://calendly.com/ahmer-rafiq/30min?hide_gdpr_banner=1"
-          className="h-full"
+          className="h-full rounded-4xl"
         />
       </DialogContent>
     </Dialog>
