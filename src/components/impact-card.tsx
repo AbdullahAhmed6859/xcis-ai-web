@@ -22,7 +22,7 @@ export function ImpactCard({
     <Card
       className={cn(
         className,
-        `${color === "white" ? "bg-white" : "bg-dark-blue"} py-4`
+        `${color === "white" ? "bg-white" : "bg-dark-blue"} py-4 relative h-full`,
       )}
     >
       <CardHeader className="px-4">
