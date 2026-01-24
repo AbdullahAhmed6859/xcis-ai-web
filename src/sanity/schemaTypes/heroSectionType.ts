@@ -37,7 +37,6 @@ export const heroSectionType = defineType({
           },
         },
       ],
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "mainImage",

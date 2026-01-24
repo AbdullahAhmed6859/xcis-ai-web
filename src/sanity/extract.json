@@ -1692,7 +1692,7 @@
               }
             }
           },
-          "optional": false
+          "optional": true
         },
         "mainImage": {
           "type": "objectAttribute",

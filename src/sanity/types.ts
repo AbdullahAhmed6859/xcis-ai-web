@@ -188,7 +188,7 @@ export type HeroSection = {
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
   hide?: boolean;
-  companies: Array<{
+  companies?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -819,7 +819,7 @@ export type PAGE_QUERYResult = {
         alt: string;
         _type: "image";
       };
-    }>;
+    }> | null;
     mainImage?: {
       asset?: {
         _ref: string;
@@ -1374,7 +1374,7 @@ export type HOME_PAGE_QUERYResult = {
           alt: string;
           _type: "image";
         };
-      }>;
+      }> | null;
       mainImage?: {
         asset?: {
           _ref: string;

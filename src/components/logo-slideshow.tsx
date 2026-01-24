@@ -12,7 +12,7 @@ import { urlFor } from "@/sanity/lib/image";
 import Container from "@/features/layout/container";
 
 interface LogosProps {
-  logos: CompanyLogoType;
+  logos: NonNullable<CompanyLogoType>;
 }
 
 function ensureSize<T>(logos: Array<T>): T[] {
