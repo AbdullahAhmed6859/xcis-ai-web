@@ -23,7 +23,8 @@ export const caseStudyType = defineType({
     defineField({
       name: "author",
       type: "reference",
-      to: { type: "author" },
+      to: { type: "teamMember" },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "mainImage",
@@ -50,6 +51,7 @@ export const caseStudyType = defineType({
     defineField({
       name: "publishedAt",
       type: "datetime",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "excerpt",

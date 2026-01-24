@@ -1,4 +1,4 @@
-import Container from "@/features/layout/Container";
+import Container from "@/features/layout/container";
 import { AllCaseStudiesSectionProps } from "./page-builder-types";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";

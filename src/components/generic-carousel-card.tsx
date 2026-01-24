@@ -20,7 +20,9 @@ export function GenericCard({
   color = "white",
 }: Props) {
   return (
-    <Card className={color === "white" ? "bg-white" : "bg-dark-blue"}>
+    <Card
+      className={`relative h-full ${color === "white" ? "bg-white" : "bg-dark-blue"}`}
+    >
       {/* <CardContent className="space-y-6">
         <Image
           src={urlFor(mainImage).width(640).height(360).url()}
@@ -35,7 +37,7 @@ export function GenericCard({
           <h3
             className={cn(
               "text-lg md:text-xl",
-              textColourVariants({ backgroundColor: color })
+              textColourVariants({ backgroundColor: color }),
             )}
           >
             {heading}

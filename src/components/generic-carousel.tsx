@@ -38,7 +38,7 @@ export function GenericCarousel<T>({
   const isMobile = useIsMobile();
 
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
 
   React.useEffect(() => {
@@ -85,7 +85,7 @@ export function GenericCarousel<T>({
               "h-2 transition-all duration-300 rounded-full bg-slate-300",
               current === index
                 ? `w-8 ${backgroundColor === "white" ? "bg-dark-blue" : "bg-white"}`
-                : "w-2 hover:bg-slate-400"
+                : "w-2 hover:bg-slate-400",
             )}
             aria-label={`Go to slide ${index + 1}`}
           />

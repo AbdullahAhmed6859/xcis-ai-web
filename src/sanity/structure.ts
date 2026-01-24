@@ -13,7 +13,7 @@ export const structure: StructureResolver = (S) =>
 
       // ───────────── Taxonomy & People ─────────────
       S.documentTypeListItem("category").title("Categories"),
-      S.documentTypeListItem("author").title("Authors"),
+      S.documentTypeListItem("teamMember").title("Team Members"),
 
       S.divider(),
 
@@ -34,7 +34,7 @@ export const structure: StructureResolver = (S) =>
           S.editor()
             .id("siteSettings")
             .schemaType("siteSettings")
-            .documentId("siteSettings")
+            .documentId("siteSettings"),
         ),
 
       S.divider(),
@@ -54,6 +54,7 @@ export const structure: StructureResolver = (S) =>
             "review",
             "location",
             "siteSettings",
-          ].includes(item.getId()!)
+            "teamMember",
+          ].includes(item.getId()!),
       ),
     ]);

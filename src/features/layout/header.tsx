@@ -10,7 +10,7 @@ import MainLogo from "./MainLogo";
 import SpeakWithOurTeamButton from "./SpeakWithOurTeamButton";
 import { NAV_ITEMS } from "./nav-items";
 import { NavItem } from "./NavItem";
-import Container from "./Container";
+import Container from "./container";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight } from "lucide-react"; // Imported ChevronRight
 import { cn } from "@/lib/utils";

@@ -1,5 +1,5 @@
 "use client";
-import Container from "@/features/layout/Container";
+import Container from "@/features/layout/container";
 import { CarouselSectionProps } from "./page-builder-types";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeading } from "@/features/layout/section-heading";

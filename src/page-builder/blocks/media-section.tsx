@@ -1,7 +1,7 @@
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../features/layout/Container";
+import Container from "../../features/layout/container";
 import { mediaSectionProps } from "./page-builder-types";
 import MediaCardSmall from "@/features/media/media-card-small";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../features/layout/Container";
+import Container from "../../features/layout/container";
 import { TrainingsSectionProps } from "./page-builder-types";
 
 export function TrainingsSection({

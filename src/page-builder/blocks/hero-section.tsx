@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { LogoSlideshow } from "@/components/logo-slideshow";
-import Container from "../../features/layout/Container";
+import Container from "../../features/layout/container";
 import { HeroProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";

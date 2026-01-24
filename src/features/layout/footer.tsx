@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import Container from "./Container";
+import Container from "./container";
 import { FOOTER_COMPANY_ITEMS, FOOTER_HELP_ITEMS } from "./nav-items";
 import Link from "next/link";
 import FooterLogo from "./FooterLogo";

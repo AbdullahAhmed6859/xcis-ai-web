@@ -4,7 +4,7 @@ import {
   textColourVariants,
 } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../features/layout/Container"; // Consider updating to @/ alias
+import Container from "../../features/layout/container";
 import { LocationsSectionProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
@@ -18,25 +18,32 @@ export function LocationsSection({
 }: LocationsSectionProps) {
   return (
     <Container>
-      <div className="flex flex-col gap-4 items-center">
+      <div className="flex flex-col gap-8 items-center">
         <SectionHeader backgroundColor={backgroundColor}>
           <SectionHeading>{heading}</SectionHeading>
           <SectionDescription>{text}</SectionDescription>
         </SectionHeader>
 
-        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Using items-start to align them at the top, or items-center to center vertically.
+           Grid handles the width column distribution.
+        */}
+        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-8 items-start">
           {locations?.map((loc, i) => (
             <div className="flex flex-col items-center gap-4" key={i}>
-              {/* Image Container: Added relative, aspect ratio, and overflow hidden */}
-              <div className="relative w-full aspect-square max-w-50 overflow-hidden">
+              {/* 1. Removed 'aspect-square' so the container height fits the image.
+                 2. Removed 'fill' from Next/Image.
+                 3. Added width/height prop logic to respect aspect ratio.
+              */}
+              <div className="w-full max-w-[200px]">
                 {loc.image && (
                   <Image
-                    src={urlFor(loc.image).width(400).height(400).url()}
+                    src={urlFor(loc.image).width(600).url()} // Fetch width only to maintain aspect ratio
                     alt={loc.name || "Location image"}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-contain"
-                    priority={i < 4} // Optimization for first row
+                    width={400} // Base width for layout calculation
+                    height={300} // Base height (acts as placeholder ratio, overridden by CSS)
+                    className="w-full h-auto object-contain" // CSS ensures it fits width and scales height
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    priority={i < 4}
                   />
                 )}
               </div>
@@ -44,7 +51,7 @@ export function LocationsSection({
               <h3
                 className={cn(
                   "text-lg font-semibold text-center",
-                  textColourVariants({ backgroundColor })
+                  textColourVariants({ backgroundColor }),
                 )}
               >
                 {loc.name}
