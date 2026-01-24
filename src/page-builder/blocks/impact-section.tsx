@@ -34,14 +34,14 @@ export function ImpactSection({
           </SectionHeader>
 
           <div className="flex justify-center lg:justify-normal">
-            <div
-              className={cn(
-                "flex items-center gap-2 md:gap-x-4",
-                textColourVariants({ backgroundColor }),
-              )}
-            >
+            <div className={cn("flex items-center gap-2 md:gap-x-4")}>
               <Avatars teamMembers={teamMembers} />{" "}
-              <span className="text-sm lg:text-base font-semibold">
+              <span
+                className={cn(
+                  "text-sm lg:text-base font-semibold",
+                  textColourVariants({ backgroundColor }),
+                )}
+              >
                 {countMembers}+ Team Members
               </span>
             </div>

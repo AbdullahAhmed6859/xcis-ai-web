@@ -43,7 +43,7 @@ const pageCommon = `
       }
     },
     _type == "servicesSection" => {
-      "services": *[_type == "service"]{
+      services[]->{
         title,
         description,
         "slug": slug.current,
