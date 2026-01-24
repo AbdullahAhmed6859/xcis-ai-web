@@ -34,7 +34,7 @@ export function LocationsSection({
                  2. Removed 'fill' from Next/Image.
                  3. Added width/height prop logic to respect aspect ratio.
               */}
-              <div className="w-full max-w-[200px]">
+              <div className="w-full max-w-50">
                 {loc.image && (
                   <Image
                     src={urlFor(loc.image).width(600).url()} // Fetch width only to maintain aspect ratio
