@@ -57,6 +57,10 @@ export function GenericCarousel<T>({
         setApi={setApi}
         className="w-full"
         plugins={isMobile ? [plugin.current] : []}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
       >
         <CarouselContent>
           {items.map((item, index) => (

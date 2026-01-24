@@ -32,7 +32,13 @@ function LogoSlideshow({ logos }: LogosProps) {
       <div className="relative w-full flex items-center justify-center">
         <Carousel
           opts={{ loop: true }}
-          plugins={[AutoScroll({ playOnInit: true, speed: 0.8 })]}
+          plugins={[
+            AutoScroll({
+              playOnInit: true,
+              speed: 0.8,
+              stopOnInteraction: false,
+            }),
+          ]}
           className="w-full"
         >
           <CarouselContent className="ml-0">
