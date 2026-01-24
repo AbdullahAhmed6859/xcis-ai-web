@@ -51,8 +51,7 @@ const pageCommon = `
       }
     },
     _type == "heroSection" => {
-      "companies": *[_type == "trustedCompany"]{
-        mainImage,
+      companies[]->{
         name,
         website,
         logo

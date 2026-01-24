@@ -8,10 +8,35 @@ export const heroSectionType = defineType({
   fields: [
     ...sectionBaseFields,
     defineField({
-      name: "showCompanies",
-      title: "Show Trusted Companies",
-      type: "boolean",
-      initialValue: false,
+      name: "companies",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "trustedCompany" }],
+          options: {
+            filter: ({ parent }) => {
+              // Cast parent as an array of objects with a _ref property
+              const existingItems = parent as
+                | Array<{ _ref?: string }>
+                | undefined;
+
+              // Safely extract the IDs
+              const selectedIds =
+                existingItems
+                  ?.map((item) => item._ref)
+                  .filter((id): id is string => !!id) || [];
+
+              return {
+                filter: "!(_id in $selectedIds)",
+                params: {
+                  selectedIds,
+                },
+              };
+            },
+          },
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({

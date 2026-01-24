@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   NavigationMenu,
@@ -69,9 +69,8 @@ export function Header() {
           {/* Menu Items with Lines and Arrows */}
           <div className="flex flex-col">
             {NAV_ITEMS.map((item, i) => (
-              <>
+              <React.Fragment key={i}>
                 <Link
-                  key={i}
                   href={item.href}
                   onClick={handleLinkClick}
                   className={cn(
@@ -86,7 +85,7 @@ export function Header() {
                   <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-dark-blue transition-colors" />
                 </Link>
                 <Separator />
-              </>
+              </React.Fragment>
             ))}
           </div>
 

@@ -7,7 +7,9 @@ import { urlFor } from "@/sanity/lib/image";
 import StrategyCallButton from "@/features/layout/StrategyCallButton";
 
 export function HeroSection(props: HeroProps) {
-  const { heading, text, companies, mainImage, showCompanies } = props;
+  const { heading, text, companies, mainImage } = props;
+
+  const showCompanies = companies && companies.length > 0;
 
   return (
     <div
