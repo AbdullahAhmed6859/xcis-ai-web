@@ -54,3 +54,8 @@ export type AllCaseStudiesSectionProps = Extract<
   ContentType,
   { _type: "allCaseStudiesSection" }
 >;
+
+export type AllMediaSectionProps = Extract<
+  ContentType,
+  { _type: "allMediaSection" }
+>;

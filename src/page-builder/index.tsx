@@ -13,6 +13,7 @@ import {
 } from "./blocks";
 import PageSection from "../features/layout/page-section";
 import AllCaseStudies from "./blocks/all-case-studies";
+import AllMedia from "./blocks/all-media";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -64,6 +65,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "allCaseStudiesSection":
             SectionComponent = <AllCaseStudies key={block._key} {...block} />;
+            break;
+          case "allMediaSection":
+            SectionComponent = <AllMedia key={block._key} {...block} />;
             break;
           default:
             SectionComponent = <></>;

@@ -88,7 +88,6 @@ const pageCommon = `
     },
     _type == "mediaSection" => {
       media[]->{
-        _key,
         title,
         mainImage,
         "slug": slug.current,
