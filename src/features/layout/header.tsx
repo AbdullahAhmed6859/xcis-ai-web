@@ -75,12 +75,12 @@ export function Header() {
                   onClick={handleLinkClick}
                   className={cn(
                     "flex items-center justify-between w-full py-2 border-b border-gray-100 group transition-colors",
-                    pathname === item.href
+                    pathname.startsWith(item.href)
                       ? "text-light-blue"
                       : "text-dark-blue",
                   )}
                 >
-                  <span className="font-bold text-lg">{item.label}</span>
+                  <span className="font-semibold text-lg">{item.label}</span>
                   {/* Arrow Icon */}
                   <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-dark-blue transition-colors" />
                 </Link>

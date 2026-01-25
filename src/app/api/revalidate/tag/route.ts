@@ -11,14 +11,14 @@ export async function POST(req: NextRequest) {
     if (!process.env.SANITY_REVALIDATE_SECRET) {
       return new Response(
         "Missing environment variable SANITY_REVALIDATE_SECRET",
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     const { isValidSignature, body } = await parseBody<WebhookPayload>(
       req,
       process.env.SANITY_REVALIDATE_SECRET,
-      true
+      true,
     );
 
     if (!isValidSignature) {
@@ -30,6 +30,8 @@ export async function POST(req: NextRequest) {
       const message = "Bad Request";
       return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
+
+    console.log(body.tags);
 
     body.tags.forEach((tag) => {
       revalidateTag(tag, { expire: 0 });
