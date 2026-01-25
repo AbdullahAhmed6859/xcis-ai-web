@@ -42,6 +42,20 @@ const pageCommon = `
         "services": services[]->title
       }
     },
+    _type == "allMediaSection" => {
+      "media": *[_type == "media"]{
+        title,
+        mainImage,
+        "slug": slug.current,
+        readTime,
+        publishedAt,
+        author->{
+          name,
+          image
+        },
+        "categories": categories[]->title
+      }
+    },
     _type == "servicesSection" => {
       services[]->{
         title,
@@ -84,9 +98,7 @@ const pageCommon = `
           name,
           image
         },
-        categories[]->{
-          title
-        }
+        "categories": categories[]->title
       }
     }
   }

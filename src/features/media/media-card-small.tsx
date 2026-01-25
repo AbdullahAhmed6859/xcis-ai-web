@@ -23,7 +23,7 @@ export function MediaCardSmall({ media }: Props) {
     media;
 
   const categoryTitle =
-    categories && categories.length > 0 ? categories[0].title : null;
+    categories && categories.length > 0 ? categories[0] : null;
   return (
     // 1. CHANGE: flex-col (mobile) -> sm:flex-row (tablet/desktop)
     <Card className="pl-0 py-0 flex flex-col sm:flex-row gap-0">

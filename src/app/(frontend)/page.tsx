@@ -8,7 +8,7 @@ async function getPage() {
   return sanityFetch({
     query: HOME_PAGE_QUERY,
     tags: [
-      `page:`,
+      "homePage",
       "service",
       "location",
       "review",

@@ -6,6 +6,13 @@ import { cn } from "@/lib/utils";
 import { AllCaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
   studies: AllCaseStudiesSectionProps["caseStudies"];
@@ -41,34 +48,54 @@ export function CaseStudyFilterGrid({ studies, uniqueServices }: Props) {
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
-      // Optional: Scroll to top of grid
-      // document.getElementById("case-study-grid")?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  // Generate page numbers (Simple range for now)
-  // You can make this smarter (e.g., 1, 2, ..., 10) if you have many pages
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="flex flex-col gap-8" id="case-study-grid">
-      {/* --- Filter Buttons --- */}
-      <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-        <FilterButton
-          label="All"
-          isActive={activeFilter === "All"}
-          onClick={() => handleFilterChange("All")}
-        />
-        {uniqueServices.map((service) => (
+      {/* --- Filter Section --- */}
+      <div className="w-full">
+        {/* MOBILE VIEW: Dropdown (< md) */}
+        <div className="md:hidden">
+          <Select
+            value={activeFilter}
+            onValueChange={(value) => handleFilterChange(value)}
+          >
+            <SelectTrigger className="w-full h-12 text-base border-dark-blue/20 rounded-lg">
+              <SelectValue placeholder="Filter by category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">All Categories</SelectItem>
+              {uniqueServices.map((service) => (
+                <SelectItem key={service} value={service}>
+                  {service}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* DESKTOP VIEW: Buttons (>= md) */}
+        <div className="hidden md:flex flex-wrap gap-3 justify-start">
           <FilterButton
-            key={service}
-            label={service}
-            isActive={activeFilter === service}
-            onClick={() => handleFilterChange(service)}
+            label="All"
+            isActive={activeFilter === "All"}
+            onClick={() => handleFilterChange("All")}
           />
-        ))}
+          {uniqueServices.map((service) => (
+            <FilterButton
+              key={service}
+              label={service}
+              isActive={activeFilter === service}
+              onClick={() => handleFilterChange(service)}
+            />
+          ))}
+        </div>
       </div>
 
+      {/* --- Grid Content --- */}
       <div className="w-full min-h-180">
         {currentVisibleStudies.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 animate-in fade-in duration-500">
@@ -85,10 +112,9 @@ export function CaseStudyFilterGrid({ studies, uniqueServices }: Props) {
         )}
       </div>
 
-      {/* --- Numbered Pagination (Custom Style) --- */}
+      {/* --- Numbered Pagination --- */}
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-6 pt-4">
-          {/* Previous Arrow */}
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -98,7 +124,6 @@ export function CaseStudyFilterGrid({ studies, uniqueServices }: Props) {
             <ChevronLeft className="w-6 h-6 stroke-3" />
           </button>
 
-          {/* Page Numbers */}
           <div className="flex items-center gap-4">
             {pageNumbers.map((number) => (
               <button
@@ -107,8 +132,8 @@ export function CaseStudyFilterGrid({ studies, uniqueServices }: Props) {
                 className={cn(
                   "text-lg font-medium transition-colors w-8 h-8 flex items-center justify-center rounded-full",
                   currentPage === number
-                    ? "text-white bg-dark-blue font-bold shadow-md" // Active State
-                    : "text-dark-blue hover:bg-gray-100", // Inactive State
+                    ? "text-white bg-dark-blue font-bold shadow-md"
+                    : "text-dark-blue hover:bg-gray-100",
                 )}
               >
                 {number}
@@ -116,7 +141,6 @@ export function CaseStudyFilterGrid({ studies, uniqueServices }: Props) {
             ))}
           </div>
 
-          {/* Next Arrow */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
