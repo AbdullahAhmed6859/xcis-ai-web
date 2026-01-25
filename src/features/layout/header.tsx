@@ -75,7 +75,11 @@ export function Header() {
                   onClick={handleLinkClick}
                   className={cn(
                     "flex items-center justify-between w-full py-2 border-b border-gray-100 group transition-colors",
-                    pathname.startsWith(item.href)
+                    (
+                      pathname === "/"
+                        ? item.href === "/"
+                        : pathname.startsWith(item.href) && item.href !== "/"
+                    )
                       ? "text-light-blue"
                       : "text-dark-blue",
                   )}

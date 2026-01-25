@@ -224,14 +224,7 @@ export const MEDIA_QUERY =
   body,
   mainImage,
   publishedAt,
-  "categories": coalesce(
-    categories[]->{
-      _id,
-      "slug": slug.current,
-      title
-    },
-    []
-  ),
+  categories[]->title,
   author->{
     name,
     image
@@ -245,14 +238,7 @@ export const MEDIUM_QUERY =
   body,
   mainImage,
   publishedAt,
-  "categories": coalesce(
-    categories[]->{
-      _id,
-      "slug": slug.current,
-      title
-    },
-    []
-  ),
+  "categories": categories[]->title,
   author->{
     name,
     image

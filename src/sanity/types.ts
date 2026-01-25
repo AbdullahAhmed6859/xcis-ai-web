@@ -1854,7 +1854,7 @@ export type CASE_STUDIES_SLUGS_QUERYResult = Array<{
   slug: string;
 }>;
 // Variable: MEDIA_QUERY
-// Query: *[_type == "media" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  "slug": slug.current,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      "slug": slug.current,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "media" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  "slug": slug.current,  body,  mainImage,  publishedAt,  categories[]->title,  author->{    name,    image  }}
 export type MEDIA_QUERYResult = Array<{
   _id: string;
   title: string;
@@ -1874,11 +1874,7 @@ export type MEDIA_QUERYResult = Array<{
     _type: "image";
   };
   publishedAt: string;
-  categories: Array<{
-    _id: string;
-    slug: string | null;
-    title: string;
-  }>;
+  categories: Array<string>;
   author: {
     name: string;
     image: {
@@ -1896,7 +1892,7 @@ export type MEDIA_QUERYResult = Array<{
   };
 }>;
 // Variable: MEDIUM_QUERY
-// Query: *[_type == "media" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      "slug": slug.current,      title    },    []  ),  author->{    name,    image  },  relatedMedia[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
+// Query: *[_type == "media" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": categories[]->title,  author->{    name,    image  },  relatedMedia[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
 export type MEDIUM_QUERYResult = {
   _id: string;
   title: string;
@@ -1915,11 +1911,7 @@ export type MEDIUM_QUERYResult = {
     _type: "image";
   };
   publishedAt: string;
-  categories: Array<{
-    _id: string;
-    slug: string | null;
-    title: string;
-  }>;
+  categories: Array<string>;
   author: {
     name: string;
     image: {
@@ -1979,8 +1971,8 @@ declare module "@sanity/client" {
     "\n*[_type == \"caseStudy\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": CASE_STUDIES_QUERYResult;
     "\n*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;
     "*[_type == \"caseStudy\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": CASE_STUDIES_SLUGS_QUERYResult;
-    "*[_type == \"media\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": MEDIA_QUERYResult;
-    "*[_type == \"media\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedMedia[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": MEDIUM_QUERYResult;
+    "*[_type == \"media\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,\n  mainImage,\n  publishedAt,\n  categories[]->title,\n  author->{\n    name,\n    image\n  }\n}": MEDIA_QUERYResult;
+    "*[_type == \"media\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->title,\n  author->{\n    name,\n    image\n  },\n  relatedMedia[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": MEDIUM_QUERYResult;
     "*[_type == \"media\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": MEDIA_SLUGS_QUERYResult;
     "\n*[_type == \"service\"]{\n  _id,\n  \"slug\": slug.current,\n  title,\n}": SERVICES_QUERYResult;
     "\n*[_type == \"service\" && slug.current == $slug][0]{\n  title,\n  description\n}": SERVICE_QUERYResult;

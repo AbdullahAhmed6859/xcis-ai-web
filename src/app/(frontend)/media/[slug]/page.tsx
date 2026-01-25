@@ -48,9 +48,5 @@ export default async function Page({ params }: { params: Params }) {
     notFound();
   }
 
-  return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <Media {...media} />
-    </main>
-  );
+  return <Media {...media} />;
 }
