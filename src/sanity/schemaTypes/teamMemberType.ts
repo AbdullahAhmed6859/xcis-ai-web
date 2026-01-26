@@ -31,6 +31,12 @@ export const teamMemberType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: "teams",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: { type: "team" } })],
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {
