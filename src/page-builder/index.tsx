@@ -14,6 +14,7 @@ import {
 import PageSection from "../features/layout/page-section";
 import AllCaseStudies from "./blocks/all-case-studies";
 import AllMedia from "./blocks/all-media";
+import ContactFormSection from "./blocks/contact-form-section";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -68,6 +69,11 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "allMediaSection":
             SectionComponent = <AllMedia key={block._key} {...block} />;
+            break;
+          case "contactFormSection":
+            SectionComponent = (
+              <ContactFormSection key={block._key} {...block} />
+            );
             break;
           default:
             SectionComponent = <></>;

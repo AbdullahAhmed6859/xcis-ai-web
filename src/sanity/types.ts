@@ -13,6 +13,30 @@
  */
 
 // Source: schema.json
+export type ContactFormSection = {
+  _type: "contactFormSection";
+  heading: string;
+  text: string;
+  height: "full" | "screen";
+  backgroundColor: "white" | "blue" | "gradient";
+  paddingTop: "none" | "single" | "double";
+  paddingBottom: "none" | "single" | "double";
+  hide?: boolean;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+  };
+};
+
 export type AllMediaSection = {
   _type: "allMediaSection";
   heading: string;
@@ -589,7 +613,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & AllCaseStudiesSection | {
   _key: string;
-} & AllMediaSection>;
+} & AllMediaSection | {
+  _key: string;
+} & ContactFormSection>;
 
 export type Page = {
   _id: string;
@@ -710,7 +736,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | SanityImageCrop | SanityImageHotspot | Slug | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImage | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = ContactFormSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | SanityImageCrop | SanityImageHotspot | Slug | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImage | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
@@ -851,6 +877,29 @@ export type PAGE_QUERYResult = {
       slug: string;
       services: Array<string>;
     }>;
+  } | {
+    _key: string;
+    _type: "contactFormSection";
+    heading: string;
+    text: string;
+    height: "full" | "screen";
+    backgroundColor: "blue" | "gradient" | "white";
+    paddingTop: "double" | "none" | "single";
+    paddingBottom: "double" | "none" | "single";
+    hide?: boolean;
+    mainImage: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string;
+      _type: "image";
+    };
   } | {
     _key: string;
     _type: "heroSection";
@@ -1448,6 +1497,29 @@ export type HOME_PAGE_QUERYResult = {
         slug: string;
         services: Array<string>;
       }>;
+    } | {
+      _key: string;
+      _type: "contactFormSection";
+      heading: string;
+      text: string;
+      height: "full" | "screen";
+      backgroundColor: "blue" | "gradient" | "white";
+      paddingTop: "double" | "none" | "single";
+      paddingBottom: "double" | "none" | "single";
+      hide?: boolean;
+      mainImage: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt: string;
+        _type: "image";
+      };
     } | {
       _key: string;
       _type: "heroSection";
