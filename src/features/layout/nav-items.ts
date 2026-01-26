@@ -1,5 +1,4 @@
 export const NAV_ITEMS = [
-  { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
   // { label: "Training & Talent", href: "/training-talent" },

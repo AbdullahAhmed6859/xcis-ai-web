@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { LogoSlideshow } from "@/components/logo-slideshow";
 import Container from "../../features/layout/container";
 import { HeroProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import StrategyCallButton from "@/features/layout/StrategyCallButton";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export function HeroSection(props: HeroProps) {
   const { heading, text, companies, mainImage } = props;
@@ -26,13 +28,15 @@ export function HeroSection(props: HeroProps) {
 
               <div className="flex gap-4 flex-col sm:flex-row">
                 <StrategyCallButton />
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-light-blue bg-transparent hover:bg-light-blue border-light-blue hover-border-light-blue"
+                <Link
+                  href="/case-studies"
+                  className={cn(
+                    buttonVariants({ size: "lg", variant: "outline" }),
+                    "text-light-blue bg-transparent hover:bg-light-blue border-light-blue hover:border-light-blue",
+                  )}
                 >
-                  Explore Our Services
-                </Button>
+                  Explore Our Case Studies
+                </Link>
               </div>
             </div>
             <div className="flex flex-col items-center md:justify-center md:items-end">

@@ -56,7 +56,7 @@ export function ServiceCard({
             </CardDescription>
           </div>
 
-          <div>
+          {/* <div>
             <Link
               href={`services/${slug}`}
               className={cn(
@@ -66,10 +66,10 @@ export function ServiceCard({
             >
               Learn more
             </Link>
-          </div>
+          </div> */}
         </div>
 
-        <div className="shrink-0 items-center flex justify-center">
+        {/* <div className="shrink-0 items-center flex justify-center">
           <Image
             src={urlFor(icon).width(200).url()}
             alt={title}
@@ -77,7 +77,7 @@ export function ServiceCard({
             height={100}
             className="object-contain w-24 h-24 sm:w-32 sm:h-32"
           />
-        </div>
+        </div> */}
       </div>
     </Card>
   );

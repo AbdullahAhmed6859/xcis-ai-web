@@ -16,7 +16,7 @@ function StrategyCallButton() {
       </DialogTrigger>
       <DialogContent className="flex h-[calc(100vh-5rem)] min-w-[calc(100vw-5rem)] flex-col justify-between gap-0 bg-[#ffff]">
         <InlineWidget
-          url="https://calendly.com/ahmer-rafiq/30min?hide_gdpr_banner=1"
+          url="https://calendly.com/xcis/30min?hide_gdpr_banner=1"
           className="h-full rounded-4xl"
         />
       </DialogContent>
