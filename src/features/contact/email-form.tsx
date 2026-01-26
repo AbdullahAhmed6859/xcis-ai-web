@@ -25,7 +25,7 @@ function EmailForm() {
     <form
       id="newsletter-form"
       action={handleAction}
-      className="relative flex items-center w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#1a2b4b] shadow-lg focus-within:ring-2 focus-within:ring-white/20"
+      className="relative flex items-center w-full overflow-hidden rounded-2xl border border-white/10 bg-[#1a2b4b] shadow-lg focus-within:ring-2 focus-within:ring-white/20"
     >
       <Input
         type="email"
