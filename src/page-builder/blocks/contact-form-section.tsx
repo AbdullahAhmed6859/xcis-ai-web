@@ -44,7 +44,6 @@ function ContactFormSection({
           </div>
         </div>
 
-        {/* RIGHT SIDE: HubSpot Form */}
         <div className="w-full lg:w-1/2 bg-white">
           <Script
             src="https://js-na2.hsforms.net/forms/embed/244688559.js"
