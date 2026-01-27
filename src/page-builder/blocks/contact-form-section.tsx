@@ -45,10 +45,6 @@ function ContactFormSection({
         </div>
 
         <div className="w-full lg:w-1/2 bg-white">
-          <Script
-            src="https://js-na2.hsforms.net/forms/embed/244688559.js"
-            defer
-          ></Script>
           <div
             className="hs-form-frame w-full"
             data-region="na2"
