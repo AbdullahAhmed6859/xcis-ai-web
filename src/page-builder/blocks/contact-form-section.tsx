@@ -15,9 +15,9 @@ function ContactFormSection({
 }: ContactFormSectionProps) {
   return (
     <Container>
-      <div className="flex flex-col lg:grid lg:grid-cols-2 items-stretch gap-y-8 lg:gap-x-12 xl:gap-x-32">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 items-stretch lg:gap-x-12 xl:gap-x-32">
         {/* LEFT SIDE: Content + Image */}
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full h-125 lg:h-175">
           <SectionHeader
             backgroundColor={backgroundColor}
             textAlign="left"
@@ -32,7 +32,7 @@ function ContactFormSection({
           {/* 'flex-grow' tells this div to take up all remaining vertical space. 
               'relative' is required for the Next.js fill image.
           */}
-          <div className="relative flex-grow min-h-[400px] w-full">
+          <div className="relative grow w-full">
             <Image
               src={urlFor(mainImage).url()}
               alt="Contact form image"
@@ -43,7 +43,7 @@ function ContactFormSection({
           </div>
         </div>
 
-        <div className="w-full bg-white">
+        <div className="w-full bg-white flex items-center h-125 lg:h-175">
           <HubspotForm />
         </div>
       </div>
