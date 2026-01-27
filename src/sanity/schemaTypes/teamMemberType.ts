@@ -28,7 +28,6 @@ export const teamMemberType = defineType({
       name: "teams",
       type: "array",
       of: [defineArrayMember({ type: "reference", to: { type: "team" } })],
-      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
