@@ -5,7 +5,7 @@ import { categoryType } from "./categoryType";
 import { heroSectionType } from "./heroSectionType";
 import { pageBuilderType } from "./pageBuilderType";
 import { pageType } from "./pageType";
-import { splitImageType } from "./splitImageType";
+import { splitImageSectionType } from "./splitImageType";
 import { featuresType } from "./featuresType";
 import { siteSettingsType } from "./siteSettingsType";
 import { seoType } from "./seoType";
@@ -39,7 +39,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     pageType,
     pageBuilderType,
     featuresType,
-    splitImageType,
+    splitImageSectionType,
     siteSettingsType,
     seoType,
     trustedCompanyType,

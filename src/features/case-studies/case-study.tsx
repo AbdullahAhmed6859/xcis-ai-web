@@ -124,7 +124,7 @@ export function CaseStudy(props: NonNullable<CASE_STUDY_QUERYResult>) {
             {/* Main Text Column - Matches the Hero Column above */}
             <div className="lg:col-span-8 lg:col-start-3">
               {body && (
-                <div className="prose prose-lg md:prose-xl prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600">
+                <div className="text-dark-blue prose prose-lg md:prose-xl dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600">
                   <PortableText value={body} components={components} />
                 </div>
               )}

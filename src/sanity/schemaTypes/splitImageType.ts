@@ -1,10 +1,12 @@
-import { BlockContentIcon } from "@sanity/icons";
+import { BlockContentIcon, TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { sectionBaseFields } from "./sectionBaseFields";
 
-export const splitImageType = defineType({
-  name: "splitImage",
+export const splitImageSectionType = defineType({
+  name: "splitImageSection",
   type: "object",
   fields: [
+    ...sectionBaseFields,
     defineField({
       name: "orientation",
       type: "string",
@@ -16,10 +18,6 @@ export const splitImageType = defineType({
       },
     }),
     defineField({
-      name: "title",
-      type: "string",
-    }),
-    defineField({
       name: "image",
       type: "image",
     }),
@@ -27,14 +25,15 @@ export const splitImageType = defineType({
   icon: BlockContentIcon,
   preview: {
     select: {
-      title: "title",
+      title: "heading",
       media: "image",
+      hide: "hide",
     },
-    prepare({ title, media }) {
+    prepare({ title, media, hide }) {
       return {
-        title: title,
-        subtitle: "Split Image",
-        media: media ?? BlockContentIcon,
+        title,
+        subtitle: `Split Image ${hide ? "(hidden)" : ""}`,
+        media: media ?? TextIcon,
       };
     },
   },

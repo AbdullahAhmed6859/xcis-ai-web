@@ -18,6 +18,7 @@ export const pageBuilderType = defineType({
     defineArrayMember({ type: "allMediaSection" }),
     defineArrayMember({ type: "allTeamMembersSection" }),
     defineArrayMember({ type: "contactFormSection" }),
+    defineArrayMember({ type: "splitImageSection" }),
   ],
   // options: {
   //   insertMenu: {

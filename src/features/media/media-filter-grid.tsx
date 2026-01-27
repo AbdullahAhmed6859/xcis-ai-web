@@ -1,6 +1,6 @@
 "use client";
 import { AllMediaSectionProps } from "@/page-builder/blocks/page-builder-types";
-import { MediaCardSmall } from "./media-card-small"; // Update path to where you saved the card
+import { MediaCardSmall } from "./media-card-small";
 import { GenericFilterGrid } from "@/components/generic-filter-grid";
 
 type Props = {
@@ -13,7 +13,7 @@ export function MediaFilterGrid({ mediaItems, uniqueCategories }: Props) {
     <GenericFilterGrid
       items={mediaItems}
       categories={uniqueCategories}
-      gridClassName="grid-cols-1 lg:grid-cols-2" // Customize the columns here
+      gridClassName="grid-cols-1 lg:grid-cols-2"
       getItemCategories={(item) => item.categories}
       renderItem={(item) => <MediaCardSmall media={item} />}
     />

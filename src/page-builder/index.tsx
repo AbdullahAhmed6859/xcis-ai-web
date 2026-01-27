@@ -10,6 +10,7 @@ import {
   LocationsSection,
   TrainingsSection,
   CarouselSection,
+  AllTeams,
 } from "./blocks";
 import PageSection from "../features/layout/page-section";
 import AllCaseStudies from "./blocks/all-case-studies";
@@ -69,6 +70,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "allMediaSection":
             SectionComponent = <AllMedia key={block._key} {...block} />;
+            break;
+          case "allTeamMembersSection":
+            SectionComponent = <AllTeams key={block._key} {...block} />;
             break;
           case "contactFormSection":
             SectionComponent = (
