@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -10,6 +9,7 @@ import {
 import { CompanyLogoType } from "@/page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
 import Container from "@/features/layout/container";
+import Image from "next/image";
 
 interface LogosProps {
   logos: NonNullable<CompanyLogoType>;
@@ -48,9 +48,10 @@ function LogoSlideshow({ logos }: LogosProps) {
                 className="flex basis-1/3 justify-center pl-0 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 2xl:basis-1/7"
               >
                 <div className="h-10 w-24 sm:h-12 sm:w-32 relative flex items-center justify-center">
-                  <img
+                  <Image
                     src={urlFor(logo.logo).url()}
-                    alt={logo.logo.alt || "Company logo"}
+                    alt={logo.name}
+                    fill
                     className="brightness-0 invert-100 object-contain h-full w-full"
                   />
                 </div>

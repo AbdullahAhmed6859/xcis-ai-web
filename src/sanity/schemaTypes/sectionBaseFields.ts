@@ -77,5 +77,6 @@ export const sectionBaseFields = [
     description: "Hide this section from the website",
     type: "boolean",
     initialValue: false,
+    validation: (Rule) => Rule.required(),
   }),
 ];

@@ -1,5 +1,166 @@
 [
   {
+    "name": "companiesSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "companiesSection"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "text": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "full"
+              },
+              {
+                "type": "string",
+                "value": "screen"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "backgroundColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "white"
+              },
+              {
+                "type": "string",
+                "value": "blue"
+              },
+              {
+                "type": "string",
+                "value": "gradient"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "paddingTop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "single"
+              },
+              {
+                "type": "string",
+                "value": "double"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "paddingBottom": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "single"
+              },
+              {
+                "type": "string",
+                "value": "double"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "hide": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": false
+        },
+        "companies": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "_ref": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "_type": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string",
+                    "value": "reference"
+                  }
+                },
+                "_weak": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "boolean"
+                  },
+                  "optional": true
+                }
+              },
+              "dereferencesTo": "trustedCompany",
+              "rest": {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "optional": false
+        }
+      }
+    }
+  },
+  {
     "name": "contactFormSection",
     "type": "type",
     "value": {
@@ -111,7 +272,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "mainImage": {
           "type": "objectAttribute",
@@ -393,7 +554,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "teams": {
           "type": "objectAttribute",
@@ -554,7 +715,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "categories": {
           "type": "objectAttribute",
@@ -715,7 +876,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "services": {
           "type": "objectAttribute",
@@ -876,7 +1037,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "cards": {
           "type": "objectAttribute",
@@ -1030,7 +1191,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "reviews": {
           "type": "objectAttribute",
@@ -1191,7 +1352,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "locations": {
           "type": "objectAttribute",
@@ -1352,7 +1513,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "media": {
           "type": "objectAttribute",
@@ -1513,7 +1674,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         }
       }
     }
@@ -1630,7 +1791,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "steps": {
           "type": "objectAttribute",
@@ -1791,7 +1952,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "statistics": {
           "type": "objectAttribute",
@@ -1974,7 +2135,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "caseStudies": {
           "type": "objectAttribute",
@@ -2135,7 +2296,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "services": {
           "type": "objectAttribute",
@@ -2296,7 +2457,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "companies": {
           "type": "objectAttribute",
@@ -4282,7 +4443,7 @@
           "value": {
             "type": "boolean"
           },
-          "optional": true
+          "optional": false
         },
         "orientation": {
           "type": "objectAttribute",
@@ -4368,7 +4529,7 @@
               }
             }
           },
-          "optional": true
+          "optional": false
         }
       }
     }
@@ -4671,6 +4832,21 @@
             "rest": {
               "type": "inline",
               "name": "splitImageSection"
+            }
+          },
+          {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "companiesSection"
             }
           }
         ]

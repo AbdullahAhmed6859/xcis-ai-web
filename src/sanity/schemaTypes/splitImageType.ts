@@ -20,6 +20,10 @@ export const splitImageSectionType = defineType({
     defineField({
       name: "image",
       type: "image",
+      options: {
+        hotspot: true,
+      },
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: BlockContentIcon,

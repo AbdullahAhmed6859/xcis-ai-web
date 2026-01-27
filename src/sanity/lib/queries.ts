@@ -82,6 +82,13 @@ const pageCommon = `
         logo
       }
     },
+    _type == "companiesSection" => {
+      companies[]->{
+        name,
+        website,
+        logo
+      }
+    },
     _type == "reviewsSection" => {
       reviews[]->{
         name,

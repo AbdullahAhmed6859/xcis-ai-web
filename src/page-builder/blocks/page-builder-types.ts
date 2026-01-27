@@ -69,3 +69,13 @@ export type ContactFormSectionProps = Extract<
   ContentType,
   { _type: "contactFormSection" }
 >;
+
+export type SplitImageSectionProps = Extract<
+  ContentType,
+  { _type: "splitImageSection" }
+>;
+
+export type CompaniesSectionProps = Extract<
+  ContentType,
+  { _type: "companiesSection" }
+>;

@@ -9,3 +9,8 @@ export { StructuredSteps } from "./structured-steps";
 export { TrainingsSection } from "./trainings-section";
 export { ReviewsSection } from "./reviews-section";
 export { AllTeams } from "./all-teams";
+export { AllCaseStudies } from "./all-case-studies";
+export { AllMedia } from "./all-media";
+export { ContactFormSection } from "./contact-form-section";
+export { SplitImage } from "./split-image";
+export { CompaniesSection } from "./companies-section";

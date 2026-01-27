@@ -24,28 +24,19 @@ export function LocationsSection({
           <SectionDescription>{text}</SectionDescription>
         </SectionHeader>
 
-        {/* Using items-start to align them at the top, or items-center to center vertically.
-           Grid handles the width column distribution.
-        */}
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-8 items-start">
           {locations?.map((loc, i) => (
             <div className="flex flex-col items-center gap-4" key={i}>
-              {/* 1. Removed 'aspect-square' so the container height fits the image.
-                 2. Removed 'fill' from Next/Image.
-                 3. Added width/height prop logic to respect aspect ratio.
-              */}
               <div className="w-full max-w-50">
-                {loc.image && (
-                  <Image
-                    src={urlFor(loc.image).width(600).url()} // Fetch width only to maintain aspect ratio
-                    alt={loc.name || "Location image"}
-                    width={400} // Base width for layout calculation
-                    height={300} // Base height (acts as placeholder ratio, overridden by CSS)
-                    className="w-full h-auto object-contain" // CSS ensures it fits width and scales height
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    priority={i < 4}
-                  />
-                )}
+                <Image
+                  src={urlFor(loc.image).width(600).url()} // Fetch width only to maintain aspect ratio
+                  alt={loc.name || "Location image"}
+                  width={400} // Base width for layout calculation
+                  height={300} // Base height (acts as placeholder ratio, overridden by CSS)
+                  className="w-full h-auto object-contain" // CSS ensures it fits width and scales height
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  priority={i < 4}
+                />
               </div>
 
               <h3

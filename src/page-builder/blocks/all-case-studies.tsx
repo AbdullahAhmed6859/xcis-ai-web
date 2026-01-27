@@ -5,7 +5,7 @@ import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { CaseStudyFilterGrid } from "@/features/case-studies/case-study-filter-grid"; // Import the new client component
 
-function AllCaseStudies({
+export function AllCaseStudies({
   backgroundColor,
   heading,
   text,
@@ -24,5 +24,3 @@ function AllCaseStudies({
     </Container>
   );
 }
-
-export default AllCaseStudies;

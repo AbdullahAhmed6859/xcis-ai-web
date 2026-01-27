@@ -11,11 +11,13 @@ import {
   TrainingsSection,
   CarouselSection,
   AllTeams,
+  ContactFormSection,
+  AllCaseStudies,
+  AllMedia,
+  SplitImage,
+  CompaniesSection,
 } from "./blocks";
 import PageSection from "../features/layout/page-section";
-import AllCaseStudies from "./blocks/all-case-studies";
-import AllMedia from "./blocks/all-media";
-import ContactFormSection from "./blocks/contact-form-section";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -78,6 +80,12 @@ export function PageBuilder({ content }: PageBuilderProps) {
             SectionComponent = (
               <ContactFormSection key={block._key} {...block} />
             );
+            break;
+          case "splitImageSection":
+            SectionComponent = <SplitImage key={block._key} {...block} />;
+            break;
+          case "companiesSection":
+            SectionComponent = <CompaniesSection key={block._key} {...block} />;
             break;
           default:
             SectionComponent = <></>;

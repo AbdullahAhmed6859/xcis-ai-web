@@ -5,7 +5,7 @@ import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { MediaFilterGrid } from "@/features/media/media-filter-grid"; // Import the new component
 
-function AllMedia({
+export function AllMedia({
   backgroundColor,
   heading,
   text,
@@ -24,5 +24,3 @@ function AllMedia({
     </Container>
   );
 }
-
-export default AllMedia;
