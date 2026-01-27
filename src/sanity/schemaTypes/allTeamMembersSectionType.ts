@@ -2,18 +2,18 @@ import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
 
-export const allCaseStudiesSectionType = defineType({
-  name: "allCaseStudiesSection",
+export const allTeamMembersSectionType = defineType({
+  name: "allTeamMembersSection",
   type: "object",
   fields: [
     ...sectionBaseFields,
     defineField({
-      name: "services",
+      name: "teams",
       type: "array",
       of: [
         {
           type: "reference",
-          to: [{ type: "service" }],
+          to: [{ type: "team" }],
           options: {
             filter: ({ parent }) => {
               // Cast parent as an array of objects with a _ref property
@@ -50,7 +50,7 @@ export const allCaseStudiesSectionType = defineType({
     prepare({ title, media, hide }) {
       return {
         title,
-        subtitle: `Case Studies ${hide ? "(hidden)" : ""}`,
+        subtitle: `Team Members ${hide ? "(hidden)" : ""}`,
         media: media ?? TextIcon,
       };
     },

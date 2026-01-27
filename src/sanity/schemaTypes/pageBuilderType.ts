@@ -16,8 +16,8 @@ export const pageBuilderType = defineType({
     defineArrayMember({ type: "trainingsSection" }),
     defineArrayMember({ type: "allCaseStudiesSection" }),
     defineArrayMember({ type: "allMediaSection" }),
+    defineArrayMember({ type: "allTeamMembersSection" }),
     defineArrayMember({ type: "contactFormSection" }),
-    defineArrayMember({ type: "teamSection" }),
   ],
   // options: {
   //   insertMenu: {

@@ -37,17 +37,6 @@ export type ContactFormSection = {
   };
 };
 
-export type TeamSection = {
-  _type: "teamSection";
-  heading: string;
-  text: string;
-  height: "full" | "screen";
-  backgroundColor: "white" | "blue" | "gradient";
-  paddingTop: "none" | "single" | "double";
-  paddingBottom: "none" | "single" | "double";
-  hide?: boolean;
-};
-
 export type Team = {
   _id: string;
   _type: "team";
@@ -65,6 +54,24 @@ export type Slug = {
   source?: string;
 };
 
+export type AllTeamMembersSection = {
+  _type: "allTeamMembersSection";
+  heading: string;
+  text: string;
+  height: "full" | "screen";
+  backgroundColor: "white" | "blue" | "gradient";
+  paddingTop: "none" | "single" | "double";
+  paddingBottom: "none" | "single" | "double";
+  hide?: boolean;
+  teams: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "team";
+  }>;
+};
+
 export type AllMediaSection = {
   _type: "allMediaSection";
   heading: string;
@@ -74,6 +81,13 @@ export type AllMediaSection = {
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
   hide?: boolean;
+  categories: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
 };
 
 export type AllCaseStudiesSection = {
@@ -85,6 +99,13 @@ export type AllCaseStudiesSection = {
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
   hide?: boolean;
+  services: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "service";
+  }>;
 };
 
 export type CarouselSection = {
@@ -627,9 +648,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & AllMediaSection | {
   _key: string;
-} & ContactFormSection | {
+} & AllTeamMembersSection | {
   _key: string;
-} & TeamSection>;
+} & ContactFormSection>;
 
 export type Page = {
   _id: string;
@@ -750,11 +771,11 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = ContactFormSection | TeamSection | Team | Slug | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | SanityImageCrop | SanityImageHotspot | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImage | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = ContactFormSection | Team | Slug | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | SanityImageCrop | SanityImageHotspot | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImage | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "content": content[hide != true]{    ...,    // Logic for the Impact Section    _type == "impactSection" => {        "countMembers": count(*[_type == "teamMember"]),        "teamMembers": teamMembers[defined(@)]->{          name,          image        },        statistics[]{          heading,          highlightedHeading,          text        }      },    // Logic for Case Studies    _type == "caseStudiesSection" => {      "caseStudies": caseStudies[defined(@)]->{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      }    },    _type == "allCaseStudiesSection" => {      "caseStudies": *[_type == "caseStudy"]{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      }    },    _type == "allMediaSection" => {      "media": *[_type == "media"]{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      }    },    _type == "servicesSection" => {      services[]->{        title,        description,        "slug": slug.current,        icon      }    },    _type == "heroSection" => {      companies[]->{        name,        website,        logo      }    },    _type == "reviewsSection" => {      reviews[]->{        name,        image,        reviewText,        position      }    },    _type == "locationsSection" => {      locations[]->{        image,        name,        slug      }    },    _type == "mediaSection" => {      media[]->{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      }    }  }}
+// Query: *[_type == "page" && slug.current == $slug][0]{  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "content": content[hide != true]{    ...,    // Logic for the Impact Section    _type == "impactSection" => {        "countMembers": count(*[_type == "teamMember"]),        "teamMembers": teamMembers[defined(@)]->{          name,          image        },        statistics[]{          heading,          highlightedHeading,          text        }      },    // Logic for Case Studies    _type == "caseStudiesSection" => {      "caseStudies": caseStudies[defined(@)]->{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      }    },    _type == "allCaseStudiesSection" => {      "caseStudies": *[_type == "caseStudy"]{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      },      "services": *[_type == "service"].title    },    _type == "allMediaSection" => {      "media": *[_type == "media"]{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      },      "categories": *[_type == "category"].title    },    _type == "servicesSection" => {      services[]->{        title,        description,        "slug": slug.current,        icon      }    },    _type == "heroSection" => {      companies[]->{        name,        website,        logo      }    },    _type == "reviewsSection" => {      reviews[]->{        name,        image,        reviewText,        position      }    },    _type == "locationsSection" => {      locations[]->{        image,        name,        slug      }    },    _type == "mediaSection" => {      media[]->{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      }    }  }}
 export type PAGE_QUERYResult = {
   seo: {
     title: string | "";
@@ -783,6 +804,7 @@ export type PAGE_QUERYResult = {
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
     hide?: boolean;
+    services: Array<string>;
     caseStudies: Array<{
       title: string;
       excerpt: string;
@@ -812,6 +834,7 @@ export type PAGE_QUERYResult = {
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
     hide?: boolean;
+    categories: Array<string>;
     media: Array<{
       title: string;
       mainImage: {
@@ -846,6 +869,23 @@ export type PAGE_QUERYResult = {
         };
       };
       categories: Array<string>;
+    }>;
+  } | {
+    _key: string;
+    _type: "allTeamMembersSection";
+    heading: string;
+    text: string;
+    height: "full" | "screen";
+    backgroundColor: "blue" | "gradient" | "white";
+    paddingTop: "double" | "none" | "single";
+    paddingBottom: "double" | "none" | "single";
+    hide?: boolean;
+    teams: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "team";
     }>;
   } | {
     _key: string;
@@ -1127,16 +1167,6 @@ export type PAGE_QUERYResult = {
     }>;
   } | {
     _key: string;
-    _type: "teamSection";
-    heading: string;
-    text: string;
-    height: "full" | "screen";
-    backgroundColor: "blue" | "gradient" | "white";
-    paddingTop: "double" | "none" | "single";
-    paddingBottom: "double" | "none" | "single";
-    hide?: boolean;
-  } | {
-    _key: string;
     _type: "trainingsSection";
     heading: string;
     text: string;
@@ -1153,7 +1183,7 @@ export type PAGE_SLUGS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: HOME_PAGE_QUERY
-// Query: *[_id == "siteSettings"][0]{  ...,  homePage->{  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "content": content[hide != true]{    ...,    // Logic for the Impact Section    _type == "impactSection" => {        "countMembers": count(*[_type == "teamMember"]),        "teamMembers": teamMembers[defined(@)]->{          name,          image        },        statistics[]{          heading,          highlightedHeading,          text        }      },    // Logic for Case Studies    _type == "caseStudiesSection" => {      "caseStudies": caseStudies[defined(@)]->{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      }    },    _type == "allCaseStudiesSection" => {      "caseStudies": *[_type == "caseStudy"]{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      }    },    _type == "allMediaSection" => {      "media": *[_type == "media"]{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      }    },    _type == "servicesSection" => {      services[]->{        title,        description,        "slug": slug.current,        icon      }    },    _type == "heroSection" => {      companies[]->{        name,        website,        logo      }    },    _type == "reviewsSection" => {      reviews[]->{        name,        image,        reviewText,        position      }    },    _type == "locationsSection" => {      locations[]->{        image,        name,        slug      }    },    _type == "mediaSection" => {      media[]->{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      }    }  }}}
+// Query: *[_id == "siteSettings"][0]{  ...,  homePage->{  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "content": content[hide != true]{    ...,    // Logic for the Impact Section    _type == "impactSection" => {        "countMembers": count(*[_type == "teamMember"]),        "teamMembers": teamMembers[defined(@)]->{          name,          image        },        statistics[]{          heading,          highlightedHeading,          text        }      },    // Logic for Case Studies    _type == "caseStudiesSection" => {      "caseStudies": caseStudies[defined(@)]->{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      }    },    _type == "allCaseStudiesSection" => {      "caseStudies": *[_type == "caseStudy"]{        title,        excerpt,        mainImage,        "slug": slug.current,        "services": services[]->title      },      "services": *[_type == "service"].title    },    _type == "allMediaSection" => {      "media": *[_type == "media"]{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      },      "categories": *[_type == "category"].title    },    _type == "servicesSection" => {      services[]->{        title,        description,        "slug": slug.current,        icon      }    },    _type == "heroSection" => {      companies[]->{        name,        website,        logo      }    },    _type == "reviewsSection" => {      reviews[]->{        name,        image,        reviewText,        position      }    },    _type == "locationsSection" => {      locations[]->{        image,        name,        slug      }    },    _type == "mediaSection" => {      media[]->{        title,        mainImage,        "slug": slug.current,        readTime,        publishedAt,        author->{          name,          image        },        "categories": categories[]->title      }    }  }}}
 export type HOME_PAGE_QUERYResult = {
   _id: string;
   _type: "caseStudy";
@@ -1407,6 +1437,7 @@ export type HOME_PAGE_QUERYResult = {
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
       hide?: boolean;
+      services: Array<string>;
       caseStudies: Array<{
         title: string;
         excerpt: string;
@@ -1436,6 +1467,7 @@ export type HOME_PAGE_QUERYResult = {
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
       hide?: boolean;
+      categories: Array<string>;
       media: Array<{
         title: string;
         mainImage: {
@@ -1470,6 +1502,23 @@ export type HOME_PAGE_QUERYResult = {
           };
         };
         categories: Array<string>;
+      }>;
+    } | {
+      _key: string;
+      _type: "allTeamMembersSection";
+      heading: string;
+      text: string;
+      height: "full" | "screen";
+      backgroundColor: "blue" | "gradient" | "white";
+      paddingTop: "double" | "none" | "single";
+      paddingBottom: "double" | "none" | "single";
+      hide?: boolean;
+      teams: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "team";
       }>;
     } | {
       _key: string;
@@ -1749,16 +1798,6 @@ export type HOME_PAGE_QUERYResult = {
         _type: "step";
         _key: string;
       }>;
-    } | {
-      _key: string;
-      _type: "teamSection";
-      heading: string;
-      text: string;
-      height: "full" | "screen";
-      backgroundColor: "blue" | "gradient" | "white";
-      paddingTop: "double" | "none" | "single";
-      paddingBottom: "double" | "none" | "single";
-      hide?: boolean;
     } | {
       _key: string;
       _type: "trainingsSection";
@@ -2047,9 +2086,9 @@ export type SERVICES_SLUGS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n*[_type == \"page\" && slug.current == $slug][0]\n{\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  \"content\": content[hide != true]{\n    ...,\n    // Logic for the Impact Section\n    _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          heading,\n          highlightedHeading,\n          text\n        }\n      },\n    // Logic for Case Studies\n    _type == \"caseStudiesSection\" => {\n      \"caseStudies\": caseStudies[defined(@)]->{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allCaseStudiesSection\" => {\n      \"caseStudies\": *[_type == \"caseStudy\"]{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allMediaSection\" => {\n      \"media\": *[_type == \"media\"]{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    },\n    _type == \"servicesSection\" => {\n      services[]->{\n        title,\n        description,\n        \"slug\": slug.current,\n        icon\n      }\n    },\n    _type == \"heroSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"reviewsSection\" => {\n      reviews[]->{\n        name,\n        image,\n        reviewText,\n        position\n      }\n    },\n    _type == \"locationsSection\" => {\n      locations[]->{\n        image,\n        name,\n        slug\n      }\n    },\n    _type == \"mediaSection\" => {\n      media[]->{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    }\n  }\n}": PAGE_QUERYResult;
+    "\n*[_type == \"page\" && slug.current == $slug][0]\n{\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  \"content\": content[hide != true]{\n    ...,\n    // Logic for the Impact Section\n    _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          heading,\n          highlightedHeading,\n          text\n        }\n      },\n    // Logic for Case Studies\n    _type == \"caseStudiesSection\" => {\n      \"caseStudies\": caseStudies[defined(@)]->{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allCaseStudiesSection\" => {\n      \"caseStudies\": *[_type == \"caseStudy\"]{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      },\n      \"services\": *[_type == \"service\"].title\n    },\n    _type == \"allMediaSection\" => {\n      \"media\": *[_type == \"media\"]{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      },\n      \"categories\": *[_type == \"category\"].title\n    },\n    _type == \"servicesSection\" => {\n      services[]->{\n        title,\n        description,\n        \"slug\": slug.current,\n        icon\n      }\n    },\n    _type == \"heroSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"reviewsSection\" => {\n      reviews[]->{\n        name,\n        image,\n        reviewText,\n        position\n      }\n    },\n    _type == \"locationsSection\" => {\n      locations[]->{\n        image,\n        name,\n        slug\n      }\n    },\n    _type == \"mediaSection\" => {\n      media[]->{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    }\n  }\n}": PAGE_QUERYResult;
     "\n*[_type == \"page\" && defined(slug.current)]{\n  \"slug\": slug.current\n}": PAGE_SLUGS_QUERYResult;
-    "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->\n{\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  \"content\": content[hide != true]{\n    ...,\n    // Logic for the Impact Section\n    _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          heading,\n          highlightedHeading,\n          text\n        }\n      },\n    // Logic for Case Studies\n    _type == \"caseStudiesSection\" => {\n      \"caseStudies\": caseStudies[defined(@)]->{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allCaseStudiesSection\" => {\n      \"caseStudies\": *[_type == \"caseStudy\"]{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allMediaSection\" => {\n      \"media\": *[_type == \"media\"]{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    },\n    _type == \"servicesSection\" => {\n      services[]->{\n        title,\n        description,\n        \"slug\": slug.current,\n        icon\n      }\n    },\n    _type == \"heroSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"reviewsSection\" => {\n      reviews[]->{\n        name,\n        image,\n        reviewText,\n        position\n      }\n    },\n    _type == \"locationsSection\" => {\n      locations[]->{\n        image,\n        name,\n        slug\n      }\n    },\n    _type == \"mediaSection\" => {\n      media[]->{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    }\n  }\n}\n}": HOME_PAGE_QUERYResult;
+    "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->\n{\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  \"content\": content[hide != true]{\n    ...,\n    // Logic for the Impact Section\n    _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          heading,\n          highlightedHeading,\n          text\n        }\n      },\n    // Logic for Case Studies\n    _type == \"caseStudiesSection\" => {\n      \"caseStudies\": caseStudies[defined(@)]->{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allCaseStudiesSection\" => {\n      \"caseStudies\": *[_type == \"caseStudy\"]{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      },\n      \"services\": *[_type == \"service\"].title\n    },\n    _type == \"allMediaSection\" => {\n      \"media\": *[_type == \"media\"]{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      },\n      \"categories\": *[_type == \"category\"].title\n    },\n    _type == \"servicesSection\" => {\n      services[]->{\n        title,\n        description,\n        \"slug\": slug.current,\n        icon\n      }\n    },\n    _type == \"heroSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"reviewsSection\" => {\n      reviews[]->{\n        name,\n        image,\n        reviewText,\n        position\n      }\n    },\n    _type == \"locationsSection\" => {\n      locations[]->{\n        image,\n        name,\n        slug\n      }\n    },\n    _type == \"mediaSection\" => {\n      media[]->{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    }\n  }\n}\n}": HOME_PAGE_QUERYResult;
     "\n[*[_id == \"siteSettings\"][0].homePage->{\n  \"href\": \"/\", \n  _updatedAt\n}] | order(typeOrder asc, _updatedAt desc)\n+\n*[_type in [\"page\", \"service\", \"caseStudy\", \"media\"] && defined(slug.current)] {\n  \"href\": select(\n    _type == \"page\" => \"/\" + slug.current,\n    _type == \"service\" => \"/services/\" + slug.current,\n    _type == \"caseStudy\" => \"/case-studies/\" + slug.current,\n    _type == \"media\" => \"/media/\" + slug.current,\n    slug.current\n  ),\n  _updatedAt\n} | order(typeOrder asc, _updatedAt desc)\n": SITEMAP_QUERYResult;
     "\n*[_type == \"caseStudy\" && defined(slug.current)]|order(publishedAt desc){\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": CASE_STUDIES_QUERYResult;
     "\n*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;

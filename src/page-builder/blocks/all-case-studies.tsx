@@ -10,13 +10,8 @@ function AllCaseStudies({
   heading,
   text,
   caseStudies,
+  services,
 }: AllCaseStudiesSectionProps) {
-  // 1. Extract Unique Services (Server-side Logic)
-  // This runs once on the server when the page builds/requests
-  const uniqueServices = Array.from(
-    new Set(caseStudies.flatMap((study) => study.services || [])),
-  ).sort();
-
   return (
     <Container>
       <div className="flex flex-col gap-6">
@@ -26,10 +21,7 @@ function AllCaseStudies({
         </SectionHeader>
 
         {/* 2. Pass data to the Client Component for interactivity */}
-        <CaseStudyFilterGrid
-          studies={caseStudies}
-          uniqueServices={uniqueServices}
-        />
+        <CaseStudyFilterGrid studies={caseStudies} uniqueServices={services} />
       </div>
     </Container>
   );

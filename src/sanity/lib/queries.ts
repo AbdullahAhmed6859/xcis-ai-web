@@ -40,7 +40,8 @@ const pageCommon = `
         mainImage,
         "slug": slug.current,
         "services": services[]->title
-      }
+      },
+      "services": *[_type == "service"].title
     },
     _type == "allMediaSection" => {
       "media": *[_type == "media"]{
@@ -54,7 +55,8 @@ const pageCommon = `
           image
         },
         "categories": categories[]->title
-      }
+      },
+      "categories": *[_type == "category"].title
     },
     _type == "servicesSection" => {
       services[]->{

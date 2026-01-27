@@ -10,13 +10,8 @@ function AllMedia({
   heading,
   text,
   media,
+  categories,
 }: AllMediaSectionProps) {
-  // 1. Extract Unique Categories (Server-side Logic)
-  // Ensure we handle null/undefined safely
-  const uniqueCategories = Array.from(
-    new Set(media.flatMap((m) => m.categories || [])),
-  ).sort();
-
   return (
     <Container>
       <div className="flex flex-col gap-6">
@@ -24,12 +19,7 @@ function AllMedia({
           <SectionHeading>{heading}</SectionHeading>
           <SectionDescription>{text}</SectionDescription>
         </SectionHeader>
-
-        {/* 2. Pass data to the Client Component */}
-        <MediaFilterGrid
-          mediaItems={media}
-          uniqueCategories={uniqueCategories}
-        />
+        <MediaFilterGrid mediaItems={media} uniqueCategories={categories} />
       </div>
     </Container>
   );

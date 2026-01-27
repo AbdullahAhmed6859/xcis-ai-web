@@ -30,7 +30,7 @@ import { allCaseStudiesSectionType } from "./allCaseStudiesSectionType";
 import { allMediaSectionType } from "./allMediaSectionType";
 import { contactFormSectionType } from "./contactFormSectionType";
 import { teamType } from "./teamType";
-import { teamSectionType } from "./teamSectionType";
+import { allTeamMembersSectionType } from "./allTeamMembersSectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -61,9 +61,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     carouselSectionType,
     allCaseStudiesSectionType,
     allMediaSectionType,
+    allTeamMembersSectionType,
     teamMemberType,
     teamType,
-    teamSectionType,
     contactFormSectionType,
   ],
 };

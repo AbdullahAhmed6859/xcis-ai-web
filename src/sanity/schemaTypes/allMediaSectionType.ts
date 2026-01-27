@@ -1,11 +1,45 @@
 import { TextIcon } from "@sanity/icons";
-import { defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
 
 export const allMediaSectionType = defineType({
   name: "allMediaSection",
   type: "object",
-  fields: [...sectionBaseFields],
+  fields: [
+    ...sectionBaseFields,
+    defineField({
+      name: "categories",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "category" }],
+          options: {
+            filter: ({ parent }) => {
+              // Cast parent as an array of objects with a _ref property
+              const existingItems = parent as
+                | Array<{ _ref?: string }>
+                | undefined;
+
+              // Safely extract the IDs
+              const selectedIds =
+                existingItems
+                  ?.map((item) => item._ref)
+                  .filter((id): id is string => !!id) || [];
+
+              return {
+                filter: "!(_id in $selectedIds)",
+                params: {
+                  selectedIds,
+                },
+              };
+            },
+          },
+        },
+      ],
+      validation: (rule) => rule.required(),
+    }),
+  ],
   icon: TextIcon,
   preview: {
     select: {
