@@ -22,14 +22,7 @@ export const teamMemberType = defineType({
     }),
     defineField({
       name: "bio",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "block",
-          styles: [{ title: "Normal", value: "normal" }],
-          lists: [],
-        }),
-      ],
+      type: "string",
     }),
     defineField({
       name: "teams",
