@@ -110,11 +110,11 @@ export const PAGE_SLUGS_QUERY = defineQuery(`
   "slug": slug.current
 }`);
 
-export const PAGE_LINKS_QUERY = defineQuery(`
-*[_type == "page" && defined(slug.current)]{
-  "slug": slug.current,
-  title
-}`);
+// export const PAGE_LINKS_QUERY = defineQuery(`
+// *[_type == "page" && defined(slug.current)]{
+//   "slug": slug.current,
+//   title
+// }`);
 
 export const HOME_PAGE_QUERY = defineQuery(`
 *[_id == "siteSettings"][0]{
@@ -154,18 +154,18 @@ export const SITEMAP_QUERY = defineQuery(`
 } | order(typeOrder asc, _updatedAt desc)
 `);
 
-export const TRUSTED_COMPANIES_QUERY = defineQuery(`
-*[_type == "trustedCompany"]{
-  name,
-  website,
-  logo{
-    alt,
-    asset
-  }
-}`);
+// export const TRUSTED_COMPANIES_QUERY = defineQuery(`
+// *[_type == "trustedCompany"]{
+//   name,
+//   website,
+//   logo{
+//     alt,
+//     asset
+//   }
+// }`);
 
 export const CASE_STUDIES_QUERY = defineQuery(`
-*[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc)[0...12]{
+*[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc){
   _id,
   title,
   "slug": slug.current,
@@ -217,7 +217,7 @@ export const CASE_STUDIES_SLUGS_QUERY =
 }`);
 
 export const MEDIA_QUERY =
-  defineQuery(`*[_type == "media" && defined(slug.current)]|order(publishedAt desc)[0...12]{
+  defineQuery(`*[_type == "media" && defined(slug.current)]|order(publishedAt desc){
   _id,
   title,
   "slug": slug.current,
