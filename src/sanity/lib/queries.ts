@@ -58,6 +58,15 @@ const pageCommon = `
       },
       "categories": *[_type == "category"].title
     },
+    _type == "allTeamMembersSection" => {
+      "teamMembers": *[_type == "teamMember"]| order(name asc){
+        name,
+        image,
+        bio,
+        "teams":teams[]->title
+      },
+      "teams": teams[]->title
+    },
     _type == "servicesSection" => {
       services[]->{
         title,

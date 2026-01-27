@@ -22,6 +22,8 @@ interface GenericFilterGridProps<T> {
   itemsPerPage?: number;
   gridClassName?: string;
   emptyMessage?: string;
+  defaultFilter?: string;
+  showAllButton?: boolean;
 }
 
 export function GenericFilterGrid<T>({
@@ -32,17 +34,17 @@ export function GenericFilterGrid<T>({
   itemsPerPage = 6,
   gridClassName = "grid-cols-1 lg:grid-cols-2 xl:grid-cols-3",
   emptyMessage = "No items found for this category.",
+  defaultFilter = "All",
+  showAllButton = true,
 }: GenericFilterGridProps<T>) {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState(defaultFilter);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // 1. Filter Logic
   const filteredItems =
     activeFilter === "All"
       ? items
       : items.filter((item) => getItemCategories(item).includes(activeFilter));
 
-  // 2. Pagination Logic
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentVisibleItems = filteredItems.slice(
@@ -74,7 +76,7 @@ export function GenericFilterGrid<T>({
               <SelectValue placeholder="Filter by category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="All">All Categories</SelectItem>
+              {showAllButton && <SelectItem value="All">All</SelectItem>}
               {categories.map((cat) => (
                 <SelectItem key={cat} value={cat}>
                   {cat}
@@ -85,12 +87,14 @@ export function GenericFilterGrid<T>({
         </div>
 
         {/* DESKTOP VIEW */}
-        <div className="hidden md:flex flex-wrap gap-3 justify-start">
-          <FilterButton
-            label="All"
-            isActive={activeFilter === "All"}
-            onClick={() => handleFilterChange("All")}
-          />
+        <div className="hidden md:flex flex-wrap gap-3 justify-evenly">
+          {showAllButton && (
+            <FilterButton
+              label="All"
+              isActive={activeFilter === "All"}
+              onClick={() => handleFilterChange("All")}
+            />
+          )}
           {categories.map((cat) => (
             <FilterButton
               key={cat}
@@ -123,7 +127,7 @@ export function GenericFilterGrid<T>({
       </div>
 
       {/* --- Pagination --- */}
-      {totalPages > 1 && (
+      {
         <div className="flex items-center justify-center gap-6 pt-8 border-t mt-4">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
@@ -158,7 +162,7 @@ export function GenericFilterGrid<T>({
             <ChevronRight className="w-6 h-6 stroke-[3px]" />
           </button>
         </div>
-      )}
+      }
     </div>
   );
 }
@@ -177,7 +181,7 @@ function FilterButton({
       onClick={onClick}
       variant="ghost"
       className={cn(
-        "px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 border",
+        "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border",
         isActive
           ? "bg-dark-blue text-white border-dark-blue hover:bg-dark-blue/90 hover:text-white"
           : "bg-transparent text-gray-600 border-gray-200 hover:border-dark-blue hover:text-dark-blue",
