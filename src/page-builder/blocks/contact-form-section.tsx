@@ -1,5 +1,3 @@
-"use client";
-import Script from "next/script";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
@@ -7,6 +5,7 @@ import Container from "../../features/layout/container";
 import { ContactFormSectionProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { HubspotForm } from "@/features/contact/hubspot-form";
 
 function ContactFormSection({
   heading,
@@ -16,9 +15,9 @@ function ContactFormSection({
 }: ContactFormSectionProps) {
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row items-stretch gap-y-8 lg:gap-x-12 xl:gap-x-32">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 items-stretch gap-y-8 lg:gap-x-12 xl:gap-x-32">
         {/* LEFT SIDE: Content + Image */}
-        <div className="flex flex-col w-full lg:w-1/2">
+        <div className="flex flex-col w-full">
           <SectionHeader
             backgroundColor={backgroundColor}
             textAlign="left"
@@ -44,13 +43,8 @@ function ContactFormSection({
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 bg-white">
-          <div
-            className="hs-form-frame w-full"
-            data-region="na2"
-            data-form-id="903a754a-f08b-4027-a78f-c86bb9910eb4"
-            data-portal-id="244688559"
-          ></div>
+        <div className="w-full bg-white">
+          <HubspotForm />
         </div>
       </div>
     </Container>
