@@ -29,9 +29,6 @@ export function ContactFormSection({
             </SectionDescription>
           </SectionHeader>
 
-          {/* 'flex-grow' tells this div to take up all remaining vertical space. 
-              'relative' is required for the Next.js fill image.
-          */}
           <div className="relative grow w-full">
             <Image
               src={urlFor(mainImage).url()}

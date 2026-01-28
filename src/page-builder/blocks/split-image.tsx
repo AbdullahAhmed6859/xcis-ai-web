@@ -5,7 +5,6 @@ import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
 import Container from "@/features/layout/container";
-import { HubspotForm } from "@/features/contact/hubspot-form";
 
 export function SplitImage({
   heading,
@@ -30,7 +29,7 @@ export function SplitImage({
         </div>
 
         <div className="flex flex-col w-full">
-          <div className="relative grow w-full h-full">
+          <div className="relative min-h-80 grow w-full h-full">
             <Image
               src={urlFor(image).url()}
               alt="Contact form image"
