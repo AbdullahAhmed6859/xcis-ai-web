@@ -1,6 +1,7 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
+import { uniqueFilter } from "../lib/unique-filter";
 
 export const mediaSectionType = defineType({
   name: "mediaSection",
@@ -10,7 +11,15 @@ export const mediaSectionType = defineType({
     defineField({
       name: "media",
       type: "array",
-      of: [{ type: "reference", to: { type: "media" } }],
+      of: [
+        {
+          type: "reference",
+          to: { type: "media" },
+          options: {
+            filter: uniqueFilter,
+          },
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
   ],

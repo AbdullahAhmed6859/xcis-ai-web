@@ -1,6 +1,7 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
+import { uniqueFilter } from "../lib/unique-filter";
 
 export const allCaseStudiesSectionType = defineType({
   name: "allCaseStudiesSection",
@@ -15,25 +16,7 @@ export const allCaseStudiesSectionType = defineType({
           type: "reference",
           to: [{ type: "service" }],
           options: {
-            filter: ({ parent }) => {
-              // Cast parent as an array of objects with a _ref property
-              const existingItems = parent as
-                | Array<{ _ref?: string }>
-                | undefined;
-
-              // Safely extract the IDs
-              const selectedIds =
-                existingItems
-                  ?.map((item) => item._ref)
-                  .filter((id): id is string => !!id) || [];
-
-              return {
-                filter: "!(_id in $selectedIds)",
-                params: {
-                  selectedIds,
-                },
-              };
-            },
+            filter: uniqueFilter,
           },
         },
       ],

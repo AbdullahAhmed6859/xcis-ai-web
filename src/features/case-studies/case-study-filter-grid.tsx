@@ -1,9 +1,7 @@
 "use client";
 
 import { CaseStudyCard } from "@/features/case-studies";
-import { cn } from "@/lib/utils";
 import { AllCaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
-import { Button } from "@/components/ui/button";
 
 import { GenericFilterGrid } from "@/components/generic-filter-grid";
 

@@ -1,6 +1,8 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
+import { unique } from "next/dist/build/utils";
+import { uniqueFilter } from "../lib/unique-filter";
 
 export const allMediaSectionType = defineType({
   name: "allMediaSection",
@@ -15,25 +17,7 @@ export const allMediaSectionType = defineType({
           type: "reference",
           to: [{ type: "category" }],
           options: {
-            filter: ({ parent }) => {
-              // Cast parent as an array of objects with a _ref property
-              const existingItems = parent as
-                | Array<{ _ref?: string }>
-                | undefined;
-
-              // Safely extract the IDs
-              const selectedIds =
-                existingItems
-                  ?.map((item) => item._ref)
-                  .filter((id): id is string => !!id) || [];
-
-              return {
-                filter: "!(_id in $selectedIds)",
-                params: {
-                  selectedIds,
-                },
-              };
-            },
+            filter: uniqueFilter,
           },
         },
       ],

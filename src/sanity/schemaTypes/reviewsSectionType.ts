@@ -1,6 +1,7 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
+import { uniqueFilter } from "../lib/unique-filter";
 
 export const reviewsSectionType = defineType({
   name: "reviewsSection",
@@ -10,7 +11,15 @@ export const reviewsSectionType = defineType({
     defineField({
       name: "reviews",
       type: "array",
-      of: [{ type: "reference", to: { type: "review" } }],
+      of: [
+        {
+          type: "reference",
+          to: { type: "review" },
+          options: {
+            filter: uniqueFilter,
+          },
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
   ],
