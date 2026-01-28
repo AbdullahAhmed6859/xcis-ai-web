@@ -13,7 +13,7 @@ export function CtaSection({ heading, mainImage }: CtaSectionProps) {
   return (
     <Container>
       <Card
-        className={`group relative w-full aspect-5/1 overflow-hidden border-0 rounded-xl p-0`}
+        className={`group relative w-full aspect-3/1 md:aspect-4/1 lg:aspect-5/1 xl:aspect-9/2 overflow-hidden border-0 rounded-xl p-0`}
       >
         {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">
