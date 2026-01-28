@@ -22,7 +22,7 @@ export function CompaniesSection({
         <SectionHeading>{heading}</SectionHeading>
         <SectionDescription className="lg:leading-8">{text}</SectionDescription>
       </SectionHeader>
-      <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-8 items-start">
+      <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-18 lg:gap-20 xl:gap-32 items-start">
         {companies.map((company, i) => (
           <div
             className="w-full h-20 relative flex items-center justify-center"
