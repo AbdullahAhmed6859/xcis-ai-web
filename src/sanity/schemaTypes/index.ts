@@ -32,6 +32,8 @@ import { contactFormSectionType } from "./contactFormSectionType";
 import { teamType } from "./teamType";
 import { allTeamMembersSectionType } from "./allTeamMembersSectionType";
 import { companiesSectionType } from "./companiesSectionType";
+import { certificationType } from "./certificationType";
+import { certificationsSectionType } from "./certificationSectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -67,5 +69,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     teamType,
     contactFormSectionType,
     companiesSectionType,
+    certificationType,
+    certificationsSectionType,
   ],
 };
