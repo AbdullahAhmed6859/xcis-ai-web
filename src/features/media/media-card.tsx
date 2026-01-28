@@ -1,42 +1,103 @@
-import Link from "next/link";
-import Image from "next/image";
-
-import { Author } from "./author";
-import { Categories } from "./categories";
-import { MEDIA_QUERYResult } from "@/sanity/types";
-import { PublishedAt } from "./published-at";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardFooter,
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { mediaSectionProps } from "@/page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+import { textColourVariants } from "../layout/section-header";
+import { Avatar } from "@/components/ui/avatar";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
-export function MediaCard(props: MEDIA_QUERYResult[0]) {
-  const { title, author, mainImage, publishedAt, categories } = props;
+type Props = {
+  media: mediaSectionProps["media"][0];
+};
 
+export function MediaCard({ media }: Props) {
+  const { title, slug, mainImage, author, categories, publishedAt, readTime } =
+    media;
+
+  const categoryTitle =
+    categories && categories.length > 0 ? categories[0] : null;
   return (
-    <Link className="group" href={`/media/${props.slug}`}>
-      <article className="flex flex-col-reverse gap-4 md:grid md:grid-cols-12 md:gap-0">
-        <div className="md:flex md:flex-col md:col-span-2 md:pt-1">
-          <Categories categories={categories} />
-        </div>
-        <div className="md:col-span-5 md:w-full">
-          <h2 className="text-2xl text-pretty font-semibold text-slate-800 group-hover:text-pink-600 transition-colors relative">
-            <span className="relative z-1">{title}</span>
-            <span className="bg-pink-50 z-0 absolute inset-0 rounded-lg opacity-0 transition-all group-hover:opacity-100 group-hover:scale-y-110 group-hover:scale-x-105 scale-75" />
-          </h2>
-          <div className="flex items-center mt-2 md:mt-6 gap-x-6">
-            <Author author={author} />
-            <PublishedAt publishedAt={publishedAt} />
+    // 1. CHANGE: flex-col (mobile) -> sm:flex-row (tablet/desktop)
+    <Card className="pl-0 py-0 flex flex-col sm:flex-row gap-0">
+      <CardContent className="p-0 w-full sm:w-2/5 shrink-0">
+        <Image
+          src={urlFor(mainImage).width(624).height(416).url()}
+          alt={title}
+          className="aspect-3/2 h-full w-full rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none object-cover"
+          width={624}
+          height={416}
+        />
+      </CardContent>
+
+      {/* 3. CHANGE: w-full (mobile) -> sm:w-3/5 (desktop) */}
+      <div className="w-full sm:w-3/5 py-6 flex flex-col justify-between gap-y-8">
+        <CardHeader>
+          {categoryTitle && (
+            <div className="mb-4">
+              <span className="inline-block bg-dark-blue text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                {categoryTitle}
+              </span>
+            </div>
+          )}
+          <h3
+            className={cn(
+              textColourVariants({ backgroundColor: "white" }),
+              "text-lg md:text-xl font-bold line-clamp-2",
+            )}
+          >
+            {title}
+          </h3>
+        </CardHeader>
+        <CardFooter className="flex-col items-baseline gap-y-4">
+          <div className="flex">
+            <Avatar className="w-10 h-10">
+              <AvatarImage src={urlFor(author.image).url()} alt={author.name} />
+              <AvatarFallback>
+                {author.name
+                  .trim()
+                  .split(/\s+/)
+                  .map((w) => w[0])
+                  .join("")
+                  .toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div className="ml-4 flex flex-col justify-center">
+              <p className="text-sm font-medium">{author.name}</p>
+              <p className="text-xs text-muted-foreground">
+                {formatDate(publishedAt)} . {readTime} min read
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="md:col-start-9 md:col-span-4 rounded-lg overflow-hidden flex">
-          {mainImage ? (
-            <Image
-              src={urlFor(mainImage).width(400).height(200).url()}
-              width={400}
-              height={200}
-              alt={mainImage.alt || title || ""}
-            />
-          ) : null}
-        </div>
-      </article>
-    </Link>
+          <Link
+            href={`/media/${slug}`}
+            className="text-dark-blue flex flex-row items-center gap-x-2 text-sm font-medium hover:underline"
+          >
+            Read More <ChevronRight />
+          </Link>
+        </CardFooter>
+      </div>
+    </Card>
   );
 }
+
+const formatDate = (dateString: string) => {
+  try {
+    const options: Intl.DateTimeFormatOptions = {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return null; // Return original string if parsing fails
+  }
+};
