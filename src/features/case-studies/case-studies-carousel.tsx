@@ -2,7 +2,7 @@
 
 import { CaseStudyCard } from "@/features/case-studies";
 import { CaseStudiesSectionProps } from "@/page-builder/blocks/page-builder-types";
-import { GenericCarousel } from "./generic-carousel";
+import { GenericCarousel } from "../../components/generic-carousel";
 // import { CaseStudyCard } from "@/features/case-studies";
 
 type CaseStudies = CaseStudiesSectionProps["caseStudies"];

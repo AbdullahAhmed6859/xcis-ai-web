@@ -87,7 +87,7 @@ export function GenericFilterGrid<T>({
         </div>
 
         {/* DESKTOP VIEW */}
-        <div className="hidden md:flex flex-wrap gap-3 justify-evenly">
+        <div className="hidden md:flex flex-wrap gap-3 justify-start">
           {showAllButton && (
             <FilterButton
               label="All"
@@ -107,7 +107,7 @@ export function GenericFilterGrid<T>({
       </div>
 
       {/* --- Grid Content --- */}
-      <div className="w-full min-h-[400px]">
+      <div className="w-full min-h-100">
         {currentVisibleItems.length > 0 ? (
           <div
             className={cn(
