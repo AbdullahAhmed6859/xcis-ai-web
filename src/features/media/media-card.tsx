@@ -14,6 +14,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { getInitilas } from "@/lib/getInitials";
+import { stringToDate } from "@/lib/stringToDate";
 
 type Props = {
   media: mediaSectionProps["media"][0];
@@ -79,7 +80,7 @@ export function MediaCard({ media }: Props) {
               <div className="ml-4 flex flex-col justify-center">
                 <p className="text-sm font-medium">{author.name}</p>
                 <p className="text-xs text-muted-foreground">
-                  {formatDate(publishedAt)} . {readTime} min read
+                  {stringToDate(publishedAt)} . {readTime} min read
                 </p>
               </div>
             </div>
@@ -92,16 +93,3 @@ export function MediaCard({ media }: Props) {
     </Link>
   );
 }
-
-const formatDate = (dateString: string) => {
-  try {
-    const options: Intl.DateTimeFormatOptions = {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    };
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  } catch (error) {
-    return null;
-  }
-};

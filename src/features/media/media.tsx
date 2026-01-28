@@ -12,6 +12,7 @@ import { RelatedMedia } from "./related-media";
 import { Container } from "../layout/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { stringToDate } from "@/lib/stringToDate";
 
 export function Media(props: NonNullable<MEDIUM_QUERYResult>) {
   const {
@@ -97,11 +98,7 @@ export function Media(props: NonNullable<MEDIUM_QUERYResult>) {
                   {publishedAt && (
                     <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-2 opacity-80" />
-                      {new Date(publishedAt).toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
+                      {stringToDate(publishedAt)}
                     </div>
                   )}
 
