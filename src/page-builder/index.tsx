@@ -17,7 +17,7 @@ import {
   SplitImage,
   CompaniesSection,
 } from "./blocks";
-import PageSection from "../features/layout/page-section";
+import { PageSection } from "../features/layout/page-section";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];

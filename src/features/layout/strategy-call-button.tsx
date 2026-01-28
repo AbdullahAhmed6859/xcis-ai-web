@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { InlineWidget } from "react-calendly";
 
-function StrategyCallButton() {
+export function StrategyCallButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -23,5 +23,3 @@ function StrategyCallButton() {
     </Dialog>
   );
 }
-
-export default StrategyCallButton;

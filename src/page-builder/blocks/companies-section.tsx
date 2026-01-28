@@ -1,4 +1,4 @@
-import Container from "@/features/layout/container";
+import { Container } from "@/features/layout/container";
 import { CompaniesSectionProps } from "./page-builder-types";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";

@@ -1,11 +1,10 @@
 import { Separator } from "@/components/ui/separator";
-import Container from "./container";
+import { Container } from "./container";
 import { FOOTER_COMPANY_ITEMS, FOOTER_HELP_ITEMS } from "./nav-items";
 import Link from "next/link";
-import FooterLogo from "./FooterLogo";
+import { FooterLogo } from "./footer-logo";
 import { CurrentYear } from "./current-year";
-import EmailForm from "../contact/email-form";
-import React from "react";
+import { EmailForm } from "../contact/email-form";
 
 export function Footer() {
   return (

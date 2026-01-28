@@ -1,4 +1,4 @@
-import Container from "@/features/layout/container";
+import { Container } from "@/features/layout/container";
 import { AllMediaSectionProps } from "./page-builder-types";
 import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";

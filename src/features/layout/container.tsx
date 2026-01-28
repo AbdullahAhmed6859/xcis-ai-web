@@ -6,7 +6,7 @@ export const containerVariants = cva(
   "container mx-auto px-6 lg:px-12 xl:px-20 2xl:px-24 h-full",
 );
 
-function Container({
+export function Container({
   children,
   className,
   ...props
@@ -17,5 +17,3 @@ function Container({
     </div>
   );
 }
-
-export default Container;

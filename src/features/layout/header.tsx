@@ -6,11 +6,11 @@ import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import MainLogo from "./MainLogo";
-import SpeakWithOurTeamButton from "./SpeakWithOurTeamButton";
+import { MainLogo } from "./main-logo";
+import { SpeakWithOurTeamButton } from "./speak-with-our-team-button";
 import { NAV_ITEMS } from "./nav-items";
-import { NavItem } from "./NavItem";
-import Container from "./container";
+import { NavItem } from "./nav-item";
+import { Container } from "./container";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight } from "lucide-react"; // Imported ChevronRight
 import { cn } from "@/lib/utils";

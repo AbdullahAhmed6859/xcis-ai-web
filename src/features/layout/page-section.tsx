@@ -32,7 +32,7 @@ const pageSectionVariants = cva("w-full", {
   },
 });
 
-function PageSection({
+export function PageSection({
   children,
   className,
   height = "full",
@@ -53,5 +53,3 @@ function PageSection({
     </section>
   );
 }
-
-export default PageSection;

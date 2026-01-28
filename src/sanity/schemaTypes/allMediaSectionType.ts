@@ -1,7 +1,6 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
-import { unique } from "next/dist/build/utils";
 import { uniqueFilter } from "../lib/unique-filter";
 
 export const allMediaSectionType = defineType({

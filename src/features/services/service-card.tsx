@@ -1,11 +1,7 @@
-import { buttonVariants } from "@/components/ui/button";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { textColourVariants } from "@/features/layout/section-header";
 import { cn } from "@/lib/utils";
 import { ServicesSectionProps } from "@/page-builder/blocks/page-builder-types";
-import Link from "next/link";
-import { urlFor } from "@/sanity/lib/image";
-import Image from "next/image";
 
 type CardContent = ServicesSectionProps["services"][number];
 

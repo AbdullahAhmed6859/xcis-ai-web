@@ -9,7 +9,7 @@ import { components } from "@/sanity/portableTextComponents";
 import { MEDIUM_QUERYResult } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
 import { RelatedMedia } from "./related-media";
-import Container from "../layout/container";
+import { Container } from "../layout/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 

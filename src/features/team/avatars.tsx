@@ -7,7 +7,7 @@ type Props = {
   teamMembers: ImpactSectionProps["teamMembers"];
 };
 
-function Avatars({ teamMembers }: Props) {
+export function Avatars({ teamMembers }: Props) {
   return (
     <div className="*:data-[slot=avatar]:ring-background flex -space-x-4 *:data-[slot=avatar]:ring-2">
       {teamMembers.reverse().map((member, i) => (
@@ -19,5 +19,3 @@ function Avatars({ teamMembers }: Props) {
     </div>
   );
 }
-
-export default Avatars;

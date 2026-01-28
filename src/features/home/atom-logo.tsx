@@ -1,4 +1,4 @@
-function AtomLogo() {
+export function AtomLogo() {
   return (
     <svg
       id="Layer_2"
@@ -40,5 +40,3 @@ function AtomLogo() {
     </svg>
   );
 }
-
-export default AtomLogo;

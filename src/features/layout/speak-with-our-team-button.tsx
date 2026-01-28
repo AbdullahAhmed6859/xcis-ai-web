@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { InlineWidget } from "react-calendly";
 
-function SpeakWithOurTeamButton({ className }: { className?: string }) {
+export function SpeakWithOurTeamButton({ className }: { className?: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,5 +33,3 @@ function SpeakWithOurTeamButton({ className }: { className?: string }) {
 //     </DialogHeader>
 //   </DialogContent>
 // </Dialog>
-
-export default SpeakWithOurTeamButton;

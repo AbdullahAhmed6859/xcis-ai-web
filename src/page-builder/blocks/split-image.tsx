@@ -4,7 +4,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { SectionHeader } from "@/features/layout/section-header";
-import Container from "@/features/layout/container";
+import { Container } from "@/features/layout/container";
 
 export function SplitImage({
   heading,

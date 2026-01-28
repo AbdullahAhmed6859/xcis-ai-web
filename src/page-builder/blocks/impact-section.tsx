@@ -4,9 +4,9 @@ import {
   textColourVariants,
 } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../features/layout/container";
+import { Container } from "../../features/layout/container";
 import { ImpactSectionProps } from "./page-builder-types";
-import Avatars from "@/features/team/avatars";
+import { Avatars } from "@/features/team/avatars";
 import { cn } from "@/lib/utils";
 import { ImpactCard } from "@/components/impact-card";
 

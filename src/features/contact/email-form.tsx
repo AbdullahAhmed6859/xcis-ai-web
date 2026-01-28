@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { submitEmailForm } from "./submitEmailForm";
 import { toast } from "sonner";
 
-function EmailForm() {
+export function EmailForm() {
   async function handleAction(formData: FormData) {
     const result = await submitEmailForm(formData);
 
@@ -45,5 +45,3 @@ function EmailForm() {
     </form>
   );
 }
-
-export default EmailForm;

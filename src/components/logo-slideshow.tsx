@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { CompanyLogoType } from "@/page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
-import Container from "@/features/layout/container";
+import { Container } from "@/features/layout/container";
 import Image from "next/image";
 
 interface LogosProps {
@@ -23,7 +23,7 @@ function ensureSize<T>(logos: Array<T>): T[] {
   return newLogos;
 }
 
-function LogoSlideshow({ logos }: LogosProps) {
+export function LogoSlideshow({ logos }: LogosProps) {
   const logosArr = ensureSize(logos);
 
   return (
@@ -67,5 +67,3 @@ function LogoSlideshow({ logos }: LogosProps) {
     </Container>
   );
 }
-
-export { LogoSlideshow };

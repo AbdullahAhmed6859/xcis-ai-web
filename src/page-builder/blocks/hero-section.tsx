@@ -1,10 +1,10 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { LogoSlideshow } from "@/components/logo-slideshow";
-import Container from "../../features/layout/container";
+import { Container } from "../../features/layout/container";
 import { HeroProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import StrategyCallButton from "@/features/layout/StrategyCallButton";
+import { StrategyCallButton } from "@/features/layout/strategy-call-button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 

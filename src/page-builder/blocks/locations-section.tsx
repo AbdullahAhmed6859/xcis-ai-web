@@ -4,7 +4,7 @@ import {
   textColourVariants,
 } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
-import Container from "../../features/layout/container";
+import { Container } from "../../features/layout/container";
 import { LocationsSectionProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";

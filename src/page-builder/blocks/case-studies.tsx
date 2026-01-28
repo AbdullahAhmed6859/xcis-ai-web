@@ -1,4 +1,4 @@
-import Container from "../../features/layout/container";
+import { Container } from "../../features/layout/container";
 import { CaseStudiesSectionProps } from "./page-builder-types";
 import { CaseStudiesCarousel } from "@/features/case-studies/case-studies-carousel";
 import { SectionHeading } from "@/features/layout/section-heading";

@@ -13,6 +13,65 @@
  */
 
 // Source: schema.json
+export type CertificationsSection = {
+  _type: "certificationsSection";
+  heading: string;
+  text: string;
+  height: "full" | "screen";
+  backgroundColor: "white" | "blue" | "gradient";
+  paddingTop: "none" | "single" | "double";
+  paddingBottom: "none" | "single" | "double";
+  hide: boolean;
+  certifications: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "certification";
+  }>;
+};
+
+export type Certification = {
+  _id: string;
+  _type: "certification";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+  };
+  website?: string;
+  title: string;
+  description: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
 export type CompaniesSection = {
   _type: "companiesSection";
   heading: string;
@@ -340,22 +399,6 @@ export type Location = {
   };
 };
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
-
 export type Service = {
   _id: string;
   _type: "service";
@@ -678,7 +721,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & SplitImageSection | {
   _key: string;
-} & CompaniesSection>;
+} & CompaniesSection | {
+  _key: string;
+} & CertificationsSection>;
 
 export type Page = {
   _id: string;
@@ -799,7 +844,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CompaniesSection | ContactFormSection | Team | Slug | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | SanityImageCrop | SanityImageHotspot | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | Team | Slug | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
@@ -969,6 +1014,23 @@ export type PAGE_QUERYResult = {
       };
       slug: string;
       services: Array<string>;
+    }>;
+  } | {
+    _key: string;
+    _type: "certificationsSection";
+    heading: string;
+    text: string;
+    height: "full" | "screen";
+    backgroundColor: "blue" | "gradient" | "white";
+    paddingTop: "double" | "none" | "single";
+    paddingBottom: "double" | "none" | "single";
+    hide: boolean;
+    certifications: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "certification";
     }>;
   } | {
     _key: string;
@@ -1330,6 +1392,30 @@ export type HOME_PAGE_QUERYResult = {
   homePage: null;
 } | {
   _id: string;
+  _type: "certification";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+  };
+  website?: string;
+  title: string;
+  description: string;
+  homePage: null;
+} | {
+  _id: string;
   _type: "location";
   _createdAt: string;
   _updatedAt: string;
@@ -1663,6 +1749,23 @@ export type HOME_PAGE_QUERYResult = {
         };
         slug: string;
         services: Array<string>;
+      }>;
+    } | {
+      _key: string;
+      _type: "certificationsSection";
+      heading: string;
+      text: string;
+      height: "full" | "screen";
+      backgroundColor: "blue" | "gradient" | "white";
+      paddingTop: "double" | "none" | "single";
+      paddingBottom: "double" | "none" | "single";
+      hide: boolean;
+      certifications: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "certification";
       }>;
     } | {
       _key: string;

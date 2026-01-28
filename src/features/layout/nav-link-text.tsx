@@ -6,12 +6,10 @@ type Props = {
   children: React.ReactNode;
 };
 
-function NavLinkText({ href, children }: Props) {
+export function NavLinkText({ href, children }: Props) {
   return (
     <Link href={href} className="text-dark-blue">
       {children}
     </Link>
   );
 }
-
-export default NavLinkText;
