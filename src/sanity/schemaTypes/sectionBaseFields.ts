@@ -24,6 +24,7 @@ export const sectionBaseFields = [
       list: [
         { title: "Full", value: "full" },
         { title: "Screen", value: "screen" },
+        { title: "Medium", value: "medium" },
       ],
     },
     validation: (Rule) => Rule.required(),

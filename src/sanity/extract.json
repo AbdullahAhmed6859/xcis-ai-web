@@ -38,6 +38,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -428,6 +432,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -589,6 +597,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -871,6 +883,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1032,6 +1048,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1193,6 +1213,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1354,6 +1378,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1508,6 +1536,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1669,6 +1701,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1830,6 +1866,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -1991,6 +2031,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -2108,6 +2152,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -2269,6 +2317,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -2452,6 +2504,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -2613,6 +2669,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -2774,6 +2834,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },
@@ -4672,6 +4736,10 @@
               {
                 "type": "string",
                 "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
               }
             ]
           },

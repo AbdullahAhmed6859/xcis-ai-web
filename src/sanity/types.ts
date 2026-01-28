@@ -17,7 +17,7 @@ export type CertificationsSection = {
   _type: "certificationsSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -76,7 +76,7 @@ export type CompaniesSection = {
   _type: "companiesSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -94,7 +94,7 @@ export type ContactFormSection = {
   _type: "contactFormSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -135,7 +135,7 @@ export type AllTeamMembersSection = {
   _type: "allTeamMembersSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -153,7 +153,7 @@ export type AllMediaSection = {
   _type: "allMediaSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -171,7 +171,7 @@ export type AllCaseStudiesSection = {
   _type: "allCaseStudiesSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -189,7 +189,7 @@ export type CarouselSection = {
   _type: "carouselSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -205,7 +205,7 @@ export type ReviewsSection = {
   _type: "reviewsSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -223,7 +223,7 @@ export type LocationsSection = {
   _type: "locationsSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -241,7 +241,7 @@ export type MediaSection = {
   _type: "mediaSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -259,7 +259,7 @@ export type TrainingsSection = {
   _type: "trainingsSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -270,7 +270,7 @@ export type StructuredStepsSection = {
   _type: "structuredStepsSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -287,7 +287,7 @@ export type ImpactSection = {
   _type: "impactSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -308,7 +308,7 @@ export type CaseStudiesSection = {
   _type: "caseStudiesSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -326,7 +326,7 @@ export type ServicesSection = {
   _type: "servicesSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -344,7 +344,7 @@ export type HeroSection = {
   _type: "heroSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -658,7 +658,7 @@ export type SplitImageSection = {
   _type: "splitImageSection";
   heading: string;
   text: string;
-  height: "full" | "screen";
+  height: "full" | "screen" | "medium";
   backgroundColor: "white" | "blue" | "gradient";
   paddingTop: "none" | "single" | "double";
   paddingBottom: "none" | "single" | "double";
@@ -872,7 +872,7 @@ export type PAGE_QUERYResult = {
     _type: "allCaseStudiesSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -902,7 +902,7 @@ export type PAGE_QUERYResult = {
     _type: "allMediaSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -948,7 +948,7 @@ export type PAGE_QUERYResult = {
     _type: "allTeamMembersSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -976,7 +976,7 @@ export type PAGE_QUERYResult = {
     _type: "carouselSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -991,7 +991,7 @@ export type PAGE_QUERYResult = {
     _type: "caseStudiesSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1020,7 +1020,7 @@ export type PAGE_QUERYResult = {
     _type: "certificationsSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1037,7 +1037,7 @@ export type PAGE_QUERYResult = {
     _type: "companiesSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1064,7 +1064,7 @@ export type PAGE_QUERYResult = {
     _type: "contactFormSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1087,7 +1087,7 @@ export type PAGE_QUERYResult = {
     _type: "heroSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1126,7 +1126,7 @@ export type PAGE_QUERYResult = {
     _type: "impactSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1157,7 +1157,7 @@ export type PAGE_QUERYResult = {
     _type: "locationsSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1183,7 +1183,7 @@ export type PAGE_QUERYResult = {
     _type: "mediaSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1228,7 +1228,7 @@ export type PAGE_QUERYResult = {
     _type: "reviewsSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1255,7 +1255,7 @@ export type PAGE_QUERYResult = {
     _type: "servicesSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1282,7 +1282,7 @@ export type PAGE_QUERYResult = {
     _type: "splitImageSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1305,7 +1305,7 @@ export type PAGE_QUERYResult = {
     _type: "structuredStepsSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1321,7 +1321,7 @@ export type PAGE_QUERYResult = {
     _type: "trainingsSection";
     heading: string;
     text: string;
-    height: "full" | "screen";
+    height: "full" | "medium" | "screen";
     backgroundColor: "blue" | "gradient" | "white";
     paddingTop: "double" | "none" | "single";
     paddingBottom: "double" | "none" | "single";
@@ -1607,7 +1607,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "allCaseStudiesSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1637,7 +1637,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "allMediaSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1683,7 +1683,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "allTeamMembersSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1711,7 +1711,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "carouselSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1726,7 +1726,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "caseStudiesSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1755,7 +1755,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "certificationsSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1772,7 +1772,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "companiesSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1799,7 +1799,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "contactFormSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1822,7 +1822,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "heroSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1861,7 +1861,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "impactSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1892,7 +1892,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "locationsSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1918,7 +1918,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "mediaSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1963,7 +1963,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "reviewsSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -1990,7 +1990,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "servicesSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -2017,7 +2017,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "splitImageSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -2040,7 +2040,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "structuredStepsSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
@@ -2056,7 +2056,7 @@ export type HOME_PAGE_QUERYResult = {
       _type: "trainingsSection";
       heading: string;
       text: string;
-      height: "full" | "screen";
+      height: "full" | "medium" | "screen";
       backgroundColor: "blue" | "gradient" | "white";
       paddingTop: "double" | "none" | "single";
       paddingBottom: "double" | "none" | "single";
