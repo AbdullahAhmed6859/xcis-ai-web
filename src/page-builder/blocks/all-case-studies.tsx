@@ -16,8 +16,8 @@ export function AllCaseStudies({
     <Container>
       <div className="flex flex-col gap-6">
         <SectionHeader backgroundColor={backgroundColor} textAlign={"left"}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
         <CaseStudyFilterGrid studies={caseStudies} uniqueServices={services} />
       </div>

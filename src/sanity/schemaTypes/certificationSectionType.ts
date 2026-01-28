@@ -1,7 +1,6 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
-import { uniqueFilter } from "../lib/unique-filter";
 
 export const certificationsSectionType = defineType({
   name: "certificationsSection",
@@ -15,9 +14,6 @@ export const certificationsSectionType = defineType({
         {
           type: "reference",
           to: [{ type: "certification" }],
-          options: {
-            filter: uniqueFilter,
-          },
         },
       ],
       validation: (rule) => rule.required(),

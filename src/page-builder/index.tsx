@@ -18,6 +18,9 @@ import {
   CompaniesSection,
 } from "./blocks";
 import { PageSection } from "../features/layout/page-section";
+import { ImpactCards } from "./blocks/impact-cards";
+import { CompaniesSlideshow } from "./blocks/companies-slideshow";
+import { CtaSection } from "./blocks/cta-section";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -86,6 +89,19 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "companiesSection":
             SectionComponent = <CompaniesSection key={block._key} {...block} />;
+            break;
+
+          case "impactCardsSection":
+            SectionComponent = <ImpactCards key={block._key} {...block} />;
+            break;
+
+          case "companySlideshowSection":
+            SectionComponent = (
+              <CompaniesSlideshow key={block._key} {...block} />
+            );
+            break;
+          case "ctaSection":
+            SectionComponent = <CtaSection key={block._key} {...block} />;
             break;
           default:
             SectionComponent = <></>;

@@ -19,10 +19,8 @@ export function AllTeams({
       <div className="flex flex-col gap-12">
         {/* Header Section */}
         <SectionHeader backgroundColor={backgroundColor} textAlign="center">
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription className="max-w-2xl mx-auto">
-            {text}
-          </SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
 
         {/* Filter Grid Section */}

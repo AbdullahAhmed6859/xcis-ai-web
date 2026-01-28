@@ -27,10 +27,12 @@ export function ImpactSection({
             textAlign="center"
             className="flex flex-col gap-y-2 lg:text-left lg:gap-y-4"
           >
-            <SectionHeading>{heading}</SectionHeading>
-            <SectionDescription className="lg:leading-8">
-              {text}
-            </SectionDescription>
+            {heading && <SectionHeading>{heading}</SectionHeading>}
+            {text && (
+              <SectionDescription className="lg:leading-8">
+                {text}
+              </SectionDescription>
+            )}
           </SectionHeader>
 
           <div className="flex justify-center lg:justify-normal">

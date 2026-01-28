@@ -1,7 +1,6 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
-import { uniqueFilter } from "../lib/unique-filter";
 
 export const allCaseStudiesSectionType = defineType({
   name: "allCaseStudiesSection",
@@ -15,9 +14,6 @@ export const allCaseStudiesSectionType = defineType({
         {
           type: "reference",
           to: [{ type: "service" }],
-          options: {
-            filter: uniqueFilter,
-          },
         },
       ],
       validation: (rule) => rule.required(),

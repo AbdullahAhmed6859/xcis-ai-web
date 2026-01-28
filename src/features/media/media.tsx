@@ -31,18 +31,17 @@ export function Media(props: NonNullable<MEDIUM_QUERYResult>) {
        */}
       <div className="relative h-[60vh] min-h-[500px] w-full bg-dark-blue overflow-hidden">
         {/* Background Image */}
-        {mainImage?.asset && (
-          <div className="absolute inset-0">
-            <Image
-              src={urlFor(mainImage).url()}
-              alt={mainImage.alt || title}
-              fill
-              className="object-cover opacity-60"
-              sizes="100vw"
-              priority
-            />
-          </div>
-        )}
+
+        <div className="absolute inset-0">
+          <Image
+            src={urlFor(mainImage).url()}
+            alt={mainImage.alt || title}
+            fill
+            className="object-cover opacity-60"
+            sizes="100vw"
+            priority
+          />
+        </div>
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-dark-blue via-dark-blue/70 to-transparent" />

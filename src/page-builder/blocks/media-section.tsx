@@ -19,8 +19,8 @@ export function MediaSection({
     <Container>
       <div className="flex flex-col gap-6">
         <SectionHeader backgroundColor={backgroundColor} textAlign={"left"}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
           {media.map((m, i) => (

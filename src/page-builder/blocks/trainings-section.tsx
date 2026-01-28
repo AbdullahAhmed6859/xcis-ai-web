@@ -13,8 +13,8 @@ export function TrainingsSection({
     <Container>
       <div className="flex flex-col gap-4 items-center">
         <SectionHeader backgroundColor={backgroundColor}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
         <div className="text-lg text-center max-w-3xl">
           <div>Trainings here</div>

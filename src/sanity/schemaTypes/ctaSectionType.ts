@@ -2,20 +2,18 @@ import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
 
-export const reviewsSectionType = defineType({
-  name: "reviewsSection",
+export const ctaSectionType = defineType({
+  name: "ctaSection",
   type: "object",
   fields: [
     ...sectionBaseFields,
     defineField({
-      name: "reviews",
-      type: "array",
-      of: [
-        {
-          type: "reference",
-          to: { type: "review" },
-        },
-      ],
+      name: "mainImage",
+      title: "Main Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
       validation: (rule) => rule.required(),
     }),
   ],
@@ -29,7 +27,7 @@ export const reviewsSectionType = defineType({
     prepare({ title, media, hide }) {
       return {
         title,
-        subtitle: `Reviews ${hide ? "(hidden)" : ""}`,
+        subtitle: `CTA ${hide ? "(hidden)" : ""}`,
         media: media ?? TextIcon,
       };
     },

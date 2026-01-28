@@ -18,8 +18,8 @@ export function ServicesSection({
           backgroundColor={backgroundColor}
           className="flex flex-col items-center"
         >
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {services.map((s, i) => {

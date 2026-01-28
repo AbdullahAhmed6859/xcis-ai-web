@@ -34,6 +34,10 @@ import { allTeamMembersSectionType } from "./allTeamMembersSectionType";
 import { companiesSectionType } from "./companiesSectionType";
 import { certificationType } from "./certificationType";
 import { certificationsSectionType } from "./certificationSectionType";
+import { companySlideshowSectionType } from "./companySlideshowSectionType";
+import { impactCardsSectionType } from "./impactCardsSectionType";
+import { ctaSectionType } from "./ctaSectionType";
+import { companiesSequenceType } from "./companiesSequenceType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -56,6 +60,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     servicesSectionType,
     caseStudiesSectionType,
     impactSectionType,
+    impactCardsSectionType,
     structuredStepsSectionType,
     trainingsSectionType,
     mediaSectionType,
@@ -71,5 +76,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     companiesSectionType,
     certificationType,
     certificationsSectionType,
+    companySlideshowSectionType,
+    companiesSequenceType,
+    ctaSectionType,
   ],
 };

@@ -16,8 +16,8 @@ export function CaseStudiesSection({
     <Container>
       <div className="flex flex-col gap-4 items-center">
         <SectionHeader backgroundColor={backgroundColor}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
         <CaseStudiesCarousel caseStudies={caseStudies} />
       </div>

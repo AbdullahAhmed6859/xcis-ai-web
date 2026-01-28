@@ -20,12 +20,12 @@ export function LocationsSection({
     <Container>
       <div className="flex flex-col gap-8 items-center">
         <SectionHeader backgroundColor={backgroundColor}>
-          <SectionHeading>{heading}</SectionHeading>
-          <SectionDescription>{text}</SectionDescription>
+          {heading && <SectionHeading>{heading}</SectionHeading>}
+          {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>
 
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-8 items-start">
-          {locations?.map((loc, i) => (
+          {locations.map((loc, i) => (
             <div className="flex flex-col items-center gap-4" key={i}>
               <div className="w-full max-w-50">
                 <Image

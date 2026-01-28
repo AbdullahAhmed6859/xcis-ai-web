@@ -9,7 +9,7 @@ export function EmailForm() {
   async function handleAction(formData: FormData) {
     const result = await submitEmailForm(formData);
 
-    if (result?.error) {
+    if (result.error) {
       toast.error(result.error);
     } else {
       toast.success("Thank you for subscribing!");
@@ -17,7 +17,7 @@ export function EmailForm() {
       const form = document.getElementById(
         "newsletter-form",
       ) as HTMLFormElement;
-      form?.reset();
+      form.reset();
     }
   }
 

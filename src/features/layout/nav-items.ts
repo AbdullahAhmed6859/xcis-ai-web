@@ -1,5 +1,5 @@
 export const NAV_ITEMS = [
-  // { label: "Services", href: "/services" },
+  { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
   // { label: "Training & Talent", href: "/training-talent" },
   // { label: "Careers", href: "/careers" },
@@ -9,7 +9,7 @@ export const NAV_ITEMS = [
 ];
 
 export const FOOTER_COMPANY_ITEMS = [
-  // { label: "Services", href: "/services" },
+  { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Media", href: "/media" },
   // { label: "Training & Talent", href: "/training-talent" },
@@ -18,7 +18,7 @@ export const FOOTER_COMPANY_ITEMS = [
 
 export const FOOTER_HELP_ITEMS = [
   { label: "About", href: "/about" },
-  // { label: "Locations", href: "/" },
+  { label: "Locations", href: "/" },
   { label: "Contact", href: "/contact" },
 ];
 

@@ -82,6 +82,13 @@ const pageCommon = `
         logo
       }
     },
+    _type == "companySlideshowSection" => {
+      companies[]->{
+        name,
+        website,
+        logo
+      }
+    },
     _type == "companiesSection" => {
       companies[]->{
         name,

@@ -17,16 +17,18 @@ export function ContactFormSection({
     <Container>
       <div className="flex flex-col lg:grid lg:grid-cols-2 items-stretch lg:gap-x-12 xl:gap-x-32">
         {/* LEFT SIDE: Content + Image */}
-        <div className="flex flex-col w-full h-125 lg:h-175">
+        <div className="flex flex-col w-full h-125 lg:h-190">
           <SectionHeader
             backgroundColor={backgroundColor}
             textAlign="left"
             className="flex flex-col gap-y-4 mb-8"
           >
-            <SectionHeading>{heading}</SectionHeading>
-            <SectionDescription className="lg:leading-8">
-              {text}
-            </SectionDescription>
+            {heading && <SectionHeading>{heading}</SectionHeading>}
+            {text && (
+              <SectionDescription className="lg:leading-8">
+                {text}
+              </SectionDescription>
+            )}
           </SectionHeader>
 
           <div className="relative grow w-full">
@@ -40,7 +42,7 @@ export function ContactFormSection({
           </div>
         </div>
 
-        <div className="w-full bg-white flex items-center h-125 lg:h-175">
+        <div className="w-full bg-white flex items-center h-full">
           <HubspotForm />
         </div>
       </div>

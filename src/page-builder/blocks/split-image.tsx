@@ -21,10 +21,12 @@ export function SplitImage({
             textAlign="left"
             className="flex flex-col gap-y-4 mb-8"
           >
-            <SectionHeading>{heading}</SectionHeading>
-            <SectionDescription className="lg:leading-8">
-              {text}
-            </SectionDescription>
+            {heading && <SectionHeading>{heading}</SectionHeading>}
+            {text && (
+              <SectionDescription className="lg:leading-8">
+                {text}
+              </SectionDescription>
+            )}
           </SectionHeader>
         </div>
 

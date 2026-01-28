@@ -1,7 +1,6 @@
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { sectionBaseFields } from "./sectionBaseFields";
-import { uniqueFilter } from "../lib/unique-filter";
 
 export const heroSectionType = defineType({
   name: "heroSection",
@@ -15,9 +14,6 @@ export const heroSectionType = defineType({
         {
           type: "reference",
           to: [{ type: "trustedCompany" }],
-          options: {
-            filter: uniqueFilter,
-          },
         },
       ],
     }),

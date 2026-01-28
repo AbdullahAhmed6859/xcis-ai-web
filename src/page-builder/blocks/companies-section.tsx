@@ -19,8 +19,8 @@ export function CompaniesSection({
         textAlign="left"
         className="flex flex-col gap-y-4 mb-8"
       >
-        <SectionHeading>{heading}</SectionHeading>
-        <SectionDescription className="lg:leading-8">{text}</SectionDescription>
+        {heading && <SectionHeading>{heading}</SectionHeading>}
+        {text && <SectionDescription>{text}</SectionDescription>}
       </SectionHeader>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-18 lg:gap-20 xl:gap-32 items-start">
         {companies.map((company, i) => (

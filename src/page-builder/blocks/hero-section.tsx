@@ -21,10 +21,16 @@ export function HeroSection(props: HeroProps) {
         <Container className="mx-auto w-full">
           <div className="w-full h-full flex flex-col justify-evenly md:grid md:grid-cols-2 md:grid-rows-1 md:gap-x-10 2xl:gap-x-32 xl:gap-x-36">
             <div className="sm:row-span-1 w-full md:flex md:flex-col md:justify-center text-center sm:text-left">
-              <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-bold lg:font-semibold text-white mb-6">
-                {heading}
-              </h1>
-              <p className="text-base md:text-lg text-gray-300 mb-8">{text}</p>
+              {heading && (
+                <h1 className="text-2xl md:text-4xl lg:text-5xl 2xl:text-7xl font-bold lg:font-semibold text-white mb-6">
+                  {heading}
+                </h1>
+              )}
+              {text && (
+                <p className="text-base md:text-lg text-gray-300 mb-8">
+                  {text}
+                </p>
+              )}
 
               <div className="flex gap-4 flex-col sm:flex-row">
                 <StrategyCallButton />

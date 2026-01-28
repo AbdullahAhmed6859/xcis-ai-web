@@ -79,3 +79,20 @@ export type CompaniesSectionProps = Extract<
   ContentType,
   { _type: "companiesSection" }
 >;
+
+export type ImpactCardsSectionProps = Extract<
+  ContentType,
+  { _type: "impactCardsSection" }
+>;
+
+export type CompanySlideshowSectionProps = Extract<
+  ContentType,
+  { _type: "companySlideshowSection" }
+>;
+
+export type CertificationsSectionProps = Extract<
+  ContentType,
+  { _type: "certificationsSection" }
+>;
+
+export type CtaSectionProps = Extract<ContentType, { _type: "ctaSection" }>;
