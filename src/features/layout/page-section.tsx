@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 
-const pageSectionVariants = cva("w-full", {
+const pageSectionVariants = cva("w-full relative flex flex-col", {
   variants: {
     paddingTop: {
       none: "",
@@ -15,8 +15,10 @@ const pageSectionVariants = cva("w-full", {
     },
     height: {
       full: "h-full",
+      // SCREEN: Fixed height (h-) to force the "viewport fit" for Main Hero
       screen: "min-h-[600px] h-[calc(80vh)] md:h-[calc(100vh-5rem)]",
-      medium: "min-h-[400px] h-[calc(60vh)] md:h-[calc(80vh-5rem)]",
+      // MEDIUM: Min-height (min-h-) to allow Case Studies to breathe
+      medium: "min-h-[400px] md:min-h-[500px]",
     },
     color: {
       white: "bg-white",
@@ -44,12 +46,13 @@ export function PageSection({
   return (
     <section
       className={cn(
-        className,
         pageSectionVariants({ height, color, paddingTop, paddingBottom }),
+        className,
       )}
       {...props}
     >
-      {children}
+      {/* flex-1 ensures the HeroSection fills the available height */}
+      <div className="flex-1 w-full h-full">{children}</div>
     </section>
   );
 }

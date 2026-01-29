@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { CtaSectionProps } from "./page-builder-types";
 import { Container } from "@/features/layout/container";
-import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { cn } from "@/lib/utils";
