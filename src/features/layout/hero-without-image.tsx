@@ -4,11 +4,9 @@ import { cn } from "@/lib/utils";
 import { StrategyCallButton } from "./strategy-call-button";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
 
 export function HeroWithoutImage(props: HeroProps) {
-  const { heading, text, mainImage } = props;
+  const { heading, text } = props;
   return (
     <div className="w-full h-full">
       <Container className="w-full h-full py-12 lg:py-12">

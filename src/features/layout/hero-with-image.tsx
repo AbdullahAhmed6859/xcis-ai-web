@@ -46,7 +46,7 @@ export function HeroWithImage(props: HeroProps) {
           {/* IMAGE BLOCK */}
           {/* CHANGED: Image aligns end only on 'lg' */}
           <div className="w-full flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[300px] lg:max-w-[400px] aspect-square">
+            <div className="relative w-full max-w-75 lg:max-w-100 aspect-square">
               <Image
                 src={urlFor(mainImage).url()}
                 fill
