@@ -9,7 +9,7 @@ export function HeroWithoutImage(props: HeroProps) {
   const { heading, text } = props;
   return (
     <div className="w-full h-full">
-      <Container className="w-full h-full py-12 lg:py-12">
+      <Container className="w-full h-full py-16 lg:py-0">
         {/* CHANGED: grid-cols-2 now triggers at 'lg' instead of 'md' */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center h-full transition-all">
           {/* TEXT BLOCK */}
@@ -37,10 +37,6 @@ export function HeroWithoutImage(props: HeroProps) {
               </Link>
             </div>
           </div>
-
-          {/* IMAGE BLOCK */}
-          {/* CHANGED: Image aligns end only on 'lg' */}
-          <div className="w-full flex justify-center lg:justify-end"></div>
         </div>
       </Container>
     </div>

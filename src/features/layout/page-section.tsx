@@ -16,7 +16,7 @@ const pageSectionVariants = cva("w-full h-full", {
     height: {
       full: "h-full",
       screen: "min-h-[600px] h-[calc(80vh)] md:h-[calc(100vh-5rem)]",
-      medium: "min-h-[400px] md:h-[calc(70vh)]",
+      medium: "min-h-[350px] lg:h-[calc(70vh)]",
     },
     color: {
       white: "bg-white",
