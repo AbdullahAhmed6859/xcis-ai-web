@@ -34,77 +34,70 @@ export function PageBuilder({ content }: PageBuilderProps) {
   return (
     <main>
       {content.map((block) => {
-        // Render the correct section based on type
-        let SectionComponent = null;
+        let Comp = null;
 
         switch (block._type) {
           case "heroSection":
-            SectionComponent = <HeroSection key={block._key} {...block} />;
+            Comp = <HeroSection key={block._key} {...block} />;
             break;
           case "servicesSection":
-            SectionComponent = <ServicesSection key={block._key} {...block} />;
+            Comp = <ServicesSection key={block._key} {...block} />;
             break;
           case "caseStudiesSection":
-            SectionComponent = (
-              <CaseStudiesSection key={block._key} {...block} />
-            );
+            Comp = <CaseStudiesSection key={block._key} {...block} />;
             break;
           case "reviewsSection":
-            SectionComponent = <ReviewsSection key={block._key} {...block} />;
+            Comp = <ReviewsSection key={block._key} {...block} />;
             break;
           case "impactSection":
-            SectionComponent = <ImpactSection key={block._key} {...block} />;
+            Comp = <ImpactSection key={block._key} {...block} />;
             break;
           case "structuredStepsSection":
-            SectionComponent = <StructuredSteps key={block._key} {...block} />;
+            Comp = <StructuredSteps key={block._key} {...block} />;
             break;
           case "carouselSection":
-            SectionComponent = <CarouselSection key={block._key} {...block} />;
+            Comp = <CarouselSection key={block._key} {...block} />;
             break;
           case "locationsSection":
-            SectionComponent = <LocationsSection key={block._key} {...block} />;
+            Comp = <LocationsSection key={block._key} {...block} />;
             break;
           case "trainingsSection":
-            SectionComponent = <TrainingsSection key={block._key} {...block} />;
+            Comp = <TrainingsSection key={block._key} {...block} />;
             break;
           case "mediaSection":
-            SectionComponent = <MediaSection key={block._key} {...block} />;
+            Comp = <MediaSection key={block._key} {...block} />;
             break;
           case "allCaseStudiesSection":
-            SectionComponent = <AllCaseStudies key={block._key} {...block} />;
+            Comp = <AllCaseStudies key={block._key} {...block} />;
             break;
           case "allMediaSection":
-            SectionComponent = <AllMedia key={block._key} {...block} />;
+            Comp = <AllMedia key={block._key} {...block} />;
             break;
           case "allTeamMembersSection":
-            SectionComponent = <AllTeams key={block._key} {...block} />;
+            Comp = <AllTeams key={block._key} {...block} />;
             break;
           case "contactFormSection":
-            SectionComponent = (
-              <ContactFormSection key={block._key} {...block} />
-            );
+            Comp = <ContactFormSection key={block._key} {...block} />;
             break;
           case "splitImageSection":
-            SectionComponent = <SplitImage key={block._key} {...block} />;
+            Comp = <SplitImage key={block._key} {...block} />;
             break;
           case "companiesSection":
-            SectionComponent = <CompaniesSection key={block._key} {...block} />;
+            Comp = <CompaniesSection key={block._key} {...block} />;
             break;
 
           case "impactCardsSection":
-            SectionComponent = <ImpactCards key={block._key} {...block} />;
+            Comp = <ImpactCards key={block._key} {...block} />;
             break;
 
           case "companySlideshowSection":
-            SectionComponent = (
-              <CompaniesSlideshow key={block._key} {...block} />
-            );
+            Comp = <CompaniesSlideshow key={block._key} {...block} />;
             break;
           case "ctaSection":
-            SectionComponent = <CtaSection key={block._key} {...block} />;
+            Comp = <CtaSection key={block._key} {...block} />;
             break;
           default:
-            SectionComponent = <></>;
+            Comp = <></>;
         }
 
         return (
@@ -115,7 +108,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
             paddingBottom={block.paddingBottom}
             color={block.backgroundColor}
           >
-            {SectionComponent}
+            {Comp}
           </PageSection>
         );
       })}
