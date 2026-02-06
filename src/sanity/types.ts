@@ -528,6 +528,7 @@ export type Media = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   publishedAt: string;
+  excerpt?: string;
   readTime: number;
   body?: BlockContent;
   relatedMedia?: Array<{
@@ -1624,6 +1625,7 @@ export type HOME_PAGE_QUERYResult = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   publishedAt: string;
+  excerpt?: string;
   readTime: number;
   body?: BlockContent;
   relatedMedia?: Array<{
@@ -2352,50 +2354,8 @@ export type SITEMAP_QUERYResult = Array<{
   href: "/";
   _updatedAt: string;
 }>;
-// Variable: CASE_STUDIES_QUERY
-// Query: *[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc){  _id,  title,  "slug": slug.current,  body,  mainImage,  publishedAt,  "services": coalesce(    services[]->{      _id,      "slug": slug.current,      title    },    []  ),  author->{    name,    image  }}
-export type CASE_STUDIES_QUERYResult = Array<{
-  _id: string;
-  title: string;
-  slug: string;
-  body: BlockContent | null;
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt: string;
-    _type: "image";
-  };
-  publishedAt: string;
-  services: Array<{
-    _id: string;
-    slug: string;
-    title: string;
-  }>;
-  author: {
-    name: string;
-    image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
-}>;
 // Variable: CASE_STUDY_QUERY
-// Query: *[_type == "caseStudy" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "services": coalesce(    services[]->{      _id,      "slug": slug.current,      title    },    []  ),  author->{    name,    image  },  relatedCaseStudies[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
+// Query: *[_type == "caseStudy" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  excerpt,  "services": coalesce(    services[]->{      _id,      "slug": slug.current,      title    },    []  ),  author->{    name,    image  },  relatedCaseStudies[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
 export type CASE_STUDY_QUERYResult = {
   _id: string;
   title: string;
@@ -2414,6 +2374,7 @@ export type CASE_STUDY_QUERYResult = {
     _type: "image";
   };
   publishedAt: string;
+  excerpt: string;
   services: Array<{
     _id: string;
     slug: string;
@@ -2446,46 +2407,8 @@ export type CASE_STUDY_QUERYResult = {
 export type CASE_STUDIES_SLUGS_QUERYResult = Array<{
   slug: string;
 }>;
-// Variable: MEDIA_QUERY
-// Query: *[_type == "media" && defined(slug.current)]|order(publishedAt desc){  _id,  title,  "slug": slug.current,  body,  mainImage,  publishedAt,  categories[]->title,  author->{    name,    image  }}
-export type MEDIA_QUERYResult = Array<{
-  _id: string;
-  title: string;
-  slug: string;
-  body: BlockContent | null;
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt: string;
-    _type: "image";
-  };
-  publishedAt: string;
-  categories: Array<string>;
-  author: {
-    name: string;
-    image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
-}>;
 // Variable: MEDIUM_QUERY
-// Query: *[_type == "media" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": categories[]->title,  author->{    name,    image  },  relatedMedia[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
+// Query: *[_type == "media" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  excerpt,  "categories": categories[]->title,  author->{    name,    image  },  relatedMedia[]{    _key, // required for drag and drop    ...@->{_id, title, slug} // get fields from the referenced post  }}
 export type MEDIUM_QUERYResult = {
   _id: string;
   title: string;
@@ -2504,6 +2427,7 @@ export type MEDIUM_QUERYResult = {
     _type: "image";
   };
   publishedAt: string;
+  excerpt: string | null;
   categories: Array<string>;
   author: {
     name: string;
@@ -2532,13 +2456,6 @@ export type MEDIUM_QUERYResult = {
 export type MEDIA_SLUGS_QUERYResult = Array<{
   slug: string;
 }>;
-// Variable: SERVICES_QUERY
-// Query: *[_type == "service"]{  _id,  "slug": slug.current,  title,}
-export type SERVICES_QUERYResult = Array<{
-  _id: string;
-  slug: string;
-  title: string;
-}>;
 // Variable: SERVICE_QUERY
 // Query: *[_type == "service" && slug.current == $slug][0]{  title,  description}
 export type SERVICE_QUERYResult = {
@@ -2559,13 +2476,10 @@ declare module "@sanity/client" {
     "\n*[_type == \"page\" && defined(slug.current)]{\n  \"slug\": slug.current\n}": PAGE_SLUGS_QUERYResult;
     "\n*[_id == \"siteSettings\"][0]{\n  ...,\n  homePage->\n{\n  \"seo\": {\n    \"title\": coalesce(seo.title, title, \"\"),\n    \"description\": coalesce(seo.description,  \"\"),\n    \"image\": seo.image,\n    \"noIndex\": seo.noIndex == true\n  },\n  \"content\": content[hide != true]{\n    ...,\n    // Logic for the Impact Section\n    _type == \"impactSection\" => {\n        \"countMembers\": count(*[_type == \"teamMember\"]),\n        \"teamMembers\": teamMembers[defined(@)]->{\n          name,\n          image\n        },\n        statistics[]{\n          heading,\n          highlightedHeading,\n          text\n        }\n      },\n    // Logic for Case Studies\n    _type == \"caseStudiesSection\" => {\n      \"caseStudies\": caseStudies[defined(@)]->{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      }\n    },\n    _type == \"allCaseStudiesSection\" => {\n      \"caseStudies\": *[_type == \"caseStudy\"]{\n        title,\n        excerpt,\n        mainImage,\n        \"slug\": slug.current,\n        \"services\": services[]->title\n      },\n      \"services\": *[_type == \"service\"].title\n    },\n    _type == \"allMediaSection\" => {\n      \"media\": *[_type == \"media\"]{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      },\n      \"categories\": *[_type == \"category\"].title\n    },\n    _type == \"allTeamMembersSection\" => {\n      \"teamMembers\": *[_type == \"teamMember\"]| order(name asc){\n        name,\n        image,\n        bio,\n        \"teams\":teams[]->title\n      },\n      \"teams\": teams[]->title\n    },\n    _type == \"servicesSection\" => {\n      services[]->{\n        title,\n        description,\n        \"slug\": slug.current,\n        icon\n      }\n    },\n    _type == \"heroSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"companySlideshowSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"companiesSection\" => {\n      companies[]->{\n        name,\n        website,\n        logo\n      }\n    },\n    _type == \"reviewsSection\" => {\n      reviews[]->{\n        name,\n        image,\n        reviewText,\n        position\n      }\n    },\n    _type == \"locationsSection\" => {\n      locations[]->{\n        image,\n        name,\n        slug\n      }\n    },\n    _type == \"mediaSection\" => {\n      media[]->{\n        title,\n        mainImage,\n        \"slug\": slug.current,\n        readTime,\n        publishedAt,\n        author->{\n          name,\n          image\n        },\n        \"categories\": categories[]->title\n      }\n    }\n  }\n}\n}": HOME_PAGE_QUERYResult;
     "\n[*[_id == \"siteSettings\"][0].homePage->{\n  \"href\": \"/\", \n  _updatedAt\n}] | order(typeOrder asc, _updatedAt desc)\n+\n*[_type in [\"page\", \"service\", \"caseStudy\", \"media\"] && defined(slug.current)] {\n  \"href\": select(\n    _type == \"page\" => \"/\" + slug.current,\n    _type == \"service\" => \"/services/\" + slug.current,\n    _type == \"caseStudy\" => \"/case-studies/\" + slug.current,\n    _type == \"media\" => \"/media/\" + slug.current,\n    slug.current\n  ),\n  _updatedAt\n} | order(typeOrder asc, _updatedAt desc)\n": SITEMAP_QUERYResult;
-    "\n*[_type == \"caseStudy\" && defined(slug.current)]|order(publishedAt desc){\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": CASE_STUDIES_QUERYResult;
-    "\n*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;
+    "\n*[_type == \"caseStudy\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  excerpt,\n  \"services\": coalesce(\n    services[]->{\n      _id,\n      \"slug\": slug.current,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  relatedCaseStudies[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": CASE_STUDY_QUERYResult;
     "*[_type == \"caseStudy\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": CASE_STUDIES_SLUGS_QUERYResult;
-    "*[_type == \"media\" && defined(slug.current)]|order(publishedAt desc){\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,\n  mainImage,\n  publishedAt,\n  categories[]->title,\n  author->{\n    name,\n    image\n  }\n}": MEDIA_QUERYResult;
-    "*[_type == \"media\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->title,\n  author->{\n    name,\n    image\n  },\n  relatedMedia[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": MEDIUM_QUERYResult;
+    "*[_type == \"media\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  excerpt,\n  \"categories\": categories[]->title,\n  author->{\n    name,\n    image\n  },\n  relatedMedia[]{\n    _key, // required for drag and drop\n    ...@->{_id, title, slug} // get fields from the referenced post\n  }\n}": MEDIUM_QUERYResult;
     "*[_type == \"media\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": MEDIA_SLUGS_QUERYResult;
-    "\n*[_type == \"service\"]{\n  _id,\n  \"slug\": slug.current,\n  title,\n}": SERVICES_QUERYResult;
     "\n*[_type == \"service\" && slug.current == $slug][0]{\n  title,\n  description\n}": SERVICE_QUERYResult;
     "*[_type == \"service\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": SERVICES_SLUGS_QUERYResult;
   }

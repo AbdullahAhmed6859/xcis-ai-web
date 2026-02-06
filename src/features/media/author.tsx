@@ -1,26 +1,26 @@
-import { MEDIUM_QUERYResult } from "@/sanity/types";
-import { urlFor } from "@/sanity/lib/image";
-import Image from "next/image";
+// import { MEDIUM_QUERYResult } from "@/sanity/types";
+// import { urlFor } from "@/sanity/lib/image";
+// import Image from "next/image";
 
-type AuthorProps = {
-  author: NonNullable<MEDIUM_QUERYResult>["author"];
-};
+// type AuthorProps = {
+//   author: NonNullable<MEDIUM_QUERYResult>["author"];
+// };
 
-export function Author({ author }: AuthorProps) {
-  return author.image || author.name ? (
-    <div className="flex items-center gap-2">
-      {author.image ? (
-        <Image
-          src={urlFor(author.image).width(100).height(100).url()}
-          width={100}
-          height={100}
-          alt={author.name || ""}
-          className="bg-pink-50 size-10 shadow-inner rounded-full"
-        />
-      ) : null}
-      {author.name ? (
-        <p className="text-base text-slate-700">{author.name}</p>
-      ) : null}
-    </div>
-  ) : null;
-}
+// export function Author({ author }: AuthorProps) {
+//   return author.image || author.name ? (
+//     <div className="flex items-center gap-2">
+//       {author.image ? (
+//         <Image
+//           src={urlFor(author.image).width(100).height(100).url()}
+//           width={100}
+//           height={100}
+//           alt={author.name || ""}
+//           className="bg-pink-50 size-10 shadow-inner rounded-full"
+//         />
+//       ) : null}
+//       {author.name ? (
+//         <p className="text-base text-slate-700">{author.name}</p>
+//       ) : null}
+//     </div>
+//   ) : null;
+// }

@@ -18,15 +18,38 @@ export async function generateMetadata({ params }: { params: Params }) {
     return {};
   }
 
+  const { title, excerpt, publishedAt, mainImage } = caseStudy;
+
+  const ogImage = urlFor(mainImage)
+    .width(1200)
+    .height(630)
+    .fit("crop")
+    .auto("format")
+    .url();
+
   const metadata: Metadata = {
-    title: caseStudy.title,
-    description: caseStudy.title,
+    title: `${title} | XCIS AI Case Studies`,
+    description: excerpt,
     openGraph: {
-      title: caseStudy.title,
-      // description: caseStudy.excerpt,
-      images: caseStudy.mainImage
-        ? [{ url: urlFor(caseStudy.mainImage).url() }]
-        : [],
+      title: `${title} | XCIS AI Case Studies`,
+      description: excerpt,
+      // authors: [author.name],
+      type: "article",
+      publishedTime: publishedAt,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: mainImage.alt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: excerpt ?? "",
+      images: [ogImage],
     },
   };
   return metadata;

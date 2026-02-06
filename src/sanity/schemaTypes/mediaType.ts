@@ -54,6 +54,11 @@ export const mediaType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "excerpt",
+      type: "text",
+      // validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "readTime",
       type: "number",
       validation: (rule) => rule.required(),

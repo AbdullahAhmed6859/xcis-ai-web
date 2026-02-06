@@ -15,13 +15,39 @@ export async function generateMetadata({ params }: { params: Params }) {
     return {};
   }
 
+  const { title, excerpt, author, publishedAt, mainImage } = media;
+
+  const ogImage = urlFor(mainImage)
+    .width(1200)
+    .height(630)
+    .fit("crop")
+    .auto("format")
+    .url();
+
   const metadata: Metadata = {
-    title: media.title,
-    description: media.title,
+    title: `${title} | XCIS AI Media`,
+    description: excerpt,
+    authors: [{ name: author.name }],
     openGraph: {
-      title: media.title,
-      // description: media.excerpt,
-      images: media.mainImage ? [{ url: urlFor(media.mainImage).url() }] : [],
+      title: `${title} | XCIS AI Media`,
+      description: excerpt ?? "",
+      // authors: [author.name],
+      type: "article",
+      publishedTime: publishedAt,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: mainImage.alt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: excerpt ?? "",
+      images: [ogImage],
     },
   };
   return metadata;

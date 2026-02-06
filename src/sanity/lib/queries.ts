@@ -189,27 +189,28 @@ export const SITEMAP_QUERY = defineQuery(`
 //   }
 // }`);
 
-export const CASE_STUDIES_QUERY = defineQuery(`
-*[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc){
-  _id,
-  title,
-  "slug": slug.current,
-  body,
-  mainImage,
-  publishedAt,
-  "services": coalesce(
-    services[]->{
-      _id,
-      "slug": slug.current,
-      title
-    },
-    []
-  ),
-  author->{
-    name,
-    image
-  }
-}`);
+// export const CASE_STUDIES_QUERY = defineQuery(`
+// *[_type == "caseStudy" && defined(slug.current)]|order(publishedAt desc){
+//   _id,
+//   title,
+//   "slug": slug.current,
+//   body,
+//   mainImage,
+//   publishedAt,
+//   excerpt,
+//   "services": coalesce(
+//     services[]->{
+//       _id,
+//       "slug": slug.current,
+//       title
+//     },
+//     []
+//   ),
+//   author->{
+//     name,
+//     image
+//   }
+// }`);
 
 export const CASE_STUDY_QUERY = defineQuery(`
 *[_type == "caseStudy" && slug.current == $slug][0]{
@@ -218,6 +219,7 @@ export const CASE_STUDY_QUERY = defineQuery(`
   body,
   mainImage,
   publishedAt,
+  excerpt,
   "services": coalesce(
     services[]->{
       _id,
@@ -241,20 +243,20 @@ export const CASE_STUDIES_SLUGS_QUERY =
   "slug": slug.current
 }`);
 
-export const MEDIA_QUERY =
-  defineQuery(`*[_type == "media" && defined(slug.current)]|order(publishedAt desc){
-  _id,
-  title,
-  "slug": slug.current,
-  body,
-  mainImage,
-  publishedAt,
-  categories[]->title,
-  author->{
-    name,
-    image
-  }
-}`);
+// export const MEDIA_QUERY =
+//   defineQuery(`*[_type == "media" && defined(slug.current)]|order(publishedAt desc){
+//   _id,
+//   title,
+//   "slug": slug.current,
+//   body,
+//   mainImage,
+//   publishedAt,
+//   categories[]->title,
+//   author->{
+//     name,
+//     image
+//   }
+// }`);
 
 export const MEDIUM_QUERY =
   defineQuery(`*[_type == "media" && slug.current == $slug][0]{
@@ -263,6 +265,7 @@ export const MEDIUM_QUERY =
   body,
   mainImage,
   publishedAt,
+  excerpt,
   "categories": categories[]->title,
   author->{
     name,
@@ -279,12 +282,12 @@ export const MEDIA_SLUGS_QUERY =
   "slug": slug.current
 }`);
 
-export const SERVICES_QUERY = defineQuery(`
-*[_type == "service"]{
-  _id,
-  "slug": slug.current,
-  title,
-}`);
+// export const SERVICES_QUERY = defineQuery(`
+// *[_type == "service"]{
+//   _id,
+//   "slug": slug.current,
+//   title,
+// }`);
 
 export const SERVICE_QUERY = defineQuery(`
 *[_type == "service" && slug.current == $slug][0]{
