@@ -36,8 +36,7 @@ import { certificationType } from "./certificationType";
 import { certificationsSectionType } from "./certificationSectionType";
 import { companySlideshowSectionType } from "./companySlideshowSectionType";
 import { impactCardsSectionType } from "./impactCardsSectionType";
-import { ctaSectionType } from "./ctaSectionType";
-import { companiesSequenceType } from "./companiesSequenceType";
+import { ctaSectionType, ctaSectionType } from "./ctaSectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -77,7 +76,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     certificationType,
     certificationsSectionType,
     companySlideshowSectionType,
-    companiesSequenceType,
     ctaSectionType,
   ],
 };
