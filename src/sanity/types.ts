@@ -13,6 +13,64 @@
  */
 
 // Source: schema.json
+export type Job = {
+  _id: string;
+  _type: "job";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  department: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "team";
+  };
+  postedAt: string;
+  schedule: "Full Time" | "Part Time" | "Contract" | "Internship";
+  applicationLink: string;
+  description?: BlockContent;
+};
+
+export type BlockContent = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+  listItem?: "bullet";
+  markDefs?: Array<{
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+} | {
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+  _key: string;
+}>;
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type CtaSection = {
   _type: "ctaSection";
   heading?: string;
@@ -34,22 +92,6 @@ export type CtaSection = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-};
-
-export type CompaniesSequence = {
-  _id: string;
-  _type: "companiesSequence";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  companies?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "trustedCompany";
-  }>;
 };
 
 export type CompanySlideshowSection = {
@@ -180,12 +222,6 @@ export type Team = {
   title: string;
   slug?: Slug;
   description?: string;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type AllTeamMembersSection = {
@@ -540,38 +576,6 @@ export type Media = {
   }>;
 };
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
-
 export type CaseStudy = {
   _id: string;
   _type: "caseStudy";
@@ -922,7 +926,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = CtaSection | CompaniesSequence | CompanySlideshowSection | CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | Team | Slug | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactCardsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | BlockContent | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Job | BlockContent | Slug | CtaSection | CompanySlideshowSection | CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | Team | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactCardsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
@@ -1557,18 +1561,22 @@ export type HOME_PAGE_QUERYResult = {
   homePage: null;
 } | {
   _id: string;
-  _type: "companiesSequence";
+  _type: "job";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title: string;
-  companies?: Array<{
+  slug: Slug;
+  department: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "trustedCompany";
-  }>;
+    [internalGroqTypeReferenceTo]?: "team";
+  };
+  postedAt: string;
+  schedule: "Contract" | "Full Time" | "Internship" | "Part Time";
+  applicationLink: string;
+  description?: BlockContent;
   homePage: null;
 } | {
   _id: string;
