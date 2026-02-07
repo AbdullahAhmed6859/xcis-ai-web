@@ -30,11 +30,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {
     title: data.homePage.seo.title,
     description: data.homePage.seo.description,
-    metadataBase: new URL("https://xcis.ai"), // REPLACE with your actual domain
+    metadataBase: new URL("https://xcis.ai"),
   };
 
   if (data.homePage.seo.image) {
     metadata.openGraph = {
+      title: data.homePage.seo.title,
+      description: data.homePage.seo.description,
+      url: "/",
       images: {
         url: urlFor(data.homePage.seo.image).width(1200).height(630).url(),
         width: 1200,
@@ -52,8 +55,29 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const data = await getPage();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "XCIS AI",
+    url: "https://xcis.ai",
+    logo: "https://xcis.ai/logo.png",
+    sameAs: [
+      "https://www.linkedin.com/company/xcis-ai",
+      "https://x.com/ai_xcis",
+    ],
+    description: data?.homePage?.seo.description,
+    image: data?.homePage?.seo.image
+      ? urlFor(data.homePage.seo.image).url()
+      : undefined,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {data?.homePage?.content ? (
         <PageBuilder content={data?.homePage.content} />
       ) : null}

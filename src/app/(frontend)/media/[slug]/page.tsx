@@ -9,7 +9,7 @@ import { Media } from "@/features/media";
 type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({ params }: { params: Params }) {
-  const slug = (await params).slug;
+  const { slug } = await params;
   const media = await getMedia(slug);
   if (!media) {
     return {};
@@ -67,12 +67,80 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: Params }) {
-  const slug = (await params).slug;
+  const { slug } = await params;
   const media = await getMedia(slug);
 
   if (!media) {
     notFound();
   }
 
-  return <Media {...media} />;
+  const { title, excerpt, publishedAt, mainImage, author } = media;
+  const imageUrl = urlFor(mainImage).url();
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: title,
+    description: excerpt,
+    image: [imageUrl],
+    datePublished: publishedAt,
+    dateModified: publishedAt, // Ideally, add a 'modifiedAt' field in Sanity for this
+    author: {
+      "@type": "Person",
+      name: author.name,
+      // url: `https://xcis.ai/team/${author?.slug || ''}` // Optional: link to author bio
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "XCIS AI",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://xcis.ai/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://xcis.ai/media/${slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://xcis.ai",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Media",
+        item: "https://xcis.ai/media",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: title,
+        item: `https://xcis.ai/media/${slug}`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      <Media {...media} />
+    </>
+  );
 }

@@ -13,8 +13,7 @@ export async function generateStaticParams() {
   return sanityFetch({ query: PAGE_SLUGS_QUERY, revalidate: false });
 }
 
-async function getPage(params: RouteProps["params"]) {
-  const slug = (await params).slug;
+async function getPage(slug: string) {
   return sanityFetch({
     query: PAGE_QUERY,
     params: { slug },
@@ -34,7 +33,8 @@ async function getPage(params: RouteProps["params"]) {
 export async function generateMetadata({
   params,
 }: RouteProps): Promise<Metadata> {
-  const page = await getPage(params);
+  const { slug } = await params;
+  const page = await getPage(slug);
 
   if (!page) {
     return {};
@@ -43,6 +43,12 @@ export async function generateMetadata({
   const metadata: Metadata = {
     title: page.seo.title,
     description: page.seo.description,
+    openGraph: {
+      url: `/case-studies/${slug}`,
+      title: page.seo.title,
+      description: page.seo.description,
+      type: "website",
+    },
   };
 
   if (page.seo.image) {
@@ -63,10 +69,52 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: RouteProps) {
-  const page = await getPage(params);
+  const { slug } = await params;
+  const page = await getPage(slug);
   if (!page) {
     notFound();
   }
 
-  return page.content ? <PageBuilder content={page.content} /> : null;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://xcis.ai",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: page.seo.title,
+        item: `https://xcis.ai/${slug}`,
+      },
+    ],
+  };
+
+  // 2. WebPage Schema
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: page.seo.title,
+    description: page.seo.description,
+    url: `https://xcis.ai/${slug}`,
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+
+      {page.content ? <PageBuilder content={page.content} /> : null}
+    </>
+  );
 }

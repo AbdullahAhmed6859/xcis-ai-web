@@ -2,6 +2,7 @@ import { defineQuery } from "next-sanity";
 
 const pageCommon = `
 {
+  "slug": slug.current,
   "seo": {
     "title": coalesce(seo.title, title, ""),
     "description": coalesce(seo.description,  ""),
