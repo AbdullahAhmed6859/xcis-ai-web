@@ -3,7 +3,7 @@ import { SectionHeader } from "@/features/layout/section-header";
 import { SectionHeading } from "@/features/layout/section-heading";
 import { SectionDescription } from "@/features/layout/section-description";
 import { AllTeamMembersSectionProps } from "./page-builder-types";
-import { TeamMembersFilterGrid } from "@/features/team/team-members-filter-grid";
+import { TeamMembersFilterGrid } from "@/features/team";
 
 export function AllTeams({
   backgroundColor,
