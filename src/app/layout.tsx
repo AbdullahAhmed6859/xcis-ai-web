@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import Script from "next/script";
 
