@@ -36,7 +36,7 @@ import { certificationType } from "./certificationType";
 import { certificationsSectionType } from "./certificationSectionType";
 import { companySlideshowSectionType } from "./companySlideshowSectionType";
 import { impactCardsSectionType } from "./impactCardsSectionType";
-import { ctaSectionType, ctaSectionType } from "./ctaSectionType";
+import { ctaSectionType } from "./ctaSectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
