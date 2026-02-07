@@ -15,6 +15,7 @@ export function SpeakWithOurTeamButton({
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          size="sm"
           className={cn(
             `border ${variant === "dark" ? "bg-dark-blue hover:bg-light-blue hover:text-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
             className,

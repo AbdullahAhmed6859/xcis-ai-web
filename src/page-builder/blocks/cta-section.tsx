@@ -12,7 +12,7 @@ export function CtaSection({ heading, mainImage }: CtaSectionProps) {
   return (
     <Container>
       <Card
-        className={`group relative w-full aspect-3/1 md:aspect-4/1 lg:aspect-5/1 xl:aspect-9/2 overflow-hidden border-0 rounded-xl p-0`}
+        className={`group relative w-full h-32 md:h-40 lg:h-52 overflow-hidden border-0 rounded-xl p-0`}
       >
         {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">
@@ -24,17 +24,17 @@ export function CtaSection({ heading, mainImage }: CtaSectionProps) {
           />
         </div>
 
-        <div className="h-full flex flex-col justify-center p-6 md:p-8 w-full z-20 gap-4">
-          <h2 className="mb-2 text-2xl font-bold text-white md:text-3xl line-clamp-3 lg:line-clamp-2">
+        <div className="h-full flex flex-col justify-center p-4 md:p-8 w-full z-20 gap-4">
+          <h2 className="text-2xl font-bold text-white md:text-3xl line-clamp-3 lg:line-clamp-2">
             {heading}
           </h2>
 
-          <div className="space-x-4">
+          <div className="gap-4 flex">
             <SpeakWithOurTeamButton className="max-w-50" variant="light" />
             <Link
               href="/contact"
               className={cn(
-                buttonVariants(),
+                buttonVariants({ size: "sm" }),
                 "bg-white text-dark-blue hover:bg-light-blue",
               )}
             >
