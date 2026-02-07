@@ -30,6 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {
     title: data.homePage.seo.title,
     description: data.homePage.seo.description,
+    metadataBase: new URL("https://xcis.ai"), // REPLACE with your actual domain
   };
 
   if (data.homePage.seo.image) {

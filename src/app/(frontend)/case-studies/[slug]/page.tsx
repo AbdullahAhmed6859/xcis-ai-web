@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Params }) {
     openGraph: {
       title: `${title} | XCIS AI Case Studies`,
       description: excerpt,
-      // authors: [author.name],
+      url: `/case-studies/${slug}`,
       type: "article",
       publishedTime: publishedAt,
       images: [

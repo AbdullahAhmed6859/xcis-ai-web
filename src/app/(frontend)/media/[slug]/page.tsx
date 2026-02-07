@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Params }) {
     openGraph: {
       title: `${title} | XCIS AI Media`,
       description: excerpt ?? "",
-      // authors: [author.name],
+      url: `/media/${slug}`,
       type: "article",
       publishedTime: publishedAt,
       images: [
