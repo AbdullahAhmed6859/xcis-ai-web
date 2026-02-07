@@ -19,7 +19,8 @@ export function SpeakWithOurTeamButton({
         <Button
           size="sm"
           className={cn(
-            `${nav ? "h-10 px-4 py-2" : "md:h-10 md:px-4 md:py-2"} border ${variant === "dark" ? "bg-dark-blue hover:bg-light-blue hover:text-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
+            "border duration-500",
+            `${nav ? "h-10 px-4 py-2" : "md:h-10 md:px-4 md:py-2"} ${variant === "dark" ? "bg-dark-blue hover:bg-light-blue hover:text-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
             className,
           )}
         >

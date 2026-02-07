@@ -4,9 +4,7 @@ import Image from "next/image";
 import { Container } from "./container";
 import { LogoSlideshow } from "@/components/logo-slideshow";
 import { StrategyCallButton } from "./strategy-call-button";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { ExploreButton } from "./explore-button";
 
 export function HeroWithCompanies(props: HeroProps) {
   const { heading, text, companies, mainImage } = props;
@@ -32,15 +30,7 @@ export function HeroWithCompanies(props: HeroProps) {
 
               <div className="flex gap-4 flex-col sm:flex-row">
                 <StrategyCallButton />
-                <Link
-                  href="/case-studies"
-                  className={cn(
-                    buttonVariants({ size: "lg", variant: "outline" }),
-                    "text-light-blue bg-transparent hover:bg-light-blue border-light-blue hover:border-light-blue",
-                  )}
-                >
-                  Explore Our Case Studies
-                </Link>
+                <ExploreButton />
               </div>
             </div>
             <div className="flex flex-col items-center lg:justify-center lg:items-end">

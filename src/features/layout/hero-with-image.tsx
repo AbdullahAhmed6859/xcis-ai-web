@@ -1,11 +1,9 @@
 import { HeroProps } from "@/page-builder/blocks/page-builder-types";
 import { Container } from "./container";
-import { cn } from "@/lib/utils";
 import { StrategyCallButton } from "./strategy-call-button";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { ExploreButton } from "./explore-button";
 
 export function HeroWithImage(props: HeroProps) {
   const { heading, text, mainImage } = props;
@@ -31,15 +29,7 @@ export function HeroWithImage(props: HeroProps) {
             {/* CHANGED: Buttons align start only on 'lg' */}
             <div className="flex gap-4 flex-col sm:flex-row w-full justify-center lg:justify-start">
               <StrategyCallButton />
-              <Link
-                href="/case-studies"
-                className={cn(
-                  buttonVariants({ size: "lg", variant: "outline" }),
-                  "text-light-blue bg-transparent hover:bg-light-blue border-light-blue hover:border-light-blue",
-                )}
-              >
-                Explore Our Case Studies
-              </Link>
+              <ExploreButton />
             </div>
           </div>
 

@@ -9,7 +9,7 @@ export function StrategyCallButton() {
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="bg-light-blue text-dark-blue hover:bg-light-blue/90 hover:text-dark-blue/90"
+          className="border-light-blue bg-light-blue text-dark-blue hover:bg-transparent hover:text-light-blue border duration-500"
         >
           Book A Strategy Call
         </Button>
