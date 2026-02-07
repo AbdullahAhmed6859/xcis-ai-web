@@ -2,6 +2,7 @@ import { Footer } from "@/features/layout/footer";
 import "../globals.css";
 import { Header } from "@/features/layout/header";
 import { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://xcis.ai"),
@@ -13,12 +14,11 @@ export default function FrontendLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full h-full">
+    <>
       <Header />
-      <main className="w-full" id="root">
-        {children}
-      </main>
+      <main>{children}</main>
+      <Toaster />
       <Footer />
-    </div>
+    </>
   );
 }

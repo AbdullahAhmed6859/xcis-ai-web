@@ -15,7 +15,7 @@ export function AllCaseStudies({
   return (
     <Container>
       <div className="flex flex-col gap-6">
-        <SectionHeader backgroundColor={backgroundColor} textAlign={"left"}>
+        <SectionHeader backgroundColor={backgroundColor} textAlign={"center"}>
           {heading && <SectionHeading>{heading}</SectionHeading>}
           {text && <SectionDescription>{text}</SectionDescription>}
         </SectionHeader>

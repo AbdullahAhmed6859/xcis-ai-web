@@ -6,7 +6,7 @@ export const textColourVariants = cva(" flex flex-col gap-y-2", {
   variants: {
     textAlign: {
       left: "text-left",
-      center: "text-center",
+      center: "text-center items-center",
     },
     backgroundColor: {
       blue: "text-white",

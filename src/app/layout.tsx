@@ -20,7 +20,6 @@ export default function RootLayout({
           strategy="afterInteractive"
         ></Script>
         {children}
-        <Toaster />
       </body>
     </html>
   );

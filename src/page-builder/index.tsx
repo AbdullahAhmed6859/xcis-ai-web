@@ -32,7 +32,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
   }
 
   return (
-    <main>
+    <>
       {content.map((block) => {
         let Comp = null;
 
@@ -112,6 +112,6 @@ export function PageBuilder({ content }: PageBuilderProps) {
           </PageSection>
         );
       })}
-    </main>
+    </>
   );
 }
