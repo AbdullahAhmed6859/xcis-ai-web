@@ -95,7 +95,7 @@ export function Header() {
 
           {/* Log in Button */}
           <div className="mt-4 mb-2" onClick={handleLinkClick}>
-            <SpeakWithOurTeamButton className="w-full" />
+            <SpeakWithOurTeamButton className="w-full" nav />
           </div>
         </nav>
       </div>

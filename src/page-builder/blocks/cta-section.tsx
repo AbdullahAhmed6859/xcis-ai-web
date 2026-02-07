@@ -35,7 +35,7 @@ export function CtaSection({ heading, mainImage }: CtaSectionProps) {
               href="/contact"
               className={cn(
                 buttonVariants({ size: "sm" }),
-                "bg-white text-dark-blue hover:bg-light-blue",
+                "bg-white text-dark-blue hover:bg-light-blue md:h-10 md:px-4 md:py-2",
               )}
             >
               Contact Us

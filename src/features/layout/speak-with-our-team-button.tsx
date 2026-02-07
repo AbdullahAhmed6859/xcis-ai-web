@@ -7,9 +7,11 @@ import { InlineWidget } from "react-calendly";
 export function SpeakWithOurTeamButton({
   className,
   variant = "dark",
+  nav = false,
 }: {
   className?: string;
   variant?: "light" | "dark";
+  nav?: boolean;
 }) {
   return (
     <Dialog>
@@ -17,7 +19,7 @@ export function SpeakWithOurTeamButton({
         <Button
           size="sm"
           className={cn(
-            `border ${variant === "dark" ? "bg-dark-blue hover:bg-light-blue hover:text-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
+            `${nav ? "h-10 px-4 py-2" : "md:h-10 md:px-4 md:py-2"} border ${variant === "dark" ? "bg-dark-blue hover:bg-light-blue hover:text-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
             className,
           )}
         >
@@ -33,16 +35,3 @@ export function SpeakWithOurTeamButton({
     </Dialog>
   );
 }
-
-//  <Dialog>
-//   <DialogTrigger>Open</DialogTrigger>
-//   <DialogContent>
-//     <DialogHeader>
-//       <DialogTitle>Are you absolutely sure?</DialogTitle>
-//       <DialogDescription>
-//         This action cannot be undone. This will permanently delete your account
-//         and remove your data from our servers.
-//       </DialogDescription>
-//     </DialogHeader>
-//   </DialogContent>
-// </Dialog>
