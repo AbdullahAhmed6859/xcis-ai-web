@@ -9,13 +9,14 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("caseStudy").title("Case Studies"),
       S.documentTypeListItem("page").title("Pages"),
       S.documentTypeListItem("service").title("Services"),
+      S.documentTypeListItem("job").title("Jobs"),
+      S.documentTypeListItem("training").title("Trainings"),
       S.divider(),
 
       // ───────────── Taxonomy & People ─────────────
       S.documentTypeListItem("category").title("Categories"),
       S.documentTypeListItem("teamMember").title("Team Members"),
       S.documentTypeListItem("team").title("Teams"),
-      S.documentTypeListItem("job").title("Jobs"),
       S.divider(),
 
       // ───────────── Business Content ─────────────
@@ -61,6 +62,7 @@ export const structure: StructureResolver = (S) =>
             "job",
             "certification",
             "faq",
+            "training",
           ].includes(item.getId()!),
       ),
     ]);

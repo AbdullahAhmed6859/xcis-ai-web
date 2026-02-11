@@ -40,6 +40,7 @@ import {
   servicesSectionType,
   splitImageSectionType,
 } from "./sectionTypes";
+import { trainingType } from "./trainingType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -82,5 +83,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaSectionType,
     jobType,
     faqType,
+    trainingType,
   ],
 };
