@@ -13,6 +13,16 @@
  */
 
 // Source: schema.json
+export type Faq = {
+  _id: string;
+  _type: "faq";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  body?: string;
+};
+
 export type Job = {
   _id: string;
   _type: "job";
@@ -527,6 +537,20 @@ export type Service = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  companies: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "trustedCompany";
+  }>;
+  faqs?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "faq";
+  }>;
 };
 
 export type Media = {
@@ -926,7 +950,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Job | BlockContent | Slug | CtaSection | CompanySlideshowSection | CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | Team | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactCardsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Faq | Job | BlockContent | Slug | CtaSection | CompanySlideshowSection | CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | Team | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactCardsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
@@ -1561,6 +1585,15 @@ export type HOME_PAGE_QUERYResult = {
   homePage: null;
 } | {
   _id: string;
+  _type: "faq";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  body?: string;
+  homePage: null;
+} | {
+  _id: string;
   _type: "job";
   _createdAt: string;
   _updatedAt: string;
@@ -1742,6 +1775,20 @@ export type HOME_PAGE_QUERYResult = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  companies: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "trustedCompany";
+  }>;
+  faqs?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "faq";
+  }>;
   homePage: null;
 } | {
   _id: string;

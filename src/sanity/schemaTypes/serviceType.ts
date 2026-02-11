@@ -33,6 +33,34 @@ export const serviceType = defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: "companies",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "trustedCompany" }],
+        },
+      ],
+      validation: (rule) => rule.required(),
+    }),
+    // defineField({
+    //   name: "relatedCaseStudies",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "reference",
+    //       to: [{ type: "caseStudy" }],
+    //     },
+    //   ],
+    //   validation: (rule) => rule.required(),
+    // }),
+    defineField({
+      name: "faqs",
+      title: "FAQs",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "faq" }] }],
+    }),
   ],
   preview: {
     select: {

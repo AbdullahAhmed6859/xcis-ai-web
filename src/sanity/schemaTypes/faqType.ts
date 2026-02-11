@@ -11,7 +11,7 @@ export const faqType = defineType({
     }),
     defineField({
       name: "body",
-      type: "blockContent",
+      type: "text",
     }),
   ],
 });
