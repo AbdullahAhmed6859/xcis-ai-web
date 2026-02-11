@@ -1,11 +1,8 @@
 import { type SchemaTypeDefinition } from "sanity";
-
 import { blockContentType } from "./blockContentType";
 import { categoryType } from "./categoryType";
-import { heroSectionType } from "./heroSectionType";
 import { pageBuilderType } from "./pageBuilderType";
 import { pageType } from "./pageType";
-import { splitImageSectionType } from "./splitImageType";
 import { featuresType } from "./featuresType";
 import { siteSettingsType } from "./siteSettingsType";
 import { seoType } from "./seoType";
@@ -14,32 +11,35 @@ import { reviewType } from "./reviewType";
 import { caseStudyType } from "./caseStudyType";
 import { mediaType } from "./mediaType";
 import { serviceType } from "./serviceType";
-import { servicesSectionType } from "./servicesSectionType";
-import { caseStudiesSectionType } from "./caseStudiesSectionType";
-import { impactSectionType } from "./impactSectionType";
 import { impactStatisticType } from "./impactStatisticType";
-import { structuredStepsSectionType } from "./structuredStepsSectionType";
-import { mediaSectionType } from "./mediaSectionType";
 import { locationType } from "./locationType";
-import { locationsSectionType } from "./locationsSectionType";
-import { reviewsSectionType } from "./reviewsSectionType";
-import { carouselSectionType } from "./carouselSectionType";
-import { trainingsSectionType } from "./trainingsSectionType";
 import { teamMemberType } from "./teamMemberType";
-import { allCaseStudiesSectionType } from "./allCaseStudiesSectionType";
-import { allMediaSectionType } from "./allMediaSectionType";
-import { contactFormSectionType } from "./contactFormSectionType";
 import { teamType } from "./teamType";
-import { allTeamMembersSectionType } from "./allTeamMembersSectionType";
-import { companiesSectionType } from "./companiesSectionType";
 import { certificationType } from "./certificationType";
-import { certificationsSectionType } from "./certificationSectionType";
-import { companySlideshowSectionType } from "./companySlideshowSectionType";
-import { impactCardsSectionType } from "./impactCardsSectionType";
-import { ctaSectionType } from "./ctaSectionType";
 import { jobType } from "./jobType";
-import { faqsSectionType } from "./faqsType";
 import { faqType } from "./faqType";
+import {
+  caseStudiesSectionType,
+  impactSectionType,
+  impactCardsSectionType,
+  structuredStepsSectionType,
+  trainingsSectionType,
+  mediaSectionType,
+  locationsSectionType,
+  reviewsSectionType,
+  carouselSectionType,
+  allCaseStudiesSectionType,
+  allMediaSectionType,
+  allTeamMembersSectionType,
+  contactFormSectionType,
+  companiesSectionType,
+  certificationsSectionType,
+  companySlideshowSectionType,
+  ctaSectionType,
+  heroSectionType,
+  servicesSectionType,
+  splitImageSectionType,
+} from "./sectionTypes";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [

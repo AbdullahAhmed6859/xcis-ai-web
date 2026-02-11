@@ -1,6 +1,6 @@
 import { HelpCircleIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { sectionBaseFields } from "./sectionBaseFields";
+import { sectionBaseFields } from "./sectionTypes/sectionBaseFields";
 
 export const faqsSectionType = defineType({
   name: "faqsSection",
