@@ -99,6 +99,7 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "allJobsSection":
             Comp = <AllJobs key={block._key} {...block} />;
+            break;
           default:
             Comp = <></>;
         }
