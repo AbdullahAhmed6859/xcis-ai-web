@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/carousel";
 import { CompanyLogoType } from "@/page-builder/blocks/page-builder-types";
 import { urlFor } from "@/sanity/lib/image";
-import { Container } from "@/features/layout/container";
 import Image from "next/image";
 
 interface LogosProps {

@@ -16,6 +16,7 @@ export const companySlideshowSectionType = defineType({
           to: [{ type: "trustedCompany" }],
         },
       ],
+      validation: (rule) => rule.required(),
     }),
   ],
   icon: TextIcon,

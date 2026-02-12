@@ -79,14 +79,12 @@ const pageCommon = `
     _type == "heroSection" => {
       companies[]->{
         name,
-        website,
         logo
       }
     },
     _type == "companySlideshowSection" => {
       companies[]->{
         name,
-        website,
         logo
       }
     },
@@ -259,8 +257,8 @@ export const CASE_STUDIES_SLUGS_QUERY =
 //   }
 // }`);
 
-export const MEDIUM_QUERY =
-  defineQuery(`*[_type == "media" && slug.current == $slug][0]{
+export const MEDIUM_QUERY = defineQuery(`
+  *[_type == "media" && slug.current == $slug][0]{
   _id,
   title,
   body,
@@ -292,11 +290,21 @@ export const MEDIA_SLUGS_QUERY =
 
 export const SERVICE_QUERY = defineQuery(`
 *[_type == "service" && slug.current == $slug][0]{
+  "slug": slug.current,
   title,
-  description
+  icon,
+  description,
+  companies[]->{
+    name,
+    logo
+  },
+  faqs[]->{
+    body,
+    title
+  },
 }`);
 
-export const SERVICES_SLUGS_QUERY =
-  defineQuery(`*[_type == "service" && defined(slug.current)]{ 
+export const SERVICES_SLUGS_QUERY = defineQuery(`
+  *[_type == "service" && defined(slug.current)]{ 
   "slug": slug.current
 }`);

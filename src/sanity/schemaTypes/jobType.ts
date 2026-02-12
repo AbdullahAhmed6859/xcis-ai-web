@@ -55,7 +55,7 @@ export const jobType = defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "department.name",
+      subtitle: "department.title",
     },
     prepare(selection) {
       const { title, subtitle } = selection;
