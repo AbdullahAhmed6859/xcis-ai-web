@@ -65,6 +65,11 @@ export type AllMediaSectionProps = Extract<
   { _type: "allMediaSection" }
 >;
 
+export type AllJobsSectionProps = Extract<
+  ContentType,
+  { _type: "allJobsSection" }
+>;
+
 export type ContactFormSectionProps = Extract<
   ContentType,
   { _type: "contactFormSection" }

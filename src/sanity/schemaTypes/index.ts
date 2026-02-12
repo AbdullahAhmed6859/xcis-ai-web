@@ -18,6 +18,7 @@ import { teamType } from "./teamType";
 import { certificationType } from "./certificationType";
 import { jobType } from "./jobType";
 import { faqType } from "./faqType";
+import { trainingType } from "./trainingType";
 import {
   caseStudiesSectionType,
   impactSectionType,
@@ -40,7 +41,7 @@ import {
   servicesSectionType,
   splitImageSectionType,
 } from "./sectionTypes";
-import { trainingType } from "./trainingType";
+import { allJobsSectionType } from "./sectionTypes/allJobsSectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -73,6 +74,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     allCaseStudiesSectionType,
     allMediaSectionType,
     allTeamMembersSectionType,
+    allJobsSectionType,
     teamMemberType,
     teamType,
     contactFormSectionType,

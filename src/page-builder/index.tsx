@@ -21,6 +21,7 @@ import { PageSection } from "../features/layout/page-section";
 import { ImpactCards } from "./blocks/impact-cards";
 import { CompaniesSlideshow } from "./blocks/companies-slideshow";
 import { CtaSection } from "./blocks/cta-section";
+import { AllJobs } from "./blocks/all-jobs";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -96,6 +97,8 @@ export function PageBuilder({ content }: PageBuilderProps) {
           case "ctaSection":
             Comp = <CtaSection key={block._key} {...block} />;
             break;
+          case "allJobsSection":
+            Comp = <AllJobs key={block._key} {...block} />;
           default:
             Comp = <></>;
         }
