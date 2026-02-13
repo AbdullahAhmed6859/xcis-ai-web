@@ -16,13 +16,13 @@ import {
   AllMedia,
   SplitImage,
   CompaniesSection,
+  AllJobs,
+  AllTrainings,
+  CompaniesSlideshow,
+  CtaSection,
 } from "./blocks";
 import { PageSection } from "../features/layout/page-section";
 import { ImpactCards } from "./blocks/impact-cards";
-import { CompaniesSlideshow } from "./blocks/companies-slideshow";
-import { CtaSection } from "./blocks/cta-section";
-import { AllJobs } from "./blocks/all-jobs";
-import { AllTrainings } from "./blocks/all-trainings";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];

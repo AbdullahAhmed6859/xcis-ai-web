@@ -14,3 +14,8 @@ export { AllMedia } from "./all-media";
 export { ContactFormSection } from "./contact-form-section";
 export { SplitImage } from "./split-image";
 export { CompaniesSection } from "./companies-section";
+export { AllJobs } from "./all-jobs";
+export { AllTrainings } from "./all-trainings";
+export { CompaniesSlideshow } from "./companies-slideshow";
+export { CtaSection } from "./cta-section";
+export { ImpactCards } from "./impact-cards";
