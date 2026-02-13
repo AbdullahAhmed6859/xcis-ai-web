@@ -40,8 +40,9 @@ import {
   heroSectionType,
   servicesSectionType,
   splitImageSectionType,
+  allTrainingsSectionType,
+  allJobsSectionType,
 } from "./sectionTypes";
-import { allJobsSectionType } from "./sectionTypes/allJobsSectionType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -75,6 +76,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     allMediaSectionType,
     allTeamMembersSectionType,
     allJobsSectionType,
+    allTrainingsSectionType,
     teamMemberType,
     teamType,
     contactFormSectionType,

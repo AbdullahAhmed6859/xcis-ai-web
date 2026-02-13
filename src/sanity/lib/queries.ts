@@ -79,6 +79,14 @@ const pageCommon = `
         description
       },
     },
+    _type == "allTrainingsSection" => {
+      "trainings": *[_type == "training"]{
+        title,
+        "slug": slug.current,
+        publishedAt,
+        description
+      },
+    },
     _type == "servicesSection" => {
       services[]->{
         title,

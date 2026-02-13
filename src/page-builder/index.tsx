@@ -22,6 +22,7 @@ import { ImpactCards } from "./blocks/impact-cards";
 import { CompaniesSlideshow } from "./blocks/companies-slideshow";
 import { CtaSection } from "./blocks/cta-section";
 import { AllJobs } from "./blocks/all-jobs";
+import { AllTrainings } from "./blocks/all-trainings";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -99,6 +100,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "allJobsSection":
             Comp = <AllJobs key={block._key} {...block} />;
+            break;
+          case "allTrainingsSection":
+            Comp = <AllTrainings key={block._key} {...block} />;
             break;
           default:
             Comp = <></>;

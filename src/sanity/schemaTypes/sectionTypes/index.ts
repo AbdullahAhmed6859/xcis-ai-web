@@ -2,6 +2,8 @@ export { allCaseStudiesSectionType } from "./allCaseStudiesSectionType";
 export { allMediaSectionType } from "./allMediaSectionType";
 export { allTeamMembersSectionType } from "./allTeamMembersSectionType";
 export { carouselSectionType } from "./carouselSectionType";
+export { allJobsSectionType } from "./allJobsSectionType";
+export { allTrainingsSectionType } from "./allTrainingsSectionType";
 export { caseStudiesSectionType } from "./caseStudiesSectionType";
 export { certificationsSectionType } from "./certificationSectionType";
 export { companiesSectionType } from "./companiesSectionType";

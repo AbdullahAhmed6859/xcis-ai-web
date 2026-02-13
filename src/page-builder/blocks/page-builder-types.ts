@@ -70,6 +70,11 @@ export type AllJobsSectionProps = Extract<
   { _type: "allJobsSection" }
 >;
 
+export type AllTrainingsSectionProps = Extract<
+  ContentType,
+  { _type: "allTrainingsSection" }
+>;
+
 export type ContactFormSectionProps = Extract<
   ContentType,
   { _type: "contactFormSection" }
