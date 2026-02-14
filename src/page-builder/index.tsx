@@ -20,9 +20,9 @@ import {
   AllTrainings,
   CompaniesSlideshow,
   CtaSection,
+  ImpactCards,
 } from "./blocks";
 import { PageSection } from "../features/layout/page-section";
-import { ImpactCards } from "./blocks/impact-cards";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
