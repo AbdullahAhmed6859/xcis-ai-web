@@ -32,7 +32,7 @@ export function EmailForm() {
         name="email"
         required
         placeholder="Email address"
-        className="border-none bg-transparent text-white placeholder:text-gray-400 focus-visible:ring-0 focus-visible:ring-offset-0 flex-grow px-4"
+        className="border-none bg-transparent text-white placeholder:text-gray-400 focus-visible:ring-0 focus-visible:ring-offset-0 grow px-4"
       />
 
       <Button
@@ -40,7 +40,7 @@ export function EmailForm() {
         className="rounded-xl bg-[#fcfcfc] px-6 text-[#1a2b4b] transition-all hover:bg-white flex items-center gap-2 font-semibold shadow-sm disabled:opacity-70"
       >
         Subscribe
-        <ArrowRight className="h-4 w-4 stroke-[3]" />
+        <ArrowRight className="h-4 w-4 stroke-3" />
       </Button>
     </form>
   );

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { FooterLogo } from "./footer-logo";
 import { CurrentYear } from "./current-year";
 import { EmailForm } from "../contact/email-form";
+import LinkedInIcon from "@/icons/linkedin-icon";
+import XComIcon from "@/icons/x-com-icon";
 
 export function Footer() {
   return (
@@ -33,25 +35,33 @@ export function Footer() {
           </div>
         </div>
         <Separator className="lg:hidden my-6" />
-        <div className="lg:hidden px-4 pb-6 w-3/4">
-          <div className="mr-auto max-w-md">
+        <div className="lg:hidden px-4 pb-6 w-4/5">
+          <div className="mr-auto max-w-md pb-2">
             <FooterLogo className="w-full" />
+          </div>
+          <div className="flex flex-start gap-3 pb-2">
+            <LinkedInIcon size={20} />
+            <XComIcon size={20} />
           </div>
           <p className="text-white">
             AI & data consulting for nuclear, energy & critical infrastructure.
           </p>
         </div>
-        <div className="lg:hidden w-3/4 max-w-md px-4">
+        <div className="lg:hidden px-4 w-full max-w-xs sm:max-w-sm">
           <EmailForm />
           <p className="text-xs text-white pt-4">
-            You&apos;ll receive occasional emails from Highnote. You always have
-            the choice to unsubscribe within every email.
+            You&apos;ll receive occasional emails from XCIS. You always have the
+            choice to unsubscribe.
           </p>
         </div>
-        <div className="hidden lg:flex justify-between w-full gap-x-48">
+        <div className="hidden lg:flex justify-between w-full gap-x-24 xl:gap-x-36 2xl:gap-x-48">
           <div className="w-full">
-            <div className="mr-auto pb-4">
+            <div className="mr-auto pb-2">
               <FooterLogo className="w-full" />
+            </div>
+            <div className="flex flex-start gap-3 pb-4">
+              <LinkedInIcon size={20} />
+              <XComIcon size={20} />
             </div>
             <p className="text-white">
               AI & data consulting for nuclear, energy & critical
@@ -83,12 +93,12 @@ export function Footer() {
           <div className="w-full space-y-4">
             <div className="space-y-2">
               <h2 className="text-white text-xl font-bold">Stay Updated</h2>
-              <p className="text-white">
-                You&apos;ll receive occasional emails from Highnote. You always
-                have the choice to unsubscribe within every email.
+              <p className="text-white text-sm">
+                You&apos;ll receive occasional emails from XCIS. You always have
+                the choice to unsubscribe.
               </p>
             </div>
-            <div className="w-3/4 max-w-md">
+            <div className="w-full 2xl:w-6/7">
               <EmailForm />
             </div>
           </div>
