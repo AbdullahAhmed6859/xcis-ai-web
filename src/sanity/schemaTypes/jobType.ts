@@ -42,6 +42,12 @@ export const jobType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "location",
+      type: "reference",
+      to: [{ type: "jobLocation" }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "applicationLink",
       title: "Application Link",
       type: "url",

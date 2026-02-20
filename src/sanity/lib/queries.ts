@@ -72,10 +72,11 @@ const pageCommon = `
       "jobs": *[_type == "job"]{
         title,
         "slug": slug.current,
-        department->,
+        "department": department->title,
         postedAt,
         schedule,
         applicationLink,
+        "location": location->name,
         description
       },
     },

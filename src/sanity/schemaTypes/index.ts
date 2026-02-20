@@ -43,6 +43,7 @@ import {
   allTrainingsSectionType,
   allJobsSectionType,
 } from "./sectionTypes";
+import { jobLoactionType } from "./jobLocationType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -86,6 +87,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     companySlideshowSectionType,
     ctaSectionType,
     jobType,
+    jobLoactionType,
     faqType,
     trainingType,
   ],
