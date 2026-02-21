@@ -59,7 +59,7 @@ export function AllJobs({
   }, [jobs, activeSearch, activeLocation]);
 
   return (
-    <Container className="flex flex-col gap-10 min-h-[600px]">
+    <Container className="flex flex-col gap-10 min-h-150">
       <style>{`
         @keyframes fadeSlideUp {
           from { opacity: 0; transform: translateY(10px); }

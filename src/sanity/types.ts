@@ -2719,6 +2719,23 @@ export type SERVICE_QUERYResult = {
 export type SERVICES_SLUGS_QUERYResult = Array<{
   slug: string;
 }>;
+// Variable: JOBS_SLUGS_QUERY
+// Query: *[_type == "job" && defined(slug.current)]{   "slug": slug.current}
+export type JOBS_SLUGS_QUERYResult = Array<{
+  slug: string;
+}>;
+// Variable: JOB_QUERY
+// Query: *[_type == "job" && slug.current == $slug][0]{  title,  "slug": slug.current,  "department": department->title,  postedAt,  schedule,  applicationLink,  "location": location->name,  description}
+export type JOB_QUERYResult = {
+  title: string;
+  slug: string;
+  department: string;
+  postedAt: string;
+  schedule: "Contract" | "Full Time" | "Internship" | "Part Time";
+  applicationLink: string;
+  location: string;
+  description: BlockContent | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -2734,5 +2751,7 @@ declare module "@sanity/client" {
     "*[_type == \"media\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": MEDIA_SLUGS_QUERYResult;
     "\n*[_type == \"service\" && slug.current == $slug][0]{\n  \"slug\": slug.current,\n  title,\n  icon,\n  description,\n  companies[]->{\n    name,\n    logo\n  },\n  faqs[]->{\n    body,\n    title\n  },\n}": SERVICE_QUERYResult;
     "\n  *[_type == \"service\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": SERVICES_SLUGS_QUERYResult;
+    "\n  *[_type == \"job\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": JOBS_SLUGS_QUERYResult;
+    "\n*[_type == \"job\" && slug.current == $slug][0]{\n  title,\n  \"slug\": slug.current,\n  \"department\": department->title,\n  postedAt,\n  schedule,\n  applicationLink,\n  \"location\": location->name,\n  description\n}": JOB_QUERYResult;
   }
 }

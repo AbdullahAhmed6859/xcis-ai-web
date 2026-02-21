@@ -328,3 +328,20 @@ export const SERVICES_SLUGS_QUERY = defineQuery(`
   *[_type == "service" && defined(slug.current)]{ 
   "slug": slug.current
 }`);
+
+export const JOBS_SLUGS_QUERY = defineQuery(`
+  *[_type == "job" && defined(slug.current)]{ 
+  "slug": slug.current
+}`);
+
+export const JOB_QUERY = defineQuery(`
+*[_type == "job" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  "department": department->title,
+  postedAt,
+  schedule,
+  applicationLink,
+  "location": location->name,
+  description
+}`);

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-// You can move this type to a shared types file if preferred
 export type JobItem = {
   title: string;
   slug: string;
