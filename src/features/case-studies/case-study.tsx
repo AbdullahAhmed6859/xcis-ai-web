@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Calendar, User, Briefcase } from "lucide-react";
 import { PortableText } from "next-sanity";
-
 import { components } from "@/sanity/portableTextComponents";
 import { CASE_STUDY_QUERYResult } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";

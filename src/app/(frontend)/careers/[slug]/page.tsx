@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { CASE_STUDIES_SLUGS_QUERY, JOB_QUERY } from "@/sanity/lib/queries";
+import { JOB_QUERY, JOBS_SLUGS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Metadata } from "next";
 import JobPage from "@/features/jobs/job-page";
@@ -54,7 +54,7 @@ async function getJob(slug: string) {
 
 export async function generateStaticParams() {
   return await sanityFetch({
-    query: CASE_STUDIES_SLUGS_QUERY,
+    query: JOBS_SLUGS_QUERY,
     revalidate: false,
   });
 }
