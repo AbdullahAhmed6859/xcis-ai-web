@@ -595,13 +595,6 @@
         },
         "optional": false
       },
-      "applicationLink": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": false
-      },
       "description": {
         "type": "objectAttribute",
         "value": {

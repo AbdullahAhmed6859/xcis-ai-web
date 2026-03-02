@@ -103,7 +103,6 @@ export type Job = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "jobLocation";
   };
-  applicationLink: string;
   description?: BlockContent;
 };
 
@@ -1081,7 +1080,7 @@ export type PAGE_QUERYResult = {
       department: string;
       postedAt: string;
       schedule: "Contract" | "Full Time" | "Internship" | "Part Time";
-      applicationLink: string;
+      applicationLink: null;
       location: string;
       description: BlockContent | null;
     }>;
@@ -1709,7 +1708,6 @@ export type HOME_PAGE_QUERYResult = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "jobLocation";
   };
-  applicationLink: string;
   description?: BlockContent;
   homePage: null;
 } | {
@@ -1970,7 +1968,7 @@ export type HOME_PAGE_QUERYResult = {
         department: string;
         postedAt: string;
         schedule: "Contract" | "Full Time" | "Internship" | "Part Time";
-        applicationLink: string;
+        applicationLink: null;
         location: string;
         description: BlockContent | null;
       }>;
@@ -2732,7 +2730,7 @@ export type JOB_QUERYResult = {
   department: string;
   postedAt: string;
   schedule: "Contract" | "Full Time" | "Internship" | "Part Time";
-  applicationLink: string;
+  applicationLink: null;
   location: string;
   description: BlockContent | null;
 } | null;
