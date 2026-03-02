@@ -60,6 +60,11 @@ export type AllTeamMembersSectionProps = Extract<
   { _type: "allTeamMembersSection" }
 >;
 
+export type AllTeamSectionProps = Extract<
+  ContentType,
+  { _type: "allTeamSection" }
+>;
+
 export type AllMediaSectionProps = Extract<
   ContentType,
   { _type: "allMediaSection" }

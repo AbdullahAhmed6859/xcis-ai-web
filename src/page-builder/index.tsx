@@ -10,7 +10,7 @@ import {
   LocationsSection,
   TrainingsSection,
   CarouselSection,
-  AllTeams,
+  AllTeamMembers,
   ContactFormSection,
   AllCaseStudies,
   AllMedia,
@@ -23,6 +23,7 @@ import {
   ImpactCards,
 } from "./blocks";
 import { PageSection } from "../features/layout/page-section";
+import { AllTeams } from "./blocks/all-team";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -76,6 +77,9 @@ export function PageBuilder({ content }: PageBuilderProps) {
             Comp = <AllMedia key={block._key} {...block} />;
             break;
           case "allTeamMembersSection":
+            Comp = <AllTeamMembers key={block._key} {...block} />;
+            break;
+          case "allTeamSection":
             Comp = <AllTeams key={block._key} {...block} />;
             break;
           case "contactFormSection":

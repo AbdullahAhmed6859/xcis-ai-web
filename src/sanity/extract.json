@@ -1761,65 +1761,6 @@
     }
   },
   {
-    "name": "team",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "team"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "title": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": false
-      },
-      "slug": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "slug"
-        },
-        "optional": true
-      },
-      "description": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
     "name": "allTrainingsSection",
     "type": "type",
     "value": {
@@ -2055,6 +1996,231 @@
           "type": "objectAttribute",
           "value": {
             "type": "boolean"
+          },
+          "optional": false
+        }
+      }
+    }
+  },
+  {
+    "name": "allTeamSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "allTeamSection"
+          }
+        },
+        "heading": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "text": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "full"
+              },
+              {
+                "type": "string",
+                "value": "screen"
+              },
+              {
+                "type": "string",
+                "value": "medium"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "backgroundColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "white"
+              },
+              {
+                "type": "string",
+                "value": "blue"
+              },
+              {
+                "type": "string",
+                "value": "gradient"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "paddingTop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "single"
+              },
+              {
+                "type": "string",
+                "value": "double"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "paddingBottom": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "none"
+              },
+              {
+                "type": "string",
+                "value": "single"
+              },
+              {
+                "type": "string",
+                "value": "double"
+              }
+            ]
+          },
+          "optional": false
+        },
+        "hide": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": false
+        },
+        "teamGroups": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "team": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "object",
+                    "attributes": {
+                      "_ref": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "_type": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "string",
+                          "value": "reference"
+                        }
+                      },
+                      "_weak": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "boolean"
+                        },
+                        "optional": true
+                      }
+                    },
+                    "dereferencesTo": "team"
+                  },
+                  "optional": false
+                },
+                "members": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "array",
+                    "of": {
+                      "type": "object",
+                      "attributes": {
+                        "_ref": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "reference"
+                          }
+                        },
+                        "_weak": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "boolean"
+                          },
+                          "optional": true
+                        }
+                      },
+                      "dereferencesTo": "teamMember",
+                      "rest": {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "optional": true
+                },
+                "_type": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string",
+                    "value": "teamGroup"
+                  }
+                }
+              },
+              "rest": {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "optional": false
         }
@@ -6508,6 +6674,21 @@
               "type": "inline",
               "name": "allTrainingsSection"
             }
+          },
+          {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "allTeamSection"
+            }
           }
         ]
       }
@@ -6576,6 +6757,65 @@
         "value": {
           "type": "inline",
           "name": "seo"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "team",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "team"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "slug": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "slug"
+        },
+        "optional": true
+      },
+      "description": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       }

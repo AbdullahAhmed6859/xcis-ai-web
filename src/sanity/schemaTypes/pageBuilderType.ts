@@ -26,6 +26,7 @@ export const pageBuilderType = defineType({
     defineArrayMember({ type: "ctaSection" }),
     defineArrayMember({ type: "allJobsSection" }),
     defineArrayMember({ type: "allTrainingsSection" }),
+    defineArrayMember({ type: "allTeamSection" }),
   ],
   // options: {
   //   insertMenu: {

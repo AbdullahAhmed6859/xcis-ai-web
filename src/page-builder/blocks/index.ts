@@ -8,7 +8,7 @@ export { ServicesSection } from "./services-section";
 export { StructuredSteps } from "./structured-steps";
 export { TrainingsSection } from "./trainings-section";
 export { ReviewsSection } from "./reviews-section";
-export { AllTeams } from "./all-teams";
+export { AllTeamMembers } from "./all-team-members";
 export { AllCaseStudies } from "./all-case-studies";
 export { AllMedia } from "./all-media";
 export { ContactFormSection } from "./contact-form-section";

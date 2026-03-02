@@ -42,6 +42,7 @@ import {
   splitImageSectionType,
   allTrainingsSectionType,
   allJobsSectionType,
+  allTeamSectionType,
 } from "./sectionTypes";
 import { jobLoactionType } from "./jobLocationType";
 
@@ -76,6 +77,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     allCaseStudiesSectionType,
     allMediaSectionType,
     allTeamMembersSectionType,
+    allTeamSectionType,
     allJobsSectionType,
     allTrainingsSectionType,
     teamMemberType,
