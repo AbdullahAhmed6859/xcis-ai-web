@@ -1,21 +1,14 @@
-import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { components } from "@/sanity/portableTextComponents";
 import { Container } from "@/features/layout/container";
 import { MapPin } from "lucide-react";
 import { JOB_QUERYResult } from "@/sanity/types";
+import { Button } from "@/components/ui/button";
+import ApplyButton from "./apply-button";
 
 function JobPage(props: NonNullable<JOB_QUERYResult>) {
-  const {
-    title,
-    location,
-    department,
-    postedAt,
-    description,
-    schedule,
-    applicationLink,
-    slug,
-  } = props;
+  const { title, location, department, postedAt, description, schedule, slug } =
+    props;
 
   // Format Date
   const formatDate = (dateStr: string) => {
@@ -38,21 +31,10 @@ function JobPage(props: NonNullable<JOB_QUERYResult>) {
         </h1>
         <p className="text-lg text-dark-blue opacity-80 mb-8">{location}</p>
 
-        {applicationLink && (
-          <Link
-            href={applicationLink}
-            target="_blank"
-            className="inline-flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-dark-blue uppercase hover:opacity-70 transition-opacity"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-dark-blue"></span>
-            Be the first to apply
-          </Link>
-        )}
-
         {/* JOB INFO Label */}
-        <h2 className="text-xs font-bold tracking-[0.15em] text-dark-blue uppercase opacity-50 my-8">
+        {/* <h2 className="text-xs font-bold tracking-[0.15em] text-dark-blue uppercase opacity-50 my-8">
           Job Info
-        </h2>
+        </h2> */}
 
         {/* Info Grid - Changed to w-fit to ensure perfect optical centering */}
         <div className="w-fit mx-auto grid grid-cols-[max-content_1fr] gap-x-12 gap-y-5 text-left text-dark-blue text-sm md:text-base">
@@ -95,12 +77,7 @@ function JobPage(props: NonNullable<JOB_QUERYResult>) {
 
         {/* Bottom CTA */}
         <div className="mt-16 flex justify-center">
-          <Link
-            href={applicationLink || "#"}
-            className="bg-dark-blue text-white px-10 py-4 rounded-lg font-medium hover:opacity-90 transition-opacity shadow-sm"
-          >
-            Apply Now
-          </Link>
+          <ApplyButton />
         </div>
       </div>
     </Container>

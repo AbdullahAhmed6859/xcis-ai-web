@@ -20,7 +20,7 @@ export function SpeakWithOurTeamButton({
           size="sm"
           className={cn(
             "border duration-500",
-            `${nav ? "h-10 px-4 py-2" : "md:h-10 md:px-4 md:py-2"} ${variant === "dark" ? "bg-dark-blue hover:bg-light-blue hover:text-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
+            `${nav ? "h-10 px-4 py-2" : "md:h-10 md:px-4 md:py-2"} ${variant === "dark" ? "bg-dark-blue hover:bg-white hover:text-dark-blue border-dark-blue" : "border-light-blue bg-light-blue text-dark-blue hover:bg-dark-blue hover:text-light-blue"}`,
             className,
           )}
         >

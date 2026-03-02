@@ -48,12 +48,6 @@ export const jobType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "applicationLink",
-      title: "Application Link",
-      type: "url",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "description",
       type: "blockContent",
     }),
