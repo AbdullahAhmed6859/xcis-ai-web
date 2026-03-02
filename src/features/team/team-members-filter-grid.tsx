@@ -13,7 +13,7 @@ export function TeamMembersFilterGrid({ teamMembers, teams }: Props) {
     <GenericFilterGrid
       items={teamMembers}
       categories={teams}
-      itemsPerPage={8} // 4 columns x 2 rows = 8 items per page looks good
+      itemsPerPage={10} // 4 columns x 2 rows = 8 items per page looks good
       gridClassName="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-12"
       getItemCategories={(member) => member.teams || []}
       renderItem={(member) => <TeamMemberCard member={member} />}
