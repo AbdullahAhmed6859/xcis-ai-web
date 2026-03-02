@@ -13,6 +13,23 @@
  */
 
 // Source: schema.json
+export type HowWeEngageSection = {
+  _type: "howWeEngageSection";
+  heading?: string;
+  text?: string;
+  height: "full" | "screen" | "medium";
+  backgroundColor: "white" | "blue" | "gradient";
+  paddingTop: "none" | "single" | "double";
+  paddingBottom: "none" | "single" | "double";
+  hide: boolean;
+  steps: Array<{
+    title: string;
+    description?: string;
+    _type: "step";
+    _key: string;
+  }>;
+};
+
 export type Training = {
   _id: string;
   _type: "training";
@@ -908,7 +925,9 @@ export type PageBuilder = Array<{
   _key: string;
 } & AllTrainingsSection | {
   _key: string;
-} & AllTeamSection>;
+} & AllTeamSection | {
+  _key: string;
+} & HowWeEngageSection>;
 
 export type Page = {
   _id: string;
@@ -1040,7 +1059,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Training | BlockContent | Slug | Faq | Job | JobLocation | CtaSection | CompanySlideshowSection | CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | AllTrainingsSection | AllJobsSection | AllTeamSection | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactCardsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Team | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = HowWeEngageSection | Training | BlockContent | Slug | Faq | Job | JobLocation | CtaSection | CompanySlideshowSection | CertificationsSection | Certification | SanityImageCrop | SanityImageHotspot | CompaniesSection | ContactFormSection | AllTrainingsSection | AllJobsSection | AllTeamSection | AllTeamMembersSection | AllMediaSection | AllCaseStudiesSection | CarouselSection | ReviewsSection | LocationsSection | MediaSection | TrainingsSection | StructuredStepsSection | ImpactCardsSection | ImpactSection | CaseStudiesSection | ServicesSection | HeroSection | ImpactStatistic | Location | Service | Media | CaseStudy | TeamMember | Review | TrustedCompany | Seo | SiteSettings | SplitImageSection | Features | PageBuilder | Page | Team | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PAGE_QUERY
@@ -1431,6 +1450,22 @@ export type PAGE_QUERYResult = {
       crop?: SanityImageCrop;
       _type: "image";
     };
+  } | {
+    _key: string;
+    _type: "howWeEngageSection";
+    heading?: string;
+    text?: string;
+    height: "full" | "medium" | "screen";
+    backgroundColor: "blue" | "gradient" | "white";
+    paddingTop: "double" | "none" | "single";
+    paddingBottom: "double" | "none" | "single";
+    hide: boolean;
+    steps: Array<{
+      title: string;
+      description?: string;
+      _type: "step";
+      _key: string;
+    }>;
   } | {
     _key: string;
     _type: "impactCardsSection";
@@ -2349,6 +2384,22 @@ export type HOME_PAGE_QUERYResult = {
         crop?: SanityImageCrop;
         _type: "image";
       };
+    } | {
+      _key: string;
+      _type: "howWeEngageSection";
+      heading?: string;
+      text?: string;
+      height: "full" | "medium" | "screen";
+      backgroundColor: "blue" | "gradient" | "white";
+      paddingTop: "double" | "none" | "single";
+      paddingBottom: "double" | "none" | "single";
+      hide: boolean;
+      steps: Array<{
+        title: string;
+        description?: string;
+        _type: "step";
+        _key: string;
+      }>;
     } | {
       _key: string;
       _type: "impactCardsSection";

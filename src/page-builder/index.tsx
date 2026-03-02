@@ -21,9 +21,10 @@ import {
   CompaniesSlideshow,
   CtaSection,
   ImpactCards,
+  HowWeEngage,
+  AllTeams,
 } from "./blocks";
 import { PageSection } from "../features/layout/page-section";
-import { AllTeams } from "./blocks/all-team";
 
 type PageBuilderProps = {
   content: NonNullable<PAGE_QUERYResult>["content"];
@@ -107,6 +108,10 @@ export function PageBuilder({ content }: PageBuilderProps) {
             break;
           case "allTrainingsSection":
             Comp = <AllTrainings key={block._key} {...block} />;
+            break;
+
+          case "howWeEngageSection":
+            Comp = <HowWeEngage key={block._key} {...block} />;
             break;
           default:
             Comp = <></>;

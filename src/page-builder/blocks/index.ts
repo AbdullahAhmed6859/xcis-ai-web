@@ -19,3 +19,5 @@ export { AllTrainings } from "./all-trainings";
 export { CompaniesSlideshow } from "./companies-slideshow";
 export { CtaSection } from "./cta-section";
 export { ImpactCards } from "./impact-cards";
+export { HowWeEngage } from "./how-we-engage";
+export { AllTeams } from "./all-team";
