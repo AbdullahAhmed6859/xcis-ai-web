@@ -68,6 +68,17 @@ const pageCommon = `
       },
       "teams": teams[]->title
     },
+    _type == "allTeamSection" => {
+      teamGroups[]{
+        "teamName": team->title,
+        "members": members[]->{
+          name,
+          image,
+          bio,
+          "teams": teams[]->title
+        }
+      }
+    },
     _type == "allJobsSection" => {
       "jobs": *[_type == "job"]{
         title,

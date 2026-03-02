@@ -20,4 +20,5 @@ export { servicesSectionType } from "./servicesSectionType";
 export { splitImageSectionType } from "./splitImageSectionType";
 export { structuredStepsSectionType } from "./structuredStepsSectionType";
 export { trainingsSectionType } from "./trainingsSectionType";
+export { allTeamSectionType } from "./allTeamSectionType";
 // export {} from "./workFlowSectionType";

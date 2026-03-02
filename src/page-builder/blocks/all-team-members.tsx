@@ -5,7 +5,7 @@ import { SectionDescription } from "@/features/layout/section-description";
 import { AllTeamMembersSectionProps } from "./page-builder-types";
 import { TeamMembersFilterGrid } from "@/features/team";
 
-export function AllTeams({
+export function AllTeamMembers({
   backgroundColor,
   heading,
   text,
