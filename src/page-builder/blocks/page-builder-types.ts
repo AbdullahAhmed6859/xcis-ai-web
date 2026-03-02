@@ -111,3 +111,8 @@ export type CertificationsSectionProps = Extract<
 >;
 
 export type CtaSectionProps = Extract<ContentType, { _type: "ctaSection" }>;
+
+export type HowWeEngageSectionProps = Extract<
+  ContentType,
+  { _type: "howWeEngageSection" }
+>;
