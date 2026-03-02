@@ -4,6 +4,7 @@ import { Container } from "@/features/layout/container";
 import { MapPin } from "lucide-react";
 import { JOB_QUERYResult } from "@/sanity/types";
 import { Button } from "@/components/ui/button";
+import ApplyButton from "./apply-button";
 
 function JobPage(props: NonNullable<JOB_QUERYResult>) {
   const { title, location, department, postedAt, description, schedule, slug } =
@@ -76,12 +77,7 @@ function JobPage(props: NonNullable<JOB_QUERYResult>) {
 
         {/* Bottom CTA */}
         <div className="mt-16 flex justify-center">
-          <Button
-            size="lg"
-            className="bg-dark-blue text-white hover:bg-white hover:text-dark-blue border-dark-blue border hover:border-dark-blue transition-colors duration-300"
-          >
-            Apply Now
-          </Button>
+          <ApplyButton />
         </div>
       </div>
     </Container>

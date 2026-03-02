@@ -6,6 +6,7 @@ import { ContactFormSectionProps } from "./page-builder-types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { HubspotForm } from "@/features/contact/hubspot-form";
+import ContactForm from "@/features/contact/contact-form";
 
 export function ContactFormSection({
   heading,
@@ -17,7 +18,7 @@ export function ContactFormSection({
     <Container>
       <div className="flex flex-col lg:grid lg:grid-cols-2 items-stretch lg:gap-x-12 xl:gap-x-32">
         {/* LEFT SIDE: Content + Image */}
-        <div className="flex flex-col w-full h-125 lg:h-190">
+        <div className="flex flex-col w-full h-125 lg:h-auto gap-y-6">
           <SectionHeader
             backgroundColor={backgroundColor}
             textAlign="left"
@@ -43,7 +44,8 @@ export function ContactFormSection({
         </div>
 
         <div className="w-full bg-white flex items-center h-full">
-          <HubspotForm />
+          {/* <HubspotForm /> */}
+          <ContactForm />
         </div>
       </div>
     </Container>
