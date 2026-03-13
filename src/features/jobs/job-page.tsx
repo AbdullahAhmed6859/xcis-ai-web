@@ -77,7 +77,7 @@ function JobPage(props: NonNullable<JOB_QUERYResult>) {
 
         {/* Bottom CTA */}
         <div className="mt-16 flex justify-center">
-          <ApplyButton />
+          <ApplyButton jobTitle={title} jobSlug={slug} />
         </div>
       </div>
     </Container>
